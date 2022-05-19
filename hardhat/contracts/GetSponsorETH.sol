@@ -2,6 +2,7 @@
 pragma solidity 0.8.4;
 
 import "hardhat/console.sol";
+import "./interfaces/ILendingPool.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
@@ -24,26 +25,41 @@ contract GetSponsorETH is Ownable {
     mapping(uint256 => SponsorshipDetail) public sponsorships;
     mapping(address => bool) public isAllowedToken;
     mapping(address => uint) minAmountFund;
+    mapping(address => address) aTokens;
+    // Sponsorship id => Token => staker => amount
+    mapping(uint => mapping(address => mapping(address => uint))) tokensStaked;
+    mapping(uint => mapping(address => mapping(address => uint))) aTokensStaked;
     uint256 _counter = 1;
+
+    // interface to interact with aToken
+    ILendingPool public lendingPool;
 
     event NewSponsor(uint256 indexed idx, address indexed owner, string pledge);
     event Fund(
         uint256 indexed idx,
+        address indexed token,
         address indexed from,
+        bool isStaking,
         string author,
         string message
     );
     event Config(uint256 indexed idx, string valName, string value);
     event TokenAllowanceUpdate(address token, bool isAllowed);
+    event StakeWithdrawn(
+        uint indexed sponsorshipId,
+        address indexed token,
+        address indexed staked
+    );
 
-    constructor() {}
+    constructor(address _lendingPool) {
+        lendingPool = ILendingPool(_lendingPool);
+    }
 
     function createSponsor(
         uint timeToExpiry,
         string calldata pledge,
         bool isPerpetual
     ) external {
-        require(timeToExpiry <= MAX_TIME_TO_EXPIRY, "!max time");
         ownerOf[_counter] = msg.sender;
         emit NewSponsor(_counter, msg.sender, pledge);
 
@@ -71,17 +87,35 @@ contract GetSponsorETH is Ownable {
     ) external payable {
         require(isAllowedToken[token], "!allowed token");
         require(amount >= minAmountFund[token], "small amount");
-        address _owner = ownerOf[sponsorshipId];
-        require(_owner != address(0), "Sponsor not found");
         require(_isNotExpired(sponsorshipId), "expired");
 
         if (isStaking) {
-            _fundWithStaking(_owner, msg.sender, token, amount);
+            _fundWithStaking(sponsorshipId, msg.sender, token, amount);
         } else {
-            _fund(_owner, msg.sender, token, amount);
+            _fund(sponsorshipId, msg.sender, token, amount);
         }
-        payable(_owner).transfer(msg.value);
-        emit Fund(sponsorshipId, msg.sender, user, message);
+
+        emit Fund(sponsorshipId, token, msg.sender, isStaking, user, message);
+    }
+
+    function withdrawStake(uint sponsorshipId, address token) external {
+        uint stake = aTokensStaked[sponsorshipId][token][msg.sender];
+        require(stake > 0, "No Stake");
+        address owner = ownerOf[sponsorshipId];
+        uint balanceBefore = IERC20(token).balanceOf(address(this));
+        lendingPool.withdraw(token, stake, address(this));
+        uint balanceAfter = IERC20(token).balanceOf(address(this));
+        uint stakerBalance = tokensStaked[sponsorshipId][token][msg.sender];
+        uint tokenTosendToOwner = balanceAfter - balanceBefore - stakerBalance;
+
+        // update mappings
+        aTokensStaked[sponsorshipId][token][msg.sender] = 0;
+        tokensStaked[sponsorshipId][token][msg.sender] = 0;
+
+        IERC20(token).transfer(owner, tokenTosendToOwner);
+        IERC20(token).transfer(msg.sender, stakerBalance);
+
+        emit StakeWithdrawn(sponsorshipId, token, msg.sender);
     }
 
     function config(
@@ -95,6 +129,7 @@ contract GetSponsorETH is Ownable {
 
     function updateAllowed(
         address token,
+        address aToken,
         bool isAllowed,
         uint minAmount
     ) external onlyOwner {
@@ -103,29 +138,52 @@ contract GetSponsorETH is Ownable {
 
         if (isAllowed) {
             minAmountFund[token] = minAmount;
+            IERC20(token).approve(address(lendingPool), type(uint256).max);
+            aTokens[token] = aToken;
         } else {
             minAmountFund[token] = 0;
+            IERC20(token).approve(address(lendingPool), 0);
         }
 
         emit TokenAllowanceUpdate(token, isAllowed);
     }
 
     function _fund(
-        address receiver,
+        uint sponsorshipId,
         address sender,
         address token,
         uint amount
-    ) internal {}
+    ) internal {
+        address owner = ownerOf[sponsorshipId];
+        require(owner != address(0), "Sponsor not found");
+        require(
+            IERC20(token).transferFrom(sender, owner, amount),
+            "transfer failed"
+        );
+    }
 
     function _fundWithStaking(
-        address receiver,
+        uint sponsorshipId,
         address sender,
         address token,
         uint amount
-    ) internal {}
+    ) internal {
+        address owner = ownerOf[sponsorshipId];
+        require(owner != address(0), "Sponsor not found");
+
+        // Mint aToken and send it to contract address
+        address aToken = aTokens[token];
+        uint aBalanceBefore = IERC20(aToken).balanceOf(address(this));
+        lendingPool.deposit(token, amount, address(this), 0);
+        uint mintAmount = IERC20(aToken).balanceOf(address(this)) -
+            aBalanceBefore;
+        tokensStaked[sponsorshipId][token][sender] += amount;
+        aTokensStaked[sponsorshipId][token][sender] += mintAmount;
+    }
 
     function _isNotExpired(uint sponsorshipId)
         internal
+        view
         returns (bool isExpired)
     {
         SponsorshipDetail memory details = sponsorships[sponsorshipId];

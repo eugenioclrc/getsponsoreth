@@ -12,6 +12,7 @@
     "hardhat": "^2.9.5"
   },
   "dependencies": {
+    "@aave/protocol-v2": "^1.0.1",
     "@openzeppelin/contracts": "^4.6.0"
   }
 }
