@@ -20,7 +20,7 @@ module.exports = {
   solidity: {
     compilers: [
       {
-        version: '0.8.4',
+        version: "0.8.4",
         settings: {
           optimizer: {
             enabled: true,
@@ -28,7 +28,7 @@ module.exports = {
           },
         },
       },
-    ]
+    ],
   },
   etherscan: {
     apiKey: {
@@ -37,9 +37,9 @@ module.exports = {
     },
   },
   abiExporter: {
-    path: './data/abi',
+    path: "./data/abi",
     clear: true,
     // flat: true,
-    only: [':GetSponsorETH$']
-  }
+    only: [":GetSponsorETH$"],
+  },
 };
