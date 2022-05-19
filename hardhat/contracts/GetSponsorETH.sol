@@ -10,6 +10,7 @@ contract GetSponsorETH {
 
     event NewSponsor(uint256 indexed, address indexed owner, string pledge);
     event Fund(uint256 indexed, address indexed from, string author, string message);
+    event Config(uint256 indexed, string valName, string value);
 
     
     constructor() {
@@ -26,5 +27,10 @@ contract GetSponsorETH {
         require(_owner != address(0), "Sponsor not found");
         payable(_owner).transfer(msg.value);
         emit Fund(sponsorId, msg.sender, user, message);
+    }
+
+    function config(uint256 sponsorId, string calldata valName, string calldata value) {
+        require(ownerOf[sponsorId] == msg.sender, "not allowed");
+        emit Config(sponsorId, valName, value);
     }
 }
