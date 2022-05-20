@@ -1,0 +1,42 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: undefined
+    network: mumbai
+    source:
+      address: "0x1a70761Efe908a8072FC7B2f00eae71b7171f2a5"
+      abi: GetSponsorETH
+      startBlock: 26396502
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Claimed
+        - Config
+        - Fund
+        - NewSponsor
+        - OwnershipTransferred
+        - StakeWithdrawn
+        - TokenAllowanceUpdate
+      abis:
+        - name: GetSponsorETH
+          file: ./abis/GetSponsorETH.json
+      eventHandlers:
+        - event: Claimed(indexed uint256,indexed address)
+          handler: handleClaimed
+        - event: Config(indexed uint256,string,string)
+          handler: handleConfig
+        - event: Fund(indexed uint256,indexed address,indexed address,bool,string,string)
+          handler: handleFund
+        - event: NewSponsor(indexed uint256,indexed address,string)
+          handler: handleNewSponsor
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: StakeWithdrawn(indexed uint256,indexed address,indexed address)
+          handler: handleStakeWithdrawn
+        - event: TokenAllowanceUpdate(address,bool)
+          handler: handleTokenAllowanceUpdate
+      file: ./src/get-sponsor-eth.ts
