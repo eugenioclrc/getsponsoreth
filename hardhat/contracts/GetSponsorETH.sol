@@ -5,11 +5,12 @@ import "./interfaces/ILendingPool.sol";
 import "./SponsoredPools.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 
 // Allow staking
 // Aave staking
 
-contract GetSponsorETH is Ownable {
+contract GetSponsorETH is Ownable, ERC1155 {
     // example strategy detail
     struct SponsorshipDetail {
         uint id;
@@ -50,15 +51,14 @@ contract GetSponsorETH is Ownable {
     );
     event Claimed(uint indexed sponsorshipId, address indexed token);
 
-    constructor(address _lendingPool) {
+    constructor(address _lendingPool) ERC1155("SPONSORETH"){
         lendingPool = ILendingPool(_lendingPool);
     }
 
     function createSponsor(
         uint timeToExpiry,
         string calldata pledge,
-        bool isPerpetual,
-        string[] calldata configs
+        bool isPerpetual
     ) external {
         ownerOf[_counter] = msg.sender;
         emit NewSponsor(_counter, msg.sender, pledge);
@@ -66,7 +66,7 @@ contract GetSponsorETH is Ownable {
         SponsorshipDetail memory details = SponsorshipDetail({
             id: _counter,
             startTime: block.timestamp,
-            timeToExpiry: block.timestamp + timeToExpiry,
+            timeToExpiry: timeToExpiry,
             pledge: pledge,
             isPerpetual: isPerpetual
         });
@@ -75,12 +75,6 @@ contract GetSponsorETH is Ownable {
         SponsoredPools sp = new SponsoredPools();
         sp.init(lendingPool, address(this), msg.sender);
         sponsoredPools[_counter] = sp;
-        if (configs.length % 2 == 0) {
-            for (uint16 i = 0; i < configs.length; i += 2) {
-                // if there is any base configuration lets submit it
-                emit Config(_counter, configs[i], configs[i + 1]);
-            }
-        }
         unchecked {
             _counter++;
         }
@@ -103,6 +97,7 @@ contract GetSponsorETH is Ownable {
         } else {
             _fund(sponsorshipId, msg.sender, token, amount);
         }
+        _mint(msg.sender, sponsorshipId, 1,"");
 
         emit Fund(sponsorshipId, token, msg.sender, isStaking, user, message);
     }
