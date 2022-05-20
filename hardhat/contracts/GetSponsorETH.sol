@@ -57,7 +57,8 @@ contract GetSponsorETH is Ownable {
     function createSponsor(
         uint timeToExpiry,
         string calldata pledge,
-        bool isPerpetual
+        bool isPerpetual,
+        string[] calldata configs
     ) external {
         ownerOf[_counter] = msg.sender;
         emit NewSponsor(_counter, msg.sender, pledge);
@@ -65,7 +66,7 @@ contract GetSponsorETH is Ownable {
         SponsorshipDetail memory details = SponsorshipDetail({
             id: _counter,
             startTime: block.timestamp,
-            timeToExpiry: timeToExpiry,
+            timeToExpiry: block.timestamp + timeToExpiry,
             pledge: pledge,
             isPerpetual: isPerpetual
         });
@@ -74,6 +75,12 @@ contract GetSponsorETH is Ownable {
         SponsoredPools sp = new SponsoredPools();
         sp.init(lendingPool, address(this), msg.sender);
         sponsoredPools[_counter] = sp;
+        if (configs.length % 2 == 0) {
+            for (uint16 i = 0; i < configs.length; i += 2) {
+                // if there is any base configuration lets submit it
+                emit Config(_counter, configs[i], configs[i + 1]);
+            }
+        }
         unchecked {
             _counter++;
         }
