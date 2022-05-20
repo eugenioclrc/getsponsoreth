@@ -1,5 +1,9 @@
 <script>
+import { connected, signerAddress } from 'svelte-ethers-store'
+
 import SvgCheck from "$lib/svgCheck.svelte";
+import { onConnect } from '$lib/web3';
+
 
 </script>
 
@@ -10,7 +14,7 @@ import SvgCheck from "$lib/svgCheck.svelte";
             class="hero-content col-start-1 row-start-1 w-full max-w-7xl flex-col justify-between gap-10 pb-20 lg:flex-row lg:items-end lg:gap-0 xl:gap-20">
             <div class="lg:px-10 lg:pb-12">
               <h1 class="font-title mb-2 py-4 font-extrabold lg:py-10">
-                <div class="mb-2 text-5xl lg:text-7xl">Get Sponsort.Eth</div>
+                <div class="mb-2 text-5xl lg:text-7xl">Get Sponsor.Eth</div>
                 <div class="text-2xl lg:text-3xl">Get funds to buidl whatever you want<br />
                  <!-- somethnig more here??-->
                 </div>
@@ -38,13 +42,17 @@ import SvgCheck from "$lib/svgCheck.svelte";
                 
               </div>
               <div class="mt-4 flex flex-1 justify-center space-x-2 sm:justify-start lg:mt-6 lg:justify-start">
-                <a href="/action1" class="btn btn-ghost btn-active lg:btn-lg normal-case"><span
-                    class="hidden sm:inline">Action1</span>
-                  <span class="inline sm:hidden">act1</span>
-                </a>
-                <a href="/action2" class="btn btn-ghost btn-active lg:btn-lg normal-case"><span
-                    class="hidden sm:inline">Action2</span>
-                  <span class="inline sm:hidden">Acuerdo privado</span></a>
+                {#if !$connected}
+                  <button on:click={onConnect} class="btn btn-ghost btn-active lg:btn-lg normal-case">
+                    Connect
+                  </button>
+                {:else}
+                  {$signerAddress}
+                  <a href="/action2" class="btn btn-ghost btn-active lg:btn-lg normal-case">
+                    <span class="hidden sm:inline">Action2</span>
+                    <span class="inline sm:hidden">Action2</span>
+                  </a>
+                {/if}
                 <a href="#how" class="btn lg:btn-lg normal-case">How it works?</a></div>
             </div>
           </div>
