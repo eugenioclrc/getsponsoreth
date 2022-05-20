@@ -1,0 +1,10 @@
+type Pledge @entity {
+  id: ID!
+  reason: String!
+  owner: User! # address 
+}
+
+type User @entity {
+  id: ID!
+  pledges: [Pledge!]! @derivedFrom(field: "owner")
+}
