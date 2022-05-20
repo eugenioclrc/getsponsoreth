@@ -7,13 +7,13 @@ describe("WIP", function () {
 
     
     const GetSponsorETH = await ethers.getContractFactory("GetSponsorETH");
-    const getSponsorETH = await GetSponsorETH.deploy();
+    const getSponsorETH = await GetSponsorETH.deploy(ethers.constants.AddressZero);
     await getSponsorETH.deployed();
     
 
     expect(await getSponsorETH.ownerOf(1)).to.eq(ethers.constants.AddressZero);
     // create a sponsor
-    const tx = await getSponsorETH.createSponsor("Create a loans protocol");
+    const tx = await getSponsorETH.createSponsor(0, "Create a loans protocol", true, []);
     await tx.wait()
 
     expect(await getSponsorETH.ownerOf(1)).to.eq(deployer.address);
