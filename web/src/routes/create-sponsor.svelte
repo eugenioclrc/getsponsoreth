@@ -30,34 +30,47 @@
       return;
     }
     loading = true;
-    const formData = new FormData(e.target);
+    try {
+      const formData = new FormData(e.target);
 
-    const data = {};
-    for (let field of formData) {
-      const [key, value] = field;
-      data[key] = value;
+      const data = {};
+      for (let field of formData) {
+        const [key, value] = field;
+        data[key] = value;
+      }
+
+      const rawResponse = await fetch("/pindata", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: data.pledgeContent,
+          filetype: "text/plain",
+          filename: "content.md",
+        }),
+      });
+      const content = await rawResponse.json();
+    // console.log(content)
+
+    // console.log(content);
+    //   console.log(data);
+      // 1 upload file data and get the ipfs hash
+      // 2 submit data using ethers
+      const tx = await $contracts.GetSponsorETH.createSponsor(
+          0, // uint timeToExpiry,
+          data.pledgeName,// string calldata pledge,
+          true, // bool isPerpetual,
+          [
+            'content', content.Hash,
+            'pledge', data.pledgeName
+          ]
+          // string[] calldata configs
+      );
+    } catch (err) {
+      console.error(err);
     }
-
-    const rawResponse = await fetch("/pindata", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        content: data.pledgeContent,
-        filetype: "text/plain",
-        filename: "content.md",
-      }),
-    });
-    const content = await rawResponse.json();
-    console.log(content);
-
-    console.log(content);
-    console.log(data);
-    // 1 upload file data and get the ipfs hash
-    // 2 submit data using ethers
-    // const tx = await $contracts.GetSponsortETH.create(data.username, $signerAddress, data.signature);
     loading = false;
   }
 </script>
