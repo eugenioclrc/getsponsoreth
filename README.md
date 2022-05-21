@@ -1,1 +1,1 @@
-# getsponsoreth
+# getSponsoreth
