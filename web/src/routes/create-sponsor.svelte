@@ -208,6 +208,7 @@
     width: 21px;
     height: 21px;
     border: 2px solid rgba(255, 255, 255, 0.175);
+    border: 2px solid rgb(10, 10, 10, 0.5);
     transition: all 0.35s;
   }
 
