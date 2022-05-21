@@ -179,7 +179,7 @@
           </div>
 
           <div class="form-control mt-6">
-            <button class="button-charming btn" class:loading
+            <button class="btn button-charming " class:loading
               >Create pledge</button
             >
           </div>
@@ -215,6 +215,7 @@
     background-position: 90% 0;
     color: #fff;
     transition: background 0.8s;
+    border: none;
   }
 
   .button-charming:hover {
