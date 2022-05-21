@@ -11,8 +11,6 @@
     "xan-griffin-eA2t5EvcxU4-unsplash.jpg",
   ];
 
-
-
   //function for getting a random string of backgroundImages
 
   let randomIndex = 0;
@@ -21,6 +19,17 @@
   });
 
   $: backgroundImage = backgroundImages[randomIndex];
+
+  function onSubmit(e) {
+    const formData = new FormData(e.target);
+
+    const data = {};
+    for (let field of formData) {
+      const [key, value] = field;
+      data[key] = value;
+    }
+    console.log(data);
+  }
 
 </script>
 
@@ -45,13 +54,14 @@
         <div class="logo-container">
           <a href="/"><img alt="sponsor.eth" /></a>
         </div>
-
+        <form on:submit|preventDefault={onSubmit}>
         <div class="form-control">
           <label class="label">
             <span class="label-text">Name</span>
           </label>
           <input
             type="text"
+            name="pledgeName"
             placeholder="Let everybody know you"
             class="input input-bordered"
           />
@@ -63,6 +73,7 @@
             </label>
             <input
               type="number"
+              name="pledgeDuration"
               placeholder="Duration of the pledge"
               class="input input-bordered"
             />
@@ -70,7 +81,7 @@
           <!-- checkbox for persisting over time, text right to the checkbox-->
           <div class="form-control w-2/3 " style="align-items: end;">
             <label class="label justify-start">
-              <input type="checkbox" class="input input-bordered mr-1" />
+              <input type="checkbox" name="pledgeForever" class="input input-bordered mr-1" />
               <span class="label-text">Persist over time</span>
             </label>
           </div>
@@ -81,7 +92,8 @@
             <span class="label-text">Pledge</span>
           </label>
           <textarea
-            placeholder="Tell why you want to be a sponsored"
+            name="pledgeContent"
+            placeholder="Tell why you want to be a sponsored, you can use Markdown"
             class="h-24 input input-bordered pt-2"
           />
           <!-- <label class="label">
@@ -94,6 +106,8 @@
         <div class="form-control mt-6">
           <button class="button-charming">Create pledge</button>
         </div>
+      </form>
+
       </div>
     </div>
   </div>
