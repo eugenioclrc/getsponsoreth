@@ -58,10 +58,10 @@ background-size: cover;
     </div>
     <!-- centered image -->
     <div
-      class="flex flex-col md:flex-row "
+      class="flex flex-col lg:flex-row "
       style="column-count: 2; flex-wrap: wrap;"
     >
-      <div class="md:w-2/3 content-column">
+      <div class="lg:w-2/3 content-column">
         <div class="  flex ">
           <!-- Start of component -->
           <!-- card that contains lorem ipsum -->
@@ -69,7 +69,7 @@ background-size: cover;
             class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 "
           >
             <div
-              class="flex flex-col md:flex-col text-center justify-center avatar-container"
+              class="flex flex-col lg:flex-col text-center justify-center avatar-container"
             >
               <!-- avatar -->
               <div class="avatar ml-auto mr-auto">
@@ -124,8 +124,8 @@ background-size: cover;
         </div>
       </div>
 
-      <div class="md:w-1/3">
-        <div class="flex flex-col md:flex-row" />
+      <div class="lg:w-1/3">
+        <div class="flex flex-col lg:flex-row" />
         <div
           class="min-h-screen  flex justify-center content-column "
           style="    max-height: 450px;"
@@ -203,7 +203,7 @@ background-size: cover;
           <!-- End of component -->
         </div>
       </div>
-      <div class="md:w-2/3 mt-2">
+      <div class="lg:w-2/3 mt-2">
         <!-- title Message -->
 
         <div class="  flex flex-col ">
@@ -311,6 +311,28 @@ background-size: cover;
   @media (max-width: 768px) {
     .Pledge_Title {
       font-size: 26px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .card {
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .logo-container {
+      margin-right: auto;
+      margin-left: auto;
+      justify-content: center;
+      text-align: center;
+      display: flex;
+      left: initial;
+    }
+
+    .min-h-screen {
+      min-height: initial;
     }
   }
 </style>

@@ -90,7 +90,9 @@
         Create your own pledge proposal and get your own sponsor!
       </p>
     </div>
-    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 ">
+    <div
+      class="pledge-card card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 "
+    >
       <div class="card-body flex flex-col p-6">
         <div class="logo-container">
           <a href="/"
@@ -263,5 +265,11 @@
 
   .logo-image:hover {
     transform: translateX(10px);
+  }
+
+  @media (max-width: 1000px) {
+    .pledge-card {
+      max-width: none;
+    }
   }
 </style>
