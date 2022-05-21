@@ -58,7 +58,8 @@ contract GetSponsorETH is Ownable, ERC1155 {
     function createSponsor(
         uint timeToExpiry,
         string calldata pledge,
-        bool isPerpetual
+        bool isPerpetual,
+        string[] calldata configs
     ) external {
         ownerOf[_counter] = msg.sender;
         emit NewSponsor(_counter, msg.sender, pledge);
@@ -75,9 +76,10 @@ contract GetSponsorETH is Ownable, ERC1155 {
         SponsoredPools sp = new SponsoredPools();
         sp.init(lendingPool, address(this), msg.sender);
         sponsoredPools[_counter] = sp;
-        unchecked {
-            _counter++;
-        }
+
+        setConfigs(_counter, configs);
+
+        unchecked { _counter++; }
     }
 
     function fund(
@@ -115,15 +117,19 @@ contract GetSponsorETH is Ownable, ERC1155 {
         emit Claimed(sponsorshipId, token);
     }
 
-    function config(
+    function setConfigs(
         uint256 sponsorId,
-        string calldata valName,
-        string calldata value
+        string[] calldata configs
     ) public {
+        require(configs.length% 2 == 0, "Invalid configs val");
         require(ownerOf[sponsorId] == msg.sender, "not allowed");
-        emit Config(sponsorId, valName, value);
+        for(uint256 i = 0; i < configs.length;) {
+            emit Config(sponsorId, configs[i], configs[i+1]);
+            unchecked { i += 2; }
+        }
     }
 
+    
     function updateAllowed(
         address token,
         address aToken,

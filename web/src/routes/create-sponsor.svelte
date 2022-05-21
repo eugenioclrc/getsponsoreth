@@ -30,34 +30,44 @@
       return;
     }
     loading = true;
-    const formData = new FormData(e.target);
+    try {
+      const formData = new FormData(e.target);
 
-    const data = {};
-    for (let field of formData) {
-      const [key, value] = field;
-      data[key] = value;
+      const data = {};
+      for (let field of formData) {
+        const [key, value] = field;
+        data[key] = value;
+      }
+
+      const rawResponse = await fetch("/pindata", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: data.pledgeContent,
+          filetype: "text/plain",
+          filename: "content.md",
+        }),
+      });
+      const content = await rawResponse.json();
+      // console.log(content)
+
+      // console.log(content);
+      //   console.log(data);
+      // 1 upload file data and get the ipfs hash
+      // 2 submit data using ethers
+      const tx = await $contracts.GetSponsorETH.createSponsor(
+        0, // uint timeToExpiry,
+        data.pledgeName, // string calldata pledge,
+        true, // bool isPerpetual,
+        ["content", content.Hash, "pledge", data.pledgeName]
+        // string[] calldata configs
+      );
+    } catch (err) {
+      console.error(err);
     }
-
-    const rawResponse = await fetch("/pindata", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        content: data.pledgeContent,
-        filetype: "text/plain",
-        filename: "content.md",
-      }),
-    });
-    const content = await rawResponse.json();
-    console.log(content);
-
-    console.log(content);
-    console.log(data);
-    // 1 upload file data and get the ipfs hash
-    // 2 submit data using ethers
-    // const tx = await $contracts.GetSponsortETH.create(data.username, $signerAddress, data.signature);
     loading = false;
   }
 </script>
@@ -83,7 +93,13 @@
     <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 ">
       <div class="card-body flex flex-col p-6">
         <div class="logo-container">
-          <a href="/"><img alt="sponsor.eth" /></a>
+          <a href="/"
+            ><img
+              class="logo-image"
+              src="./sponsrethgold2.png"
+              alt="sponsor.eth"
+            /></a
+          >
         </div>
         <form on:submit|preventDefault={onSubmit}>
           <div class="form-control">
@@ -94,6 +110,18 @@
               type="text"
               name="pledgeName"
               placeholder="Tell your sponsors who are you"
+              class="input input-bordered"
+            />
+          </div>
+
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Title</span>
+            </label>
+            <input
+              type="text"
+              name="pledgeTitle"
+              placeholder="Title of the pledge"
               class="input input-bordered"
             />
           </div>
@@ -151,7 +179,7 @@
           </div>
 
           <div class="form-control mt-6">
-            <button class="button-charming btn" class:loading
+            <button class="btn button-charming " class:loading
               >Create pledge</button
             >
           </div>
@@ -187,6 +215,7 @@
     background-position: 90% 0;
     color: #fff;
     transition: background 0.8s;
+    border: none;
   }
 
   .button-charming:hover {
@@ -208,6 +237,7 @@
     width: 21px;
     height: 21px;
     border: 2px solid rgba(255, 255, 255, 0.175);
+    border: 2px solid rgb(10, 10, 10, 0.5);
     transition: all 0.35s;
   }
 
@@ -221,5 +251,17 @@
 
   .form-control {
     padding: 0.4rem 0;
+  }
+
+  .logo-image {
+    border-radius: 35px;
+    max-width: 165px;
+    /* margin-left: auto; */
+    margin-right: auto;
+    transition: ease 0.5s;
+  }
+
+  .logo-image:hover {
+    transform: translateX(10px);
   }
 </style>

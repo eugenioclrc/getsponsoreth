@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   var data = {
     title: "Home",
     description: "Svelte demo app",
@@ -19,21 +20,49 @@
     request.open("POST", "https://demo.storj-ipfs.com/api/v0/add");
     request.send(formData);
   }
+
+  const backgroundImages = [
+    "joshua-earle-Hn8N4I4eHA0-unsplash.jpg",
+    "natalie-runnerstrom-SZlgOP7bSnI-unsplash.jpg",
+    "oliver-spicer-NmPNw8w_a24-unsplash.jpg",
+    "xan-griffin-eA2t5EvcxU4-unsplash.jpg",
+  ];
+
+  //function for getting a random string of backgroundImages
+
+  let randomIndex = 0;
+  onMount(() => {
+    randomIndex = Math.floor(Math.random() * backgroundImages.length);
+  });
+
+  $: backgroundImage = backgroundImages[randomIndex];
 </script>
 
-<div>
+<div
+  class="pt-16"
+  style="background-image: url({backgroundImage});
+background-repeat: no-repeat;
+background-size: cover;
+"
+>
   <div class="logo-container ml-32 ">
-    <a href="/"><img alt="sponsor.eth" /></a>
+    <a href="/"
+      ><img
+        class="logo-image"
+        src="./sponsrethgold2.png"
+        alt="sponsor.eth"
+      /></a
+    >
   </div>
   <!-- container with 2 responsives columns -->
   <div class="container mx-auto px-4 ">
     <!-- centered image -->
     <div
-      class="flex flex-col md:flex-row"
-      style="background-color: rebeccapurple"
+      class="flex flex-col md:flex-row "
+      style="column-count: 2; flex-wrap: wrap;"
     >
       <div class="md:w-2/3 content-column">
-        <div class="min-h-screen  flex justify-center">
+        <div class="  flex justify-center">
           <!-- Start of component -->
           <!-- card that contains lorem ipsum -->
           <div
@@ -52,8 +81,13 @@
               <div class="name">
                 <h1 class="text-2xl font-bold">{data.name}</h1>
               </div>
+              <div class="title">
+                <h2 class="text-2xl font-bold pt-4 Pledge_Title">
+                  {data.title}
+                </h2>
+              </div>
             </div>
-            <div class="card-body flex flex-col p-6">
+            <div class="card-body flex flex-col p-10">
               Hallo, Servus, and welcome to this page! 👋 My name is Felicia
               (Feli) and I'm a girl from Germany living in the US - in
               Cincinnati, Ohio to be precise. I've decided to create this page
@@ -126,6 +160,7 @@
                 </div>
                 <!-- text align vertical middle with content See other messages -->
               </div>
+
               <!-- content of card -->
               <div class="form-control">
                 <label class="label">
@@ -135,6 +170,7 @@
                   type="number"
                   placeholder="How much do you wanna sponsor"
                   class="input input-bordered"
+                  min="0"
                 />
               </div>
 
@@ -167,6 +203,56 @@
           <!-- End of component -->
         </div>
       </div>
+      <div class="md:w-2/3 mt-2">
+        <!-- title Message -->
+
+        <div class="  flex flex-col justify-center">
+          <!-- title -->
+          <div
+            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center ml-auto mr-auto mb-4 mt-4"
+          >
+            <h2 class="p-8 pt-6 pb-6 Messages_Title">Messages</h2>
+          </div>
+          <!-- Start of component -->
+          <!-- card that contains lorem ipsum -->
+          <div
+            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center ml-auto mr-auto"
+          >
+            <!-- avatar -->
+            <div class="avatar ml-auto mr-auto p-8">
+              <div class="w-24 mask mask-circle">
+                <img src="https://api.lorem.space/image/face?hash=53273" />
+              </div>
+            </div>
+
+            <!-- message -->
+            <div class="message pt-8 pb-8 pr-8">
+              <div class="message-content">
+                <div class="message-header">
+                  <h1 class="text-2xl font-bold pb-2">{data.name}</h1>
+                  <h2 class="text-sm font-bold pb-4">
+                    {data.name} is a {data.name}
+                  </h2>
+                </div>
+                <div class="message-body">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- End of component -->
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -186,7 +272,7 @@
   }
 
   .content-column {
-    margin-top: 6rem;
+    margin-top: 3rem;
   }
 
   .logo-container {
@@ -198,5 +284,33 @@
   .avatar-container {
     padding: 2rem;
     padding-bottom: 1rem;
+  }
+
+  .Messages_Title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: 2rem;
+  }
+
+  .Pledge_Title {
+    font-size: 36px;
+  }
+
+  .logo-image {
+    border-radius: 35px;
+    max-width: 200px;
+    /* margin-left: auto; */
+    margin-right: auto;
+    transition: ease 0.5s;
+  }
+
+  .logo-image:hover {
+    transform: translateX(10px);
+  }
+
+  @media (max-width: 768px) {
+    .Pledge_Title {
+      font-size: 26px;
+    }
   }
 </style>
