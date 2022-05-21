@@ -7,13 +7,16 @@ const { ethers } = require("hardhat");
 
 
 async function main() {
-  const lendingPool = "0xe0fba4fc209b4948668006b2be61711b7f465bae"; // mainnet address
-  const Sponsoreth = await ethers.getContractFactory("GetSponsorETH");
-  const sponsoreth = await Sponsoreth.deploy(lendingPool);
+  
+  const GetSponsorETH = await ethers.getContractFactory("GetSponsorETH");
+  // 0x9198F13B08E299d85E096929fA9781A1E3d5d827 mumbai lending pool
+  // source https://docs.aave.com/developers/v/2.0/deployed-contracts/matic-polygon-market
+  const getSponsorETH = await GetSponsorETH.deploy("0x9198F13B08E299d85E096929fA9781A1E3d5d827");
+  await getSponsorETH.deployed();
 
-  await sponsoreth.deployed();
+  await getSponsorETH.deployed();
 
-  console.log("Sponsoreth deployed to:", sponsoreth.address);
+  console.log("Sponsoreth deployed to:", getSponsorETH.address);
 
   
 }

@@ -10,8 +10,7 @@ let web3Modal
 let provider;
 
 
-// Address of the selected account
-let selectedAccount;
+
 
 
 /**
