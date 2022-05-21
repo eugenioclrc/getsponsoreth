@@ -1,23 +1,27 @@
+<script context="module">
+	export const prerender = true;
+</script>
 <script>
-  let i = 0;
-  var backgroundImages = [
+  import { onMount } from 'svelte';
+
+  const backgroundImages = [
     "joshua-earle-Hn8N4I4eHA0-unsplash.jpg",
     "natalie-runnerstrom-SZlgOP7bSnI-unsplash.jpg",
     "oliver-spicer-NmPNw8w_a24-unsplash.jpg",
     "xan-griffin-eA2t5EvcxU4-unsplash.jpg",
   ];
-  function func(str) {
-    console.log("Hello daisyUI" + str);
-    i++;
-  }
+
+
 
   //function for getting a random string of backgroundImages
 
-  let randomIndex = Math.floor(Math.random() * backgroundImages.length);
-  const backgroundImage = backgroundImages[randomIndex];
+  let randomIndex = 0;
+  onMount(() => {
+    randomIndex = Math.floor(Math.random() * backgroundImages.length);
+  });
 
-  $: j = i * 8;
-  $: name = "TestName";
+  $: backgroundImage = backgroundImages[randomIndex];
+
 </script>
 
 <link
