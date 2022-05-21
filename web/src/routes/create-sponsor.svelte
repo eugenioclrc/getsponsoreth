@@ -52,21 +52,18 @@
         }),
       });
       const content = await rawResponse.json();
-    // console.log(content)
+      // console.log(content)
 
-    // console.log(content);
-    //   console.log(data);
+      // console.log(content);
+      //   console.log(data);
       // 1 upload file data and get the ipfs hash
       // 2 submit data using ethers
       const tx = await $contracts.GetSponsorETH.createSponsor(
-          0, // uint timeToExpiry,
-          data.pledgeName,// string calldata pledge,
-          true, // bool isPerpetual,
-          [
-            'content', content.Hash,
-            'pledge', data.pledgeName
-          ]
-          // string[] calldata configs
+        0, // uint timeToExpiry,
+        data.pledgeName, // string calldata pledge,
+        true, // bool isPerpetual,
+        ["content", content.Hash, "pledge", data.pledgeName]
+        // string[] calldata configs
       );
     } catch (err) {
       console.error(err);
@@ -96,7 +93,13 @@
     <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 ">
       <div class="card-body flex flex-col p-6">
         <div class="logo-container">
-          <a href="/"><img alt="sponsor.eth" /></a>
+          <a href="/"
+            ><img
+              class="logo-image"
+              src="./sponsrethgold2.png"
+              alt="sponsor.eth"
+            /></a
+          >
         </div>
         <form on:submit|preventDefault={onSubmit}>
           <div class="form-control">
@@ -247,5 +250,12 @@
 
   .form-control {
     padding: 0.4rem 0;
+  }
+
+  .logo-image {
+    border-radius: 35px;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>

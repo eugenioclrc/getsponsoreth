@@ -45,7 +45,13 @@ background-size: cover;
 "
 >
   <div class="logo-container ml-32 ">
-    <a href="/"><img alt="sponsor.eth" /></a>
+    <a href="/"
+      ><img
+        class="logo-image"
+        src="./sponsrethgold2.png"
+        alt="sponsor.eth"
+      /></a
+    >
   </div>
   <!-- container with 2 responsives columns -->
   <div class="container mx-auto px-4 ">
@@ -287,6 +293,13 @@ background-size: cover;
 
   .Pledge_Title {
     font-size: 36px;
+  }
+
+  .logo-image {
+    border-radius: 35px;
+    max-width: 200px;
+    /* margin-left: auto; */
+    margin-right: auto;
   }
 
   @media (max-width: 768px) {
