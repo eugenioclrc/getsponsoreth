@@ -22,7 +22,7 @@
 
   $: backgroundImage = backgroundImages[randomIndex];
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     const formData = new FormData(e.target);
 
     const data = {};
@@ -30,6 +30,23 @@
       const [key, value] = field;
       data[key] = value;
     }
+
+    const rawResponse = await fetch('/pindata', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      content: data.pledgeContent,
+      filetype: 'text/plain',
+      filename: 'content.md'
+    })
+  });
+  const content = await rawResponse.json();
+  console.log(content)
+
+  console.log(content);
     console.log(data);
     // 1 upload file data and get the ipfs hash
     // 2 submit data using ethers
