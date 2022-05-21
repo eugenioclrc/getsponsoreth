@@ -373,29 +373,6 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "sponsorId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "valName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "value",
-        "type": "string"
-      }
-    ],
-    "name": "config",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
         "name": "timeToExpiry",
         "type": "uint256"
       },
@@ -408,6 +385,11 @@
         "internalType": "bool",
         "name": "isPerpetual",
         "type": "bool"
+      },
+      {
+        "internalType": "string[]",
+        "name": "configs",
+        "type": "string[]"
       }
     ],
     "name": "createSponsor",
@@ -628,6 +610,24 @@
       }
     ],
     "name": "setApprovalForAll",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "sponsorId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string[]",
+        "name": "configs",
+        "type": "string[]"
+      }
+    ],
+    "name": "setConfigs",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
