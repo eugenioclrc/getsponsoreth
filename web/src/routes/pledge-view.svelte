@@ -1,0 +1,202 @@
+<script>
+  var data = {
+    title: "Home",
+    description: "Svelte demo app",
+    user_image: "https://avatars0.githubusercontent.com/u/1234?s=460&v=4",
+    name: "John Doe",
+  };
+
+  function clickDoShit() {
+    const formData = new FormData();
+
+    // JavaScript file-like object...
+    var content = '<a id="a"><b id="b">hey!</b></a>'; // the body of the new file...
+    var blob = new Blob([content], { type: "text/xml" });
+
+    formData.append("file", blob);
+
+    var request = new XMLHttpRequest();
+    request.open("POST", "https://demo.storj-ipfs.com/api/v0/add");
+    request.send(formData);
+  }
+</script>
+
+<div>
+  <div class="logo-container ml-32 ">
+    <a href="/"><img alt="sponsor.eth" /></a>
+  </div>
+  <!-- container with 2 responsives columns -->
+  <div class="container mx-auto px-4 ">
+    <!-- centered image -->
+    <div
+      class="flex flex-col md:flex-row"
+      style="background-color: rebeccapurple"
+    >
+      <div class="md:w-2/3 content-column">
+        <div class="min-h-screen  flex justify-center">
+          <!-- Start of component -->
+          <!-- card that contains lorem ipsum -->
+          <div
+            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 "
+          >
+            <div
+              class="flex flex-col md:flex-col text-center justify-center avatar-container"
+            >
+              <!-- avatar -->
+              <div class="avatar ml-auto mr-auto">
+                <div class="w-24 mask mask-hexagon">
+                  <img src="https://api.lorem.space/image/face?hash=53273" />
+                </div>
+              </div>
+              <!-- name -->
+              <div class="name">
+                <h1 class="text-2xl font-bold">{data.name}</h1>
+              </div>
+            </div>
+            <div class="card-body flex flex-col p-6">
+              Hallo, Servus, and welcome to this page! 👋 My name is Felicia
+              (Feli) and I'm a girl from Germany living in the US - in
+              Cincinnati, Ohio to be precise. I've decided to create this page
+              for people who would like to support my channel but are hesitant
+              about becoming a patron on Patreon. So if you want, you can buy me
+              a "coffee" on here - which in my case really means beer or Chai
+              Latte haha because I don't actually drink coffee. :) Thank you so
+              much! I appreciate each and every one who supports me and my
+              channel. In my videos, I talk about cultural differences between
+              America and Germany, things I like and dislike about living here,
+              and other experiences that I have made during my time in the
+              States. You can watch all of my videos on my YouTube channel,
+              follow me on Instagram (@felifromgermany) or Facebook for behind
+              the scenes content, or become a patron and join the Patreon family
+              and get even more insights and participate in a monthly Q&A
+              session with me! :) ABOUT ME I'm a real "Münchnerkindl" which
+              means that I was born and raised in Munich, Germany (Oktoberfest
+              city!) but have been living in Cincinnati off and on since 2016. I
+              first came to Cincinnati for an exchange semester during my
+              undergrad but I ended up coming back for an internship and then
+              for my master's that I got in German Studies at the University of
+              Cincinnati. I then was lucky enough to win the Green Card Lottery
+              and am now here as a Permanent Resident. WHY? I just really enjoy
+              the American culture and was happy to take advantage of the
+              opportunities that life brought me. I think the US is the right
+              place for me - at least for the phase of life that I'm in right
+              now but I see my family and friends in Germany on a regular basis
+              and talk to them several times a week. DANKESCHÖÖÖÖN (thank you so
+              so much!) for your support and greetings from Cincinnati, Felicia
+            </div>
+          </div>
+
+          <!-- End of component -->
+        </div>
+      </div>
+
+      <div class="md:w-1/3">
+        <div class="flex flex-col md:flex-row" />
+        <div
+          class="min-h-screen  flex justify-center content-column "
+          style="    max-height: 450px;"
+        >
+          <!-- Start of component -->
+          <!-- flex row -->
+
+          <div
+            class="card payment-card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
+          >
+            <div class="card-body flex flex-col">
+              <div class="avatar-group -space-x-6">
+                <div class="avatar">
+                  <div class="w-12">
+                    <img src="https://api.lorem.space/image/face?hash=53273" />
+                  </div>
+                </div>
+                <div class="avatar">
+                  <div class="w-12">
+                    <img src="https://api.lorem.space/image/face?hash=91831" />
+                  </div>
+                </div>
+                <div class="avatar">
+                  <div class="w-12">
+                    <img src="https://api.lorem.space/image/face?hash=27312" />
+                  </div>
+                </div>
+                <div class="avatar">
+                  <div class="w-12">
+                    <img src="https://api.lorem.space/image/face?hash=26448" />
+                  </div>
+                </div>
+                <!-- text align vertical middle with content See other messages -->
+              </div>
+              <!-- content of card -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Amount</span>
+                </label>
+                <input
+                  type="number"
+                  placeholder="How much do you wanna sponsor"
+                  class="input input-bordered"
+                />
+              </div>
+
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Message</span>
+                </label>
+                <textarea
+                  placeholder="Send a message"
+                  class="h-24 input input-bordered"
+                />
+                <!-- <label class="label">
+                  <p href="#" class="label-text-alt">
+                    .md is available for formatting
+                  </p>
+                </label> -->
+              </div>
+              <div class="flex gap-4">
+                <div class="form-control w-1/2 mt-6">
+                  <button on:click={clickDoShit} class="btn btn-secondary"
+                    >Staketh!</button
+                  >
+                </div>
+                <div class="form-control w-1/2 mt-6">
+                  <button class="btn btn-primary">Sponsoreth!</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End of component -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .custom-card {
+    /* border: 1px solid #ccc; */
+  }
+
+  .pledge-card {
+    max-width: 80%;
+    height: 80%;
+  }
+
+  .payment-card {
+    max-height: 500px;
+  }
+
+  .content-column {
+    margin-top: 6rem;
+  }
+
+  .logo-container {
+    position: relative;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .avatar-container {
+    padding: 2rem;
+    padding-bottom: 1rem;
+  }
+</style>
