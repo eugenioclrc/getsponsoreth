@@ -1,8 +1,5 @@
 import dotenv from 'dotenv';
-import { ethers } from 'ethers';
-import fetch, { FormData, File, fileFrom } from 'node-fetch'
-
-import { Blob } from 'buffer';
+import fetch, { FormData, File } from 'node-fetch'
 
 dotenv.config();
 
