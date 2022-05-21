@@ -2,6 +2,7 @@
 pragma solidity 0.8.4;
 
 import "./interfaces/ILendingPool.sol";
+import "./interfaces/IWETH.sol";
 import "./SponsoredPools.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -32,6 +33,7 @@ contract GetSponsorETH is Ownable, ERC1155 {
 
     // interface to interact with aToken
     ILendingPool public lendingPool;
+    IWETH public weth;
 
     event NewSponsor(uint256 indexed idx, address indexed owner, string pledge);
     event Fund(
@@ -51,8 +53,9 @@ contract GetSponsorETH is Ownable, ERC1155 {
     );
     event Claimed(uint indexed sponsorshipId, address indexed token);
 
-    constructor(address _lendingPool) ERC1155("SPONSORETH"){
+    constructor(address _lendingPool, address _weth) ERC1155("SPONSORETH"){
         lendingPool = ILendingPool(_lendingPool);
+        weth = IWETH(_weth);
     }
 
     function createSponsor(
@@ -88,18 +91,19 @@ contract GetSponsorETH is Ownable, ERC1155 {
         string calldata user,
         string calldata message
     ) external payable {
-        require(isAllowedToken[token], "!allowed token");
-        require(amount >= minAmountFund[token], "small amount");
         require(_isNotExpired(sponsorshipId), "expired");
-
-        if (isStaking) {
-            _fundWithStaking(sponsorshipId, msg.sender, token, amount);
+        if(token != address(0)) {
+            _fundWithToken(sponsorshipId, token, isStaking, amount);
         } else {
-            _fund(sponsorshipId, msg.sender, token, amount);
+            amount = msg.value;
+            weth.deposit{value: amount}();
+            token = address(weth);
+            _fundWithToken(sponsorshipId, token, isStaking, amount);
         }
-        _mint(msg.sender, sponsorshipId, 1,"");
-
+        
         emit Fund(sponsorshipId, token, msg.sender, isStaking, user, message);
+
+        _mint(msg.sender, sponsorshipId, 1,"");
     }
 
     function withdrawStake(uint sponsorshipId, address token) external {
@@ -179,6 +183,20 @@ contract GetSponsorETH is Ownable, ERC1155 {
         sp.stake(sender, token, amount);
     }
 
+    function _fundWithToken(uint sponsorshipId,
+        address token,
+        bool isStaking,
+        uint amount) internal {
+        require(isAllowedToken[token], "!allowed token");
+        require(amount >= minAmountFund[token], "small amount");
+        if (isStaking) {
+            _fundWithStaking(sponsorshipId, msg.sender, token, amount);
+        } else {
+            _fund(sponsorshipId, msg.sender, token, amount);
+        }
+
+    }
+
     function _isNotExpired(uint sponsorshipId)
         internal
         view
@@ -188,5 +206,12 @@ contract GetSponsorETH is Ownable, ERC1155 {
         isExpired =
             details.isPerpetual ||
             (details.startTime + details.timeToExpiry) > block.timestamp;
+    }
+
+    function getClaim(uint sponsorshipId, address token) public view returns(uint claimAmount){
+        // get sponsored pool
+        SponsoredPools sp = sponsoredPools[sponsorshipId];
+        address aToken = aTokens[token];
+        claimAmount = sp.claimable( token,  aToken);
     }
 }
