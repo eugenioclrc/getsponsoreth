@@ -1,15 +1,16 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity 0.8.4;
 
-import "hardhat/console.sol";
 import "./interfaces/ILendingPool.sol";
+import "./SponsoredPools.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 
 // Allow staking
 // Aave staking
 
-contract GetSponsorETH is Ownable {
+contract GetSponsorETH is Ownable, ERC1155 {
     // example strategy detail
     struct SponsorshipDetail {
         uint id;
@@ -22,13 +23,11 @@ contract GetSponsorETH is Ownable {
     uint constant MAX_TIME_TO_EXPIRY = 365 days;
 
     mapping(uint256 => address) public ownerOf;
+    mapping(uint => SponsoredPools) public sponsoredPools;
     mapping(uint256 => SponsorshipDetail) public sponsorships;
     mapping(address => bool) public isAllowedToken;
     mapping(address => uint) minAmountFund;
     mapping(address => address) aTokens;
-    // Sponsorship id => Token => staker => amount
-    mapping(uint => mapping(address => mapping(address => uint))) tokensStaked;
-    mapping(uint => mapping(address => mapping(address => uint))) aTokensStaked;
     uint256 _counter = 1;
 
     // interface to interact with aToken
@@ -50,8 +49,9 @@ contract GetSponsorETH is Ownable {
         address indexed token,
         address indexed staked
     );
+    event Claimed(uint indexed sponsorshipId, address indexed token);
 
-    constructor(address _lendingPool) {
+    constructor(address _lendingPool) ERC1155("SPONSORETH"){
         lendingPool = ILendingPool(_lendingPool);
     }
 
@@ -72,6 +72,9 @@ contract GetSponsorETH is Ownable {
         });
         sponsorships[_counter] = details;
 
+        SponsoredPools sp = new SponsoredPools();
+        sp.init(lendingPool, address(this), msg.sender);
+        sponsoredPools[_counter] = sp;
         unchecked {
             _counter++;
         }
@@ -94,28 +97,22 @@ contract GetSponsorETH is Ownable {
         } else {
             _fund(sponsorshipId, msg.sender, token, amount);
         }
+        _mint(msg.sender, sponsorshipId, 1,"");
 
         emit Fund(sponsorshipId, token, msg.sender, isStaking, user, message);
     }
 
     function withdrawStake(uint sponsorshipId, address token) external {
-        uint stake = aTokensStaked[sponsorshipId][token][msg.sender];
-        require(stake > 0, "No Stake");
-        address owner = ownerOf[sponsorshipId];
-        uint balanceBefore = IERC20(token).balanceOf(address(this));
-        lendingPool.withdraw(token, stake, address(this));
-        uint balanceAfter = IERC20(token).balanceOf(address(this));
-        uint stakerBalance = tokensStaked[sponsorshipId][token][msg.sender];
-        uint tokenTosendToOwner = balanceAfter - balanceBefore - stakerBalance;
-
-        // update mappings
-        aTokensStaked[sponsorshipId][token][msg.sender] = 0;
-        tokensStaked[sponsorshipId][token][msg.sender] = 0;
-
-        IERC20(token).transfer(owner, tokenTosendToOwner);
-        IERC20(token).transfer(msg.sender, stakerBalance);
-
+        SponsoredPools sp = sponsoredPools[sponsorshipId];
+        sp.unstake(msg.sender, token);
         emit StakeWithdrawn(sponsorshipId, token, msg.sender);
+    }
+
+    function claim(uint sponsorshipId, address token) external {
+        SponsoredPools sp = sponsoredPools[sponsorshipId];
+        address aToken = aTokens[token];
+        sp.claim(token, aToken);
+        emit Claimed(sponsorshipId, token);
     }
 
     function config(
@@ -170,15 +167,16 @@ contract GetSponsorETH is Ownable {
     ) internal {
         address owner = ownerOf[sponsorshipId];
         require(owner != address(0), "Sponsor not found");
+        require(
+            IERC20(token).transferFrom(sender, address(this), amount),
+            "transfer failed"
+        );
 
+        // get sponsored pool
+        SponsoredPools sp = sponsoredPools[sponsorshipId];
         // Mint aToken and send it to contract address
-        address aToken = aTokens[token];
-        uint aBalanceBefore = IERC20(aToken).balanceOf(address(this));
-        lendingPool.deposit(token, amount, address(this), 0);
-        uint mintAmount = IERC20(aToken).balanceOf(address(this)) -
-            aBalanceBefore;
-        tokensStaked[sponsorshipId][token][sender] += amount;
-        aTokensStaked[sponsorshipId][token][sender] += mintAmount;
+        lendingPool.deposit(token, amount, address(sp), 0);
+        sp.stake(sender, token, amount);
     }
 
     function _isNotExpired(uint sponsorshipId)
@@ -189,6 +187,6 @@ contract GetSponsorETH is Ownable {
         SponsorshipDetail memory details = sponsorships[sponsorshipId];
         isExpired =
             details.isPerpetual ||
-            (details.startTime + details.timeToExpiry) < block.timestamp;
+            (details.startTime + details.timeToExpiry) > block.timestamp;
     }
 }
