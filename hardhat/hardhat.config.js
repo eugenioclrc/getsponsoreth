@@ -1,4 +1,9 @@
 require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
+require('hardhat-abi-exporter');
+require("dotenv").config();
+
+
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -19,11 +24,16 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 module.exports = {
   networks: {
     hardhat: {
-      forking: {
-        url: "https://eth-mainnet.alchemyapi.io/v2/xXu9KRGXH4MBBGzilL8sb6kneGzZSK2p",
-        blockNumber: 14807328,
-      },
+      // forking: {
+      //   url: "https://eth-mainnet.alchemyapi.io/v2/"+process.env.ALCHEMYKEY,
+      //   blockNumber: 14807328,
+      // },
     },
+    mumbai: {
+      url: process.env.MUMBAI_RPC || 'https://rpc-mumbai.matic.today/',
+      chainId: 80001,
+      accounts: process.env.PRIVATEKEY ? [process.env.PRIVATEKEY] : undefined,
+    }
   },
   solidity: {
     compilers: [
@@ -40,7 +50,7 @@ module.exports = {
   },
   etherscan: {
     apiKey: {
-      //polygonMumbai: process.env.ETHERSCANKEY,
+      polygonMumbai: process.env.ETHERSCANKEY,
       //polygon: process.env.ETHERSCANKEY,
     },
   },

@@ -1,6 +1,8 @@
 import { ethers } from 'ethers';
 import { defaultEvmStores } from 'svelte-ethers-store';
 
+import abi from './abi/GetSponsorETH.json';
+
 // Web3modal instance
 let web3Modal
 
@@ -8,8 +10,7 @@ let web3Modal
 let provider;
 
 
-// Address of the selected account
-let selectedAccount;
+
 
 
 /**
@@ -51,6 +52,9 @@ export async function init() {
   console.log("Web3Modal instance is", web3Modal);
 }
 
+export function loadContracts() {
+  defaultEvmStores.attachContract('GetSponsorETH', '0xAbbF26e5A2956d32114BF697cb6617530b90e9c7', JSON.stringify(abi));
+}
 
 
 /**

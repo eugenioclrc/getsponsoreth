@@ -1,118 +1,186 @@
-<script>
-import { connected, signerAddress } from 'svelte-ethers-store'
-
-import SvgCheck from "$lib/svgCheck.svelte";
-import { onConnect } from '$lib/web3';
-
-
+<script context="module">
+  export const prerender = true;
 </script>
 
-    <div class="">
+<script>
+  import { connected, signerAddress } from "svelte-ethers-store";
+
+  import SvgCheck from "$lib/svgCheck.svelte";
+  import { onConnect } from "$lib/web3";
+</script>
+
+<div class="">
+  <div
+    class="from-primary to-secondary text-primary-content -mt-[4rem] grid place-items-center items-end bg-gradient-to-br pt-20"
+  >
+    <div
+      class="hero-content col-start-1 row-start-1 w-full max-w-7xl flex-col justify-between gap-10 pb-20 lg:flex-row lg:items-end lg:gap-0 xl:gap-20"
+    >
+      <div class="lg:px-10 lg:pb-12">
+        <h1 class="font-title mb-2 py-4 font-extrabold lg:py-10">
+          <div class="mb-2 text-5xl lg:text-7xl">get_sponsor.eth</div>
+          <div class="text-2xl lg:text-3xl">
+            Engage with the community to make your dreams come true!<br />
+            <!-- somethnig more here??-->
+          </div>
+        </h1>
         <div
-          class="from-primary to-secondary text-primary-content -mt-[4rem] grid place-items-center items-end bg-gradient-to-br pt-20">
-          <div
-            class="hero-content col-start-1 row-start-1 w-full max-w-7xl flex-col justify-between gap-10 pb-20 lg:flex-row lg:items-end lg:gap-0 xl:gap-20">
-            <div class="lg:px-10 lg:pb-12">
-              <h1 class="font-title mb-2 py-4 font-extrabold lg:py-10">
-                <div class="mb-2 text-5xl lg:text-7xl">Get Sponsor.Eth</div>
-                <div class="text-2xl lg:text-3xl">Get funds to buidl whatever you want<br />
-                 <!-- somethnig more here??-->
-                </div>
-              </h1>
-              <div class="flex w-full flex-col items-start space-y-10 lg:flex-row lg:space-x-4 lg:space-y-0">
-                <div class="my-2 flex max-w-sm flex-col gap-2 text-left">
-                  <div class="flex gap-2">
-                    <SvgCheck />
-                    Lorem ipsum factum
-                  </div>
-                  <div class="flex gap-2">
-                    <SvgCheck />
-                    Lorem ipsum factum
-                  </div>
-                  <div class="flex gap-2">
-                    <SvgCheck />
-                    Lorem ipsum factum
-                  </div>
-                  <div class="flex gap-2">
-                    <SvgCheck />
-                    Lorem ipsum factum
-                  </div>
-                  
-                </div>
-                
-              </div>
-              <div class="mt-4 flex flex-1 justify-center space-x-2 sm:justify-start lg:mt-6 lg:justify-start">
-                {#if !$connected}
-                  <button on:click={onConnect} class="btn btn-ghost btn-active lg:btn-lg normal-case">
-                    Connect
-                  </button>
-                {:else}
-                  {$signerAddress}
-                  <a href="/action2" class="btn btn-ghost btn-active lg:btn-lg normal-case">
-                    <span class="hidden sm:inline">Action2</span>
-                    <span class="inline sm:hidden">Action2</span>
-                  </a>
-                {/if}
-                <a href="#how" class="btn lg:btn-lg normal-case">How it works?</a></div>
+          class="flex w-full flex-col items-start space-y-10 lg:flex-row lg:space-x-4 lg:space-y-0"
+        >
+          <div class="my-2 flex max-w-sm flex-col gap-2 text-left">
+            <div class="flex gap-2">
+              <SvgCheck />
+              Easy to use and made for everyone
             </div>
-          </div>
-          <svg class="fill-secondary col-start-1 row-start-1 h-auto w-full" width="1600" height="595"
-            viewBox="0 0 1600 595" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M0 338L53.3 349.2C106.7 360.3 213.3 382.7 320 393.8C426.7 405 533.3 405 640 359.3C746.7 313.7 853.3 222.3 960 189.2C1066.7 156 1173.3 181 1280 159.2C1386.7 137.3 1493.3 68.7 1546.7 34.3L1600 0V595H1546.7C1493.3 595 1386.7 595 1280 595C1173.3 595 1066.7 595 960 595C853.3 595 746.7 595 640 595C533.3 595 426.7 595 320 595C213.3 595 106.7 595 53.3 595H0V338Z">
-            </path>
-          </svg>
-        </div>
-       
-        <div class="hero bg-base-100 text-base-content mx-auto min-h-screen max-w-md md:max-w-full">
-          <div class="hero-content px-4 text-center md:px-0">
-            <div id="how">
-              <h2 class="mt-32 mb-2 text-4xl font-extrabold md:text-6xl">How it works?</h2>
-              <h3 class="mb-5 text-3xl font-bold">simple lorem ipsum</h3>
-              <p class="mx-auto mb-5 w-full max-w-lg">lorem ipsum factum won hackaton<br />
-                lorem ipsum sellspeach lorem iosum factum
-                </p>
-                
-              
-              <p></p>
-              <div class="mt-10 mb-20 flex flex-col lg:flex-row">
-                <div class="flex w-full flex-col text-left">
-                  <div class=" mx-auto w-full max-w-xs flex-grow sm:max-w-md">
-                    <b>Create a cause</b>, for example lorem ipsum loprem ipsum lorem ipsuem.<br />
-                <ul class="steps steps-vertical">
-    <li class="step">Crear cause</li>
-    <li class="step">Update your main page in markdown, upload to IPFS and pin it with to Storj</li>
-    <li class="step">Share with your followers</li>
-    <li class="step">Get funded</li>
-  </ul>    
-                  </div>
-                  <div class="mt-4 flex h-16 items-start justify-center">
-                    <a class="inline-block cursor-pointer rounded-md bg-indigo-600 px-4 py-3 text-center text-sm
-                     font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-indigo-700" href="#public">What is a cause?</a>
-                  </div>
-                </div>
-                
-              </div>
-              
+            <div class="flex gap-2">
+              <SvgCheck />
+              Directly sponsor causes with your funds
+            </div>
+            <div class="flex gap-2">
+              <SvgCheck />
+              Stake funds to generate passive income for a cause
+            </div>
+            <div class="flex gap-2">
+              <SvgCheck />
+              Compatible with a wide range of tokens
             </div>
           </div>
         </div>
-        
-        <div class="hero from-primary to-accent text-primary-content min-h-screen bg-gradient-to-br" id="private">
-          <div class="hero-content mx-auto max-w-md text-center md:max-w-full">
-            <div>
-              <h2 class="mt-20 mb-2 text-4xl font-extrabold md:text-6xl">What its a cause (sponsor page?)</h2>
-              <h3 class="mb-5 text-3xl font-bold">Lorem ipsum</h3>
-              <p class="mx-auto mb-5 w-full max-w-lg">Lorem ipsum factum Todo! Lorem ipsum factum Todo Lorem ipsum factum Todo Lorem ipsum factum Todo 
-                 Lorem ipsum factum Todo Lorem ipsum factum Todo Lorem ipsum factum Todo Lorem ipsum factum Todo Lorem ipsum factum Todo Lorem ipsum factum Todo</p>
-            
-              <div class="my-20 flex flex-col">
-                <a class="btn btn-primary rounded-full" href="#todo">Create a cause (sponsor page?)</a>
-              </div>
+        <div
+          class="mt-4 flex flex-1 justify-center space-x-2 sm:justify-start lg:mt-6 lg:justify-start"
+        >
+          {#if !$connected}
+            <button
+              on:click={onConnect}
+              class="btn btn-ghost btn-active lg:btn-lg normal-case"
+            >
+              Connect
+            </button>
+          {:else}
+            <a
+              href="/create-sponsor"
+              class="btn btn-ghost btn-active lg:btn-lg normal-case"
+            >
+              Create pledge
+            </a>
+          {/if}
+          <a href="#how" class="btn lg:btn-lg normal-case">How does it work?</a>
+        </div>
+      </div>
+    </div>
+    <svg
+      class="fill-secondary col-start-1 row-start-1 h-auto w-full"
+      width="1600"
+      height="595"
+      viewBox="0 0 1600 595"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0 338L53.3 349.2C106.7 360.3 213.3 382.7 320 393.8C426.7 405 533.3 405 640 359.3C746.7 313.7 853.3 222.3 960 189.2C1066.7 156 1173.3 181 1280 159.2C1386.7 137.3 1493.3 68.7 1546.7 34.3L1600 0V595H1546.7C1493.3 595 1386.7 595 1280 595C1173.3 595 1066.7 595 960 595C853.3 595 746.7 595 640 595C533.3 595 426.7 595 320 595C213.3 595 106.7 595 53.3 595H0V338Z"
+      />
+    </svg>
+  </div>
+
+
+  <!-- {$signerAddress} -->
+
+  <div
+    class="hero bg-base-100 text-base-content mx-auto min-h-screen max-w-md md:max-w-full"
+  >
+    <div class="hero-content px-4 text-center md:px-0">
+      <div id="how">
+        <h2 class="mt-32 mb-2 text-4xl font-extrabold md:text-6xl">
+          How does it work?
+        </h2>
+        <h3 class="mb-5 text-3xl font-bold">As simple as a regular transaction</h3>
+        <p class="mx-auto mb-5 w-full max-w-lg">
+          getsponsor.eth aims to help devs and content creators to gather enough funds to make their projects blossom
+        </p>
+
+        <p />
+        <div class="mt-10 mb-20 flex flex-col lg:flex-row">
+          <div class="flex w-full flex-col text-left">
+            <div class=" mx-auto w-full max-w-xs flex-grow sm:max-w-md">
+              Users can both <b>create a cause</b> or <b>browse causes</b> available for sponsoring. To get sponsored, follow these steps:
+              <ul class="steps steps-vertical">
+                <li class="step"><b>Create your cause</b></li>
+                <li class="step">
+                  Update your main page in markdown format, upload to IPFS and pin it  with to Storj. Add as much detail as possible, as you want to gather catch the attention of the community
+                </li>
+                <li class="step">Share it with your community. There are people out there wanting to help you!</li>
+                <li class="step">Make sure to keep the community updated about your project!</li>
+              </ul>
+            </div>
+            <div class="mt-4 flex h-16 items-start justify-center">
+              <a
+                class="inline-block cursor-pointer rounded-md bg-indigo-600 px-4 py-3 text-center text-sm
+                     font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-indigo-700"
+                href="#public">What is a cause?</a
+              >
             </div>
           </div>
         </div>
-        <!--
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="hero from-primary to-accent text-primary-content min-h-screen bg-gradient-to-br"
+    id="private"
+  >
+    <div class="hero-content mx-auto max-w-md text-center md:max-w-full">
+      <div>
+        <h2 class="mt-20 mb-2 text-4xl font-extrabold md:text-6xl">
+          What is a cause?
+        </h2>
+        <h3 class="mb-5 text-3xl font-bold">Lorem ipsum</h3>
+        <p class="mx-auto mb-5 w-full max-w-lg">
+          A cause can be any project you can think off: an application, a trip to a Web3 developer event,
+          a medical emergency, a present, etc...<br />
+
+          It is in the hands of the community to sponsor your cause, so we recommend active engagement with your community and cause.
+        </p>
+
+        <div class="my-20 flex flex-col custom-button-centered">
+          <a class="btn btn-primary rounded-full" href="/create-sponsor"
+            >Create your first cause!</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="hero from-primary to-accent text-primary-content min-h-screen bg-gradient-to-br"
+    id="private"
+  >
+    <div class="hero-content mx-auto max-w-md text-center md:max-w-full">
+      <div>
+        <h2 class="mt-20 mb-2 text-4xl font-extrabold md:text-6xl">
+          Browse causes
+        </h2>
+        <h3 class="mb-5 text-3xl font-bold">Looking for causes to sponsor? This is your place!</h3>
+        <p class="mx-auto mb-5 w-full max-w-lg">
+          Search causes by means of their title, keywords or public address.<br />
+          Additionally filter causes by category, publication date, expiry date or completion progress.
+
+          Or explore a random uncompleted cause by means of the mistery button.
+        </p>
+
+        <div class="my-20 flex flex-col custom-button-centered">
+          <a class="btn btn-primary rounded-full" href="/browse-causes"
+            >Browse causes!</a
+          >
+          <br />
+          <a class="btn btn-primary rounded-full" href="/mistery-causes"
+            >Mistery button</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--
         <div class="hero bg-base-200 text-base-content min-h-screen py-10">
           <div class="hero-content mx-auto w-full max-w-md text-center md:max-w-full">
             <div class="w-full">
@@ -192,10 +260,16 @@ import { onConnect } from '$lib/web3';
           </div>
         </div>
         -->
-      </div>
-  
-  <style>
-    .step {
-      text-align: left;
-    }
-  </style>
+</div>
+
+<style>
+  .step {
+    text-align: left;
+  }
+
+  .custom-button-centered {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
