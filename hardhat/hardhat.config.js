@@ -1,5 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
 require('hardhat-abi-exporter');
+require("dotenv")
 
 
 // This is a sample Hardhat task. To learn how to create your own go to
@@ -22,7 +23,7 @@ module.exports = {
   networks: {
     hardhat: {
       forking: {
-        url: "https://eth-mainnet.alchemyapi.io/v2/xXu9KRGXH4MBBGzilL8sb6kneGzZSK2p",
+        url: "https://eth-mainnet.alchemyapi.io/v2/"+process.env.ALCHEMYKEY,
         blockNumber: 14807328,
       },
     },
@@ -42,7 +43,7 @@ module.exports = {
   },
   etherscan: {
     apiKey: {
-      //polygonMumbai: process.env.ETHERSCANKEY,
+      polygonMumbai: process.env.ETHERSCANKEY,
       //polygon: process.env.ETHERSCANKEY,
     },
   },
