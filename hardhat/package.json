@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "@aave/protocol-v2": "^1.0.1",
+    "@nomiclabs/hardhat-etherscan": "^3.0.3",
     "@openzeppelin/contracts": "^4.6.0",
+    "dotenv": "^16.0.1",
     "hardhat-abi-exporter": "^2.9.0"
   }
 }
