@@ -39,30 +39,30 @@
 </script>
 
 <div
-  class="pt-16"
+  class="pt-16 pb-12"
   style="background-image: url({backgroundImage});
 background-repeat: no-repeat;
 background-size: cover;
 "
 >
-  <div class="logo-container ml-32 ">
-    <a href="/"
-      ><img
-        class="logo-image"
-        src="./sponsrethgold2.png"
-        alt="sponsor.eth"
-      /></a
-    >
-  </div>
   <!-- container with 2 responsives columns -->
   <div class="container mx-auto px-4 ">
+    <div class="logo-container  ">
+      <a href="/"
+        ><img
+          class="logo-image"
+          src="./sponsrethgold2.png"
+          alt="sponsor.eth"
+        /></a
+      >
+    </div>
     <!-- centered image -->
     <div
       class="flex flex-col md:flex-row "
       style="column-count: 2; flex-wrap: wrap;"
     >
       <div class="md:w-2/3 content-column">
-        <div class="  flex justify-center">
+        <div class="  flex ">
           <!-- Start of component -->
           <!-- card that contains lorem ipsum -->
           <div
@@ -180,7 +180,7 @@ background-size: cover;
                 </label>
                 <textarea
                   placeholder="Send a message"
-                  class="h-24 input input-bordered"
+                  class="h-24 pt-2 input input-bordered"
                 />
                 <!-- <label class="label">
                   <p href="#" class="label-text-alt">
@@ -206,17 +206,17 @@ background-size: cover;
       <div class="md:w-2/3 mt-2">
         <!-- title Message -->
 
-        <div class="  flex flex-col justify-center">
+        <div class="  flex flex-col ">
           <!-- title -->
           <div
-            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center ml-auto mr-auto mb-4 mt-4"
+            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center  mb-4 mt-4"
           >
             <h2 class="p-8 pt-6 pb-6 Messages_Title">Messages</h2>
           </div>
           <!-- Start of component -->
           <!-- card that contains lorem ipsum -->
           <div
-            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center ml-auto mr-auto"
+            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
           >
             <!-- avatar -->
             <div class="avatar ml-auto mr-auto p-8">
