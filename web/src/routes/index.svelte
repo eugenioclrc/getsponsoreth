@@ -18,9 +18,9 @@
     >
       <div class="lg:px-10 lg:pb-12">
         <h1 class="font-title mb-2 py-4 font-extrabold lg:py-10">
-          <div class="mb-2 text-5xl lg:text-7xl">Get Sponsor.eth</div>
+          <div class="mb-2 text-5xl lg:text-7xl">get_sponsor.eth</div>
           <div class="text-2xl lg:text-3xl">
-            Get funds to buidl whatever you want<br />
+            Engage with the community to make your dreams come true!<br />
             <!-- somethnig more here??-->
           </div>
         </h1>
@@ -30,19 +30,19 @@
           <div class="my-2 flex max-w-sm flex-col gap-2 text-left">
             <div class="flex gap-2">
               <SvgCheck />
-              Easy to use
+              Easy to use and made for everyone
             </div>
             <div class="flex gap-2">
               <SvgCheck />
-              You can stake for sponsor
+              Directly sponsor causes with your funds
             </div>
             <div class="flex gap-2">
               <SvgCheck />
-              Reach your goals
+              Stake funds to generate passive income for a cause
             </div>
             <div class="flex gap-2">
               <SvgCheck />
-              A community of supporters
+              Compatible with a wide range of tokens
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@
               Create pledge
             </a>
           {/if}
-          <a href="#how" class="btn lg:btn-lg normal-case">How it works?</a>
+          <a href="#how" class="btn lg:btn-lg normal-case">How does it work?</a>
         </div>
       </div>
     </div>
@@ -91,28 +91,25 @@
     <div class="hero-content px-4 text-center md:px-0">
       <div id="how">
         <h2 class="mt-32 mb-2 text-4xl font-extrabold md:text-6xl">
-          How it works?
+          How does it work?
         </h2>
-        <h3 class="mb-5 text-3xl font-bold">simple lorem ipsum</h3>
+        <h3 class="mb-5 text-3xl font-bold">As simple as a regular transaction</h3>
         <p class="mx-auto mb-5 w-full max-w-lg">
-          lorem ipsum factum won hackaton<br />
-          lorem ipsum sellspeach lorem iosum factum
+          getsponsor.eth aims to help devs and content creators to gather enough funds to make their projects blossom
         </p>
 
         <p />
         <div class="mt-10 mb-20 flex flex-col lg:flex-row">
           <div class="flex w-full flex-col text-left">
             <div class=" mx-auto w-full max-w-xs flex-grow sm:max-w-md">
-              <b>Create a cause</b>, for example lorem ipsum loprem ipsum lorem
-              ipsuem.<br />
+              Users can both <b>create a cause</b> or <b>browse causes</b> available for sponsoring. To get sponsored, follow these steps:
               <ul class="steps steps-vertical">
-                <li class="step">Crear cause</li>
+                <li class="step"><b>Create your cause</b></li>
                 <li class="step">
-                  Update your main page in markdown, upload to IPFS and pin it
-                  with to Storj
+                  Update your main page in markdown format, upload to IPFS and pin it  with to Storj. Add as much detail as possible, as you want to gather catch the attention of the community
                 </li>
-                <li class="step">Share with your followers</li>
-                <li class="step">Get funded</li>
+                <li class="step">Share it with your community. There are people out there wanting to help you!</li>
+                <li class="step">Make sure to keep the community updated about your project!</li>
               </ul>
             </div>
             <div class="mt-4 flex h-16 items-start justify-center">
@@ -135,19 +132,19 @@
     <div class="hero-content mx-auto max-w-md text-center md:max-w-full">
       <div>
         <h2 class="mt-20 mb-2 text-4xl font-extrabold md:text-6xl">
-          What its a cause (sponsor page?)
+          What its a cause?
         </h2>
         <h3 class="mb-5 text-3xl font-bold">Lorem ipsum</h3>
         <p class="mx-auto mb-5 w-full max-w-lg">
-          Lorem ipsum factum Todo! Lorem ipsum factum Todo Lorem ipsum factum
-          Todo Lorem ipsum factum Todo Lorem ipsum factum Todo Lorem ipsum
-          factum Todo Lorem ipsum factum Todo Lorem ipsum factum Todo Lorem
-          ipsum factum Todo Lorem ipsum factum Todo
+          A cause can be any project you can think off: an application, a trip to a Web3 developer event,
+          a medical emergency, a present, etc...<br />
+
+          It is in the hands of the community to sponsor your cause, so Lorem ipsum
         </p>
 
         <div class="my-20 flex flex-col custom-button-centered">
           <a class="btn btn-primary rounded-full" href="/create-sponsor"
-            >Create a cause (sponsor page?)</a
+            >Create your first cause!</a
           >
         </div>
       </div>
