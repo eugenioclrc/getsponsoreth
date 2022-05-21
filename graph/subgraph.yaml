@@ -6,7 +6,7 @@ dataSources:
     name: undefined
     network: mumbai
     source:
-      address: "0xaF916d0BA92c4f037B7F390D8E3bc0855685ABFa"
+      address: "0xAbbF26e5A2956d32114BF697cb6617530b90e9c7"
       abi: GetSponsorETH
       startBlock: 26396502
     mapping:
