@@ -97,7 +97,7 @@ contract GetSponsorETH is Ownable, ERC1155 {
         } else {
             _fund(sponsorshipId, msg.sender, token, amount);
         }
-        _mint(msg.sender, sponsorshipId, 1,"");
+        _mint(msg.sender, sponsorshipId, 1, "");
 
         emit Fund(sponsorshipId, token, msg.sender, isStaking, user, message);
     }
