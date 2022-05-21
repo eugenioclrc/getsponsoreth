@@ -39,6 +39,7 @@
 </script>
 
 <div
+  class="pt-16"
   style="background-image: url({backgroundImage});
 background-repeat: no-repeat;
 background-size: cover;
@@ -271,7 +272,7 @@ background-size: cover;
   }
 
   .content-column {
-    margin-top: 6rem;
+    margin-top: 3rem;
   }
 
   .logo-container {
