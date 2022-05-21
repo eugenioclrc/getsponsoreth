@@ -4,6 +4,8 @@
 <script>
   import { onMount } from 'svelte';
 
+  import {  contracts } from 'svelte-ethers-store'
+
   const backgroundImages = [
     "joshua-earle-Hn8N4I4eHA0-unsplash.jpg",
     "natalie-runnerstrom-SZlgOP7bSnI-unsplash.jpg",
@@ -29,6 +31,10 @@
       data[key] = value;
     }
     console.log(data);
+    // 1 upload file data and get the ipfs hash
+    // 2 submit data using ethers
+    // const tx = await $contracts.GetSponsortETH.create(data.username, $signerAddress, data.signature);
+
   }
 
 </script>

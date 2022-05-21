@@ -2,11 +2,20 @@
   import "../app.css";
 
   import { onMount } from 'svelte';
-import { init } from "$lib/web3";
+  import { init, loadContracts } from "$lib/web3";
+  import { signerAddress } from 'svelte-ethers-store';
+
 
   onMount(() => {
     init();
   })
+
+  $: if ($signerAddress) {
+    try {
+      loadContracts();
+    } catch(e) {}
+  }
+
 </script>
 
 <svelte:head>

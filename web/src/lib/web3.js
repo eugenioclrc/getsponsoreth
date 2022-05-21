@@ -1,6 +1,8 @@
 import { ethers } from 'ethers';
 import { defaultEvmStores } from 'svelte-ethers-store';
 
+import abi from './abi/GetSponsorETH.json';
+
 // Web3modal instance
 let web3Modal
 
@@ -51,6 +53,9 @@ export async function init() {
   console.log("Web3Modal instance is", web3Modal);
 }
 
+export function loadContracts() {
+  defaultEvmStores.attachContract('GetSponsorETH', '0x1a70761Efe908a8072FC7B2f00eae71b7171f2a5', JSON.stringify(abi));
+}
 
 
 /**
