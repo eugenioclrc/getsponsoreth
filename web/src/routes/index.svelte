@@ -57,13 +57,11 @@
               Connect
             </button>
           {:else}
-            {$signerAddress}
             <a
-              href="/action2"
+              href="/create-sponsor"
               class="btn btn-ghost btn-active lg:btn-lg normal-case"
             >
-              <span class="hidden sm:inline">Action2</span>
-              <span class="inline sm:hidden">Action2</span>
+              Create pledge
             </a>
           {/if}
           <a href="#how" class="btn lg:btn-lg normal-case">How it works?</a>
@@ -83,6 +81,9 @@
       />
     </svg>
   </div>
+
+
+  <!-- {$signerAddress} -->
 
   <div
     class="hero bg-base-100 text-base-content mx-auto min-h-screen max-w-md md:max-w-full"
