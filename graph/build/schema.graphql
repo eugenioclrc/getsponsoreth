@@ -1,7 +1,16 @@
 type Pledge @entity {
   id: ID!
   reason: String!
+  pledge: String
+  content: String
   owner: User! # address 
+  backers: [Backer!]! @derivedFrom(field : "backCause")
+}
+
+type Backer @entity {
+  id: ID!
+  backer: String,
+  backCause: Pledge!
 }
 
 type User @entity {

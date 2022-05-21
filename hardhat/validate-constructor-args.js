@@ -1,2 +1,2 @@
-// npx hardhat  verify 0xaF916d0BA92c4f037B7F390D8E3bc0855685ABFa --network mumbai --constructor-args ./validate-constructor-args.js
-module.exports = ["0xe0fba4fc209b4948668006b2be61711b7f465bae"]
+// npx hardhat  verify 0xBe07bF9edAeb4b5A5534b3F601c3fd8f294A841b --network mumbai --constructor-args ./validate-constructor-args.js
+module.exports = ["0x9198F13B08E299d85E096929fA9781A1E3d5d827"]
