@@ -88,7 +88,7 @@
         </div>
 
         <div class="form-control mt-6">
-          <button class="btn btn-primary">Create pledge</button>
+          <button class="button-charming">Create pledge</button>
         </div>
       </div>
     </div>
@@ -98,7 +98,7 @@
 <style>
   .shadow-text {
     /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
-    /* color: 2b222b2b; */
+    color: #1b1b1b !important;
   }
 
   .new-proposal-container {
@@ -109,5 +109,20 @@
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     padding: 2rem;
+  }
+
+  .button-charming {
+    height: 3rem;
+    border-radius: 1.5rem;
+    padding: 0 2rem;
+    background: linear-gradient(-45deg, #9925ea, #338aff, #9925ea);
+    background-size: 400%;
+    background-position: 90% 0;
+    color: #fff;
+    transition: background 0.8s;
+  }
+
+  .button-charming:hover {
+    background-position: 185% 50%;
   }
 </style>

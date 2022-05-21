@@ -182,7 +182,7 @@
   }
 
   .payment-card {
-    max-height: 500px;
+    max-height: 450px;
   }
 
   .content-column {
