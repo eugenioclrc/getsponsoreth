@@ -97,6 +97,18 @@
               class="input input-bordered"
             />
           </div>
+
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Title</span>
+            </label>
+            <input
+              type="text"
+              name="pledgeTitle"
+              placeholder="Title of the pledge"
+              class="input input-bordered"
+            />
+          </div>
           <div class="flex flex-row align-baseline" style="   ">
             <div class="form-control ">
               <label class="label">
