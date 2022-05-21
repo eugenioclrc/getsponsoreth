@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   var data = {
     title: "Home",
     description: "Svelte demo app",
@@ -19,9 +20,30 @@
     request.open("POST", "https://demo.storj-ipfs.com/api/v0/add");
     request.send(formData);
   }
+
+  const backgroundImages = [
+    "joshua-earle-Hn8N4I4eHA0-unsplash.jpg",
+    "natalie-runnerstrom-SZlgOP7bSnI-unsplash.jpg",
+    "oliver-spicer-NmPNw8w_a24-unsplash.jpg",
+    "xan-griffin-eA2t5EvcxU4-unsplash.jpg",
+  ];
+
+  //function for getting a random string of backgroundImages
+
+  let randomIndex = 0;
+  onMount(() => {
+    randomIndex = Math.floor(Math.random() * backgroundImages.length);
+  });
+
+  $: backgroundImage = backgroundImages[randomIndex];
 </script>
 
-<div>
+<div
+  style="background-image: url({backgroundImage});
+background-repeat: no-repeat;
+background-size: cover;
+"
+>
   <div class="logo-container ml-32 ">
     <a href="/"><img alt="sponsor.eth" /></a>
   </div>
@@ -132,6 +154,7 @@
                   type="number"
                   placeholder="How much do you wanna sponsor"
                   class="input input-bordered"
+                  min="0"
                 />
               </div>
 
