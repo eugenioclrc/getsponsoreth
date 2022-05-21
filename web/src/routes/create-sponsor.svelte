@@ -254,8 +254,13 @@
 
   .logo-image {
     border-radius: 35px;
-    max-width: 200px;
-    margin-left: auto;
+    max-width: 165px;
+    /* margin-left: auto; */
     margin-right: auto;
+    transition: ease 0.5s;
+  }
+
+  .logo-image:hover {
+    transform: translateX(10px);
   }
 </style>
