@@ -132,19 +132,49 @@
     <div class="hero-content mx-auto max-w-md text-center md:max-w-full">
       <div>
         <h2 class="mt-20 mb-2 text-4xl font-extrabold md:text-6xl">
-          What its a cause?
+          What is a cause?
         </h2>
         <h3 class="mb-5 text-3xl font-bold">Lorem ipsum</h3>
         <p class="mx-auto mb-5 w-full max-w-lg">
           A cause can be any project you can think off: an application, a trip to a Web3 developer event,
           a medical emergency, a present, etc...<br />
 
-          It is in the hands of the community to sponsor your cause, so Lorem ipsum
+          It is in the hands of the community to sponsor your cause, so we recommend active engagement with your community and cause.
         </p>
 
         <div class="my-20 flex flex-col custom-button-centered">
           <a class="btn btn-primary rounded-full" href="/create-sponsor"
             >Create your first cause!</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="hero from-primary to-accent text-primary-content min-h-screen bg-gradient-to-br"
+    id="private"
+  >
+    <div class="hero-content mx-auto max-w-md text-center md:max-w-full">
+      <div>
+        <h2 class="mt-20 mb-2 text-4xl font-extrabold md:text-6xl">
+          Browse causes
+        </h2>
+        <h3 class="mb-5 text-3xl font-bold">Looking for causes to sponsor? This is your place!</h3>
+        <p class="mx-auto mb-5 w-full max-w-lg">
+          Search causes by means of their title, keywords or public address.<br />
+          Additionally filter causes by category, publication date, expiry date or completion progress.
+
+          Or explore a random uncompleted cause by means of the mistery button.
+        </p>
+
+        <div class="my-20 flex flex-col custom-button-centered">
+          <a class="btn btn-primary rounded-full" href="/browse-causes"
+            >Browse causes!</a
+          >
+          <br />
+          <a class="btn btn-primary rounded-full" href="/mistery-causes"
+            >Mistery button</a
           >
         </div>
       </div>
