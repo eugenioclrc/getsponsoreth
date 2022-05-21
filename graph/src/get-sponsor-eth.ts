@@ -19,12 +19,12 @@ export function handleNewSponsor(event: NewSponsor): void {
 
     entity.reason = event.params.pledge;
 
-    let user = User.load(event.transaction.from.toString());
+    let user = User.load(event.transaction.from.toHexString());
     if(!user) {
-      user = new User(event.transaction.from.toString());
+      user = new User(event.transaction.from.toHexString());
       user.save();
     }
-    entity.owner = event.transaction.from.toString();
+    entity.owner = event.transaction.from.toHexString();
   }
 
   entity.save();
@@ -80,7 +80,17 @@ export function handleClaimed(event: Claimed): void {
 }
 */
 
-export function handleConfig(event: Config): void {}
+export function handleConfig(event: Config) : void {
+  let entity = Pledge.load(event.params.idx.toString());
+
+  if (entity) {
+    if (event.params.valName == 'pledge') {
+      entity.pledge = event.params.value;
+    } else if (event.params.valName == 'content') {
+      entity.content = event.params.value;
+    }
+  }
+}
 
 export function handleFund(event: Fund): void {}
 
