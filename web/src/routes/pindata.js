@@ -7,9 +7,23 @@ dotenv.config();
 
 /** @type {import('./index').RequestHandler} */
 export const post = async ({ request, locals }) => {
+    const data = await request.json();
+
+    const body = new FormData()
+    const file = new File([data.content], data.filename, { type: data.filetype })
+   
+    body.set('file', file);
+
+    const r = await fetch("https://demo.storj-ipfs.com/api/v0/add", {
+        method: "POST",
+        body,
+    });
+
+    const { Hash } = await r.json();
+
 	return {
 		body: {
-            form: "TODO"
+            Hash
 		}
 	}
 };
