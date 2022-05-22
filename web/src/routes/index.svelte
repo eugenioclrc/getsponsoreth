@@ -18,6 +18,12 @@
     >
       <div class="lg:px-10 lg:pb-12">
         <h1 class="font-title mb-2 py-4 font-extrabold lg:py-10">
+          <div class="floating-button-container btn btn-outline ">
+            <!-- content -->
+            <button class="floating-button-wallet">
+              Connect to... <span class="floating-button-address" />
+            </button>
+          </div>
           <div class="mb-2 text-5xl lg:text-7xl">get_sponsor.eth</div>
           <div class="text-2xl lg:text-3xl">
             Engage with the community to make your dreams come true!<br />
@@ -82,7 +88,6 @@
     </svg>
   </div>
 
-
   <!-- {$signerAddress} -->
 
   <div
@@ -93,23 +98,34 @@
         <h2 class="mt-32 mb-2 text-4xl font-extrabold md:text-6xl">
           How does it work?
         </h2>
-        <h3 class="mb-5 text-3xl font-bold">As simple as a regular transaction</h3>
+        <h3 class="mb-5 text-3xl font-bold">
+          As simple as a regular transaction
+        </h3>
         <p class="mx-auto mb-5 w-full max-w-lg">
-          getsponsor.eth aims to help devs and content creators to gather enough funds to make their projects blossom
+          getsponsor.eth aims to help devs and content creators to gather enough
+          funds to make their projects blossom
         </p>
 
         <p />
         <div class="mt-10 mb-20 flex flex-col lg:flex-row">
           <div class="flex w-full flex-col text-left">
             <div class=" mx-auto w-full max-w-xs flex-grow sm:max-w-md">
-              Users can both <b>create a cause</b> or <b>browse causes</b> available for sponsoring. To get sponsored, follow these steps:
+              Users can both <b>create a cause</b> or <b>browse causes</b>
+              available for sponsoring. To get sponsored, follow these steps:
               <ul class="steps steps-vertical">
                 <li class="step"><b>Create your cause</b></li>
                 <li class="step">
-                  Update your main page in markdown format, upload to IPFS and pin it  with to Storj. Add as much detail as possible, as you want to gather catch the attention of the community
+                  Update your main page in markdown format, upload to IPFS and
+                  pin it with to Storj. Add as much detail as possible, as you
+                  want to gather catch the attention of the community
                 </li>
-                <li class="step">Share it with your community. There are people out there wanting to help you!</li>
-                <li class="step">Make sure to keep the community updated about your project!</li>
+                <li class="step">
+                  Share it with your community. There are people out there
+                  wanting to help you!
+                </li>
+                <li class="step">
+                  Make sure to keep the community updated about your project!
+                </li>
               </ul>
             </div>
             <div class="mt-4 flex h-16 items-start justify-center">
@@ -136,14 +152,16 @@
         </h2>
         <h3 class="mb-5 text-3xl font-bold">Lorem ipsum</h3>
         <p class="mx-auto mb-5 w-full max-w-lg">
-          A cause can be any project you can think off: an application, a trip to a Web3 developer event,
-          a medical emergency, a present, etc...<br />
+          A cause can be any project you can think off: an application, a trip
+          to a Web3 developer event, a medical emergency, a present, etc...<br
+          />
 
-          It is in the hands of the community to sponsor your cause, so we recommend active engagement with your community and cause.
+          It is in the hands of the community to sponsor your cause, so we
+          recommend active engagement with your community and cause.
         </p>
 
         <div class="my-20 flex flex-col custom-button-centered">
-          <a class="btn btn-primary rounded-full" href="/create-sponsor"
+          <a class="btn btn-tertiary  rounded-full" href="/create-sponsor"
             >Create your first cause!</a
           >
         </div>
@@ -160,12 +178,15 @@
         <h2 class="mt-20 mb-2 text-4xl font-extrabold md:text-6xl">
           Browse causes
         </h2>
-        <h3 class="mb-5 text-3xl font-bold">Looking for causes to sponsor? This is your place!</h3>
+        <h3 class="mb-5 text-3xl font-bold">
+          Looking for causes to sponsor? This is your place!
+        </h3>
         <p class="mx-auto mb-5 w-full max-w-lg">
-          Search causes by means of their title, keywords or public address.<br />
-          Additionally filter causes by category, publication date, expiry date or completion progress.
-
-          Or explore a random uncompleted cause by means of the mistery button.
+          Search causes by means of their title, keywords or public address.<br
+          />
+          Additionally filter causes by category, publication date, expiry date or
+          completion progress. Or explore a random uncompleted cause by means of
+          the mistery button.
         </p>
 
         <div class="my-20 flex flex-col custom-button-centered">
@@ -173,8 +194,9 @@
             >Browse causes!</a
           >
           <br />
-          <a class="btn btn-primary rounded-full" href="/mistery-causes"
-            >Mistery button</a
+          <a
+            class="btn  btn-tertiary btn-outline rounded-full"
+            href="/mistery-causes">Mistery button</a
           >
         </div>
       </div>
@@ -271,5 +293,15 @@
     max-width: 650px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .floating-button-container {
+    position: fixed;
+    top: 1.5rem;
+    right: 2rem;
+    border-radius: 8px;
+  }
+
+  .floating-button-wallet {
   }
 </style>
