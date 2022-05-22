@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
 
-  import { onMount } from "svelte";
 
 
   import {
