@@ -100,7 +100,10 @@ background-size: cover;
             <div class="ml-auto pr-8 buttons">
               <!-- button claim -->
               <!-- <button class="btn button-charming ">Go details</button> -->
-              <button class="btn btn-reverse btn-custom-arrow btn-charming">
+              <a
+                class="btn btn-reverse btn-custom-arrow btn-charming"
+                href="/pledge-view"
+              >
                 <span
                   >Go details<svg
                     version="1.1"
@@ -132,7 +135,7 @@ background-size: cover;
                     ></svg
                   ></span
                 >
-              </button>
+              </a>
             </div>
           </div>
 
@@ -194,7 +197,7 @@ background-size: cover;
     transform: translateX(10px);
   }
 
-  .buttons > button {
+  .buttons > a {
     min-width: 150px;
   }
 
