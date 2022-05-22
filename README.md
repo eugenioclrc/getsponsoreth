@@ -36,6 +36,19 @@ Weolcome to getSponsoreth repository!
 - The Graph to store the users’ data
 - Coinbase Wallet
 
+
+## Work Flow
+  - User Create a Pledge
+  - Sponsor can contribute to a pledge:
+  
+    - Direct funding: Fund directly sent to creator of pledge.
+    - Staking: Funds are staked in a new contract specific for pledge then and deposited into Aave lending pool then:
+    
+      - aToken is minted for the specific pledge contract.
+      - Staker can reclaim his funds at anytime.
+      - Creator can claim the yield at anytime.
+      - Accounting is handled inside the specific vault contract
+      - 
 ## Below are links to the deployed smart contracts
 
 ### Starknet Contract
