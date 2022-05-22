@@ -9,7 +9,7 @@ import {
   StakeWithdrawn,
   TokenAllowanceUpdate
 } from "../generated/GetSponsorETH/GetSponsorETH"
-import { Pledge, User } from "../generated/schema"
+import { Pledge, User, Backer } from "../generated/schema"
 
 export function handleNewSponsor(event: NewSponsor): void {
   let entity = Pledge.load(event.params.idx.toString());
@@ -92,7 +92,19 @@ export function handleConfig(event: Config) : void {
   }
 }
 
-export function handleFund(event: Fund): void {}
+export function handleFund(event: Fund): void {
+  // let pledge = Pledge.load(event.params.idx.toString());
+  // if(pledge) {
+    let entity = new Backer(event.transaction.hash.toHexString());
+    entity.backCause = event.params.idx.toString(); //pledge;
+    entity.backer = event.params.author;
+    entity.message = event.params.message;
+    
+    entity.amount = event.transaction.value;
+    entity.save();
+  // }
+  // a
+}
 
 
 export function handleOwnershipTransferred(event: OwnershipTransferred): void {}
