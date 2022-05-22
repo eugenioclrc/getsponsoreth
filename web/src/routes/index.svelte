@@ -70,7 +70,7 @@
           </div>
         </div>
         <div
-          class="mt-4 flex flex-1 pt-6 justify-center space-x-2 sm:justify-start lg:mt-6 lg:justify-start"
+          class="starting-buttons mt-4 flex flex-1 pt-6 justify-center space-x-2 sm:justify-start lg:mt-6 lg:justify-start"
         >
           {#if !$connected}
             <button
@@ -375,6 +375,15 @@
     margin-right: auto;
     transition: ease 0.5s;
     margin-top: -2rem;
+  }
+
+  .starting-buttons {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .starting-buttons > * {
+    margin: 0;
   }
 
   .button-charming {
