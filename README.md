@@ -16,5 +16,5 @@
 
 
 ## Celo  Alfajores Contract
-[Celo Contract](https://blockscout.com/poa/sokol/address/0xC9d405431baA5304F14EA4A721f2f625e19Bee79/transactions](https://alfajores-blockscout.celo-testnet.org/address/0xC9d405431baA5304F14EA4A721f2f625e19Bee79/transactions)
+[Celo Contract](https://alfajores-blockscout.celo-testnet.org/address/0xC9d405431baA5304F14EA4A721f2f625e19Bee79/transactions)
 
