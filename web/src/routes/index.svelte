@@ -79,6 +79,8 @@
             >
               Connect
             </button>
+          <a href="#how" class="btn lg:btn-lg normal-case">How does it work?</a>
+
           {:else}
             <a
               href="/create-sponsor"
@@ -86,8 +88,14 @@
             >
               Create pledge
             </a>
+            <a href="/your-pledges" class="btn lg:btn-lg normal-case">My pledges</a>
           {/if}
-          <a href="#how" class="btn lg:btn-lg normal-case">How does it work?</a>
+          <a
+              href="/browse-causes"
+              class="btn btn-ghost btn-active lg:btn-lg normal-case"
+            >
+              Pledge List
+            </a>
         </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 <script>
   import { onMount } from "svelte";
+  import { initClient, operationStore, query } from '@urql/svelte';
+
   var data = {
     title: "Pledge reason",
     description: "Svelte demo app",
@@ -18,20 +20,6 @@
 
   $: searched = false;
 
-  function clickDoShit() {
-    const formData = new FormData();
-
-    // JavaScript file-like object...
-    var content = '<a id="a"><b id="b">hey!</b></a>'; // the body of the new file...
-    var blob = new Blob([content], { type: "text/xml" });
-
-    formData.append("file", blob);
-
-    var request = new XMLHttpRequest();
-    request.open("POST", "https://demo.storj-ipfs.com/api/v0/add");
-    request.send(formData);
-  }
-
   const backgroundImages = [
     "joshua-earle-Hn8N4I4eHA0-unsplash.jpg",
     "natalie-runnerstrom-SZlgOP7bSnI-unsplash.jpg",
@@ -42,8 +30,27 @@
   //function for getting a random string of backgroundImages
 
   let randomIndex = 0;
-  onMount(() => {
+
+  let pledges =[];
+
+  const client = initClient({
+      url: 'https://api.thegraph.com/subgraphs/name/eugenioclrc/getsponsoreth',
+    });
+
+  onMount(async () => {
     randomIndex = Math.floor(Math.random() * backgroundImages.length);
+  
+
+    const {data } = await client
+        .query(`query {     
+          pledges(first: 10) {
+            id
+            pledge
+            reason
+          }
+        }`)
+        .toPromise();
+    pledges = data.pledges;
   });
 
   $: backgroundImage = backgroundImages[randomIndex];
@@ -114,6 +121,7 @@ background-size: cover;
             </div>
           {/if}
           <!-- Start of component -->
+          
           <!-- card that contains lorem ipsum -->
           <div
             class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex sm:flex-row items-center "
