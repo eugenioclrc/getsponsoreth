@@ -9,9 +9,9 @@ Sponsorship platforms in Web2
 - KYC required
 - High fees
 - Limited by:
-- Geographic areas
-- Payment Systems
-- Currencies
+ - Geographic areas
+ - Payment Systems
+ - Currencies
 
 getSponsoreth is:
 - Decentralized
