@@ -1,12 +1,45 @@
 <script context="module">
   export const prerender = true;
 </script>
-
 <script>
-  import { connected, signerAddress } from "svelte-ethers-store";
+  import { connected, signerAddress, chainId } from "svelte-ethers-store";
 
   import SvgCheck from "$lib/svgCheck.svelte";
   import { onConnect, onDisconnect } from "$lib/web3";
+
+  async function changeNetwork() {
+    const CHAIN_ID = 80001;
+    const HEXCHAIN_ID = "0x"+CHAIN_ID.toString(16);
+    try {
+      await window.ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [
+          {
+            chainId: HEXCHAIN_ID,
+            chainName: "Mumbai testnet",
+            nativeCurrency: {
+              name: "Matic",
+              symbol: "MATIC",
+              decimals: 18,
+            },
+            rpcUrls: [
+              "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2"
+              // "https://rpc-mumbai.matic.today/", 
+              // "https://matic-mumbai.chainstacklabs.com",
+              // "https://rpc-mumbai.maticvigil.com/",
+              // "https://matic-testnet-archive-rpc.bwarelabs.com/"
+            ],
+            blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+          }]
+      });
+      setTimeout(() => {
+        document.location.reload();
+      }, 10)
+    } catch (e) {
+      console.log(e)
+      alert("Please manually change your network to Mumbai testnet")
+    }
+  }
 </script>
 
 <div class="">
@@ -20,11 +53,19 @@
         <h1 class="font-title mb-2 py-4 font-extrabold lg:py-10">
           {#if $connected}
             <div class="floating-button-container btn btn-tertiary ">
+
               <!-- content -->
+              {#if $chainId==80001}
+                <button class="floating-button-wallet" on:click={changeNetwork}>
+                  {$signerAddress.slice(0, 4)}...{$signerAddress.slice(-4)}
+                  <span class="floating-button-address" />
+                </button>
+              {:else}
               <button class="floating-button-wallet" on:click={onDisconnect}>
-                {$signerAddress.slice(0, 4)}...{$signerAddress.slice(-4)}
+                WRONG NETWORK!
                 <span class="floating-button-address" />
               </button>
+              {/if}
             </div>
           {/if}
           <!-- <div class="logo-container  ">
