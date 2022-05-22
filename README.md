@@ -2,7 +2,9 @@
 
 ![getSponsorethlogo](./img/getSponsor.PNG)
 
-Weolcome to getSponsoreth repository!
+Weolcome to getSponsoreth repository! Go [GetSponsereth](https://getsponsoreth.vercel.app/) Now!
+
+
 
 ##### Sponsorship platforms in Web2
 - Centralized
