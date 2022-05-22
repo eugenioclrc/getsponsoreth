@@ -91,6 +91,8 @@ export function handleConfig(event: Config) : void {
       entity.content = event.params.value;
     } else if (event.params.valName == 'author') {
       entity.author = event.params.value;
+    } else if (event.params.valName == 'hidden') {
+      entity.hidden = !!event.params.value;
     }
     entity.save()
   }

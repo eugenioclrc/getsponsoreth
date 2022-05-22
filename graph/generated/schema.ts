@@ -128,6 +128,15 @@ export class Pledge extends Entity {
   set backCount(value: BigInt) {
     this.set("backCount", Value.fromBigInt(value));
   }
+
+  get hidden(): boolean {
+    let value = this.get("hidden");
+    return value!.toBoolean();
+  }
+
+  set hidden(value: boolean) {
+    this.set("hidden", Value.fromBoolean(value));
+  }
 }
 
 export class Backer extends Entity {
