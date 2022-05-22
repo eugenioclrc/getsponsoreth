@@ -27,8 +27,18 @@
               </button>
             </div>
           {/if}
+          <!-- <div class="logo-container  ">
+            <a href="/"
+              ><img
+                class="logo-image"
+                src="./sponsrethgold2.png"
+                alt="sponsor.eth"
+              /></a
+            >
+          </div> -->
+
           <div class="mb-2 text-5xl lg:text-7xl">get_sponsor.eth</div>
-          <div class="text-2xl lg:text-3xl">
+          <div class="text-2xl lg:text-3xl pt-4">
             Engage with the community to make your dreams come true!<br />
             <!-- somethnig more here??-->
           </div>
@@ -296,7 +306,7 @@
   }
 
   .custom-button-centered {
-    max-width: 650px;
+    max-width: 550px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -312,8 +322,7 @@
   }
 
   .btn-what-is-a-cause {
-    width: 200px;
-    padding: 1.5rem 1.2rem;
+    padding: 1.5rem 4.2rem;
     font-size: 16px;
     /* min-height: 4rem; */
   }
@@ -330,5 +339,14 @@
   .regular-text-smaller {
     font-size: 18px;
     max-width: 60%;
+  }
+
+  .logo-image {
+    border-radius: 35px;
+    max-width: 165px;
+    /* margin-left: auto; */
+    margin-right: auto;
+    transition: ease 0.5s;
+    margin-top: -2rem;
   }
 </style>
