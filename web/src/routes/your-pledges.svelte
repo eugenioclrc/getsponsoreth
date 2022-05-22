@@ -31,7 +31,7 @@ import { signerAddress } from "svelte-ethers-store";
     query ($id: String!) {
       users( id: $id){
         pledges {
-          id,backCount,pledge
+          id,backCount,reason,author
         }
       }
     }`;
@@ -101,9 +101,9 @@ background-size: cover;
             <div class="message-content flex flex-row ">
               <a href="/pledge-view?id={p.id}">
                 <div class="message-header">
-                  <h1 class="text-2xl font-bold pb-2">{data.name}</h1>
+                  <h1 class="text-2xl font-bold pb-2">{p.author || 'empty'}</h1>
                   <h2 class="text-sm font-bold pb-4">
-                    {data.title}
+                    {p.reason || 'empty'}
                   </h2>
                 </div>
               </a>

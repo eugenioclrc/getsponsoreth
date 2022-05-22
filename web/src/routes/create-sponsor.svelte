@@ -58,6 +58,8 @@
       //   console.log(data);
       // 1 upload file data and get the ipfs hash
       // 2 submit data using ethers
+      console.log(["content", content.Hash, "pledge", data.pledgeName, "author", data.pledgeAuthor])
+      
       const tx = await $contracts.GetSponsorETH.createSponsor(
         0, // uint timeToExpiry,
         data.pledgeName, // string calldata pledge,
@@ -65,6 +67,7 @@
         ["content", content.Hash, "pledge", data.pledgeName, "author", data.pledgeAuthor]
         // string[] calldata configs
       );
+      await tx.wait();
     } catch (err) {
       console.error(err);
     }
