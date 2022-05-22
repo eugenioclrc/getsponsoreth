@@ -1,6 +1,7 @@
 <script context="module">
   export const prerender = true;
 </script>
+
 <script>
   import { connected, signerAddress } from "svelte-ethers-store";
 
@@ -17,7 +18,7 @@
     >
       <div class="lg:px-10 lg:pb-12">
         <h1 class="font-title mb-2 py-4 font-extrabold lg:py-10">
-          <div class="floating-button-container btn btn-outline ">
+          <div class="floating-button-container btn btn-tertiary ">
             <!-- content -->
             <button class="floating-button-wallet">
               Connect to... <span class="floating-button-address" />
