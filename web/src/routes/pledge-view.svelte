@@ -102,12 +102,13 @@
     let params = new URLSearchParams(document.location.search);
     sponsorId = parseInt(params.get("id"), 10); // is the number 18
 
-    const { pledge authorawait fetchpledge(authorsorId);
-    if (!pledge.authorge) {
+    const {data} = await fetchData(sponsorId);
+
+    pledge = data.pledge;
+    if (!pledge.author) {
       document.location = "/";
     }
     here = encodeURIComponent(document.location.href);
-    console.log(pledge)author  pledge = pledge.authorge;
     try {
       const response = await fetch(
         "https://demo.storj-ipfs.com/ipfs/" + pledge.content
