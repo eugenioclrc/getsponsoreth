@@ -1,12 +1,12 @@
 <script>
   import { onMount } from "svelte";
-  import { initClient, operationStore, query } from '@urql/svelte';
+  import { initClient, operationStore, query } from "@urql/svelte";
   const client = initClient({
-    url: 'https://api.thegraph`.com/subgraphs/name/eugenioclrc/getsponsoreth',
+    url: "https://api.thegraph`.com/subgraphs/name/eugenioclrc/getsponsoreth",
   });
 
   function fetchData(pledgeId) {
-      const GET_MYPROFILE = `
+    const GET_MYPROFILE = `
     query ($pledgeId: Int!) {
       pledge(id:$pledgeid) {
         id
@@ -24,24 +24,25 @@
         }
       }
     }`;
-      return client
-        .query(GET_MYPROFILE, {
-          pledgeId
-        })
-        .toPromise();
+    return client
+      .query(GET_MYPROFILE, {
+        pledgeId,
+      })
+      .toPromise();
   }
-  
+
   onMount(async () => {
     const pledge = await fetchData(1);
-    console.log(pledge)
-  })
-
+    console.log(pledge);
+  });
 
   var data = {
     title: "Pledge reason",
     description: "Description of the pledge",
     user_image: "https://avatars0.githubusercontent.com/u/1234?s=460&v=4",
     name: "John Doe",
+    amount: 3,
+    type: "ETH",
   };
 
   function clickDoShit() {
@@ -268,19 +269,13 @@ background-size: cover;
                 <div class="message-header">
                   <h1 class="text-2xl font-bold pb-2">{data.name}</h1>
                   <h2 class="text-sm font-bold pb-4">
-                    {data.name} is a {data.name}
+                    {data.title} is a donation of {data.amount}
+                    {data.type}
                   </h2>
                 </div>
                 <div class="message-body">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
+                    {data.description}
                   </p>
                 </div>
               </div>
