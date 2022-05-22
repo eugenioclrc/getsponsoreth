@@ -42,6 +42,23 @@ export class Pledge extends Entity {
     this.set("id", Value.fromString(value));
   }
 
+  get author(): string | null {
+    let value = this.get("author");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set author(value: string | null) {
+    if (!value) {
+      this.unset("author");
+    } else {
+      this.set("author", Value.fromString(<string>value));
+    }
+  }
+
   get reason(): string {
     let value = this.get("reason");
     return value!.toString();
@@ -101,6 +118,23 @@ export class Pledge extends Entity {
 
   set backers(value: Array<string>) {
     this.set("backers", Value.fromStringArray(value));
+  }
+
+  get backCount(): BigInt | null {
+    let value = this.get("backCount");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set backCount(value: BigInt | null) {
+    if (!value) {
+      this.unset("backCount");
+    } else {
+      this.set("backCount", Value.fromBigInt(<BigInt>value));
+    }
   }
 }
 

@@ -1,10 +1,12 @@
 type Pledge @entity {
   id: ID!
+  author: String
   reason: String!
   pledge: String
   content: String
   owner: User! # address 
   backers: [Backer!]! @derivedFrom(field : "backCause")
+  backCount: BigInt!
 }
 
 type Backer @entity {
@@ -12,7 +14,7 @@ type Backer @entity {
   backer: String,
   message: String,
   backCause: Pledge!
-  amount: BigInt
+  amount: BigInt!
 }
 
 type User @entity {
