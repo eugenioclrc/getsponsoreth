@@ -111,7 +111,6 @@
             <input
               name="pledgeAuthor"
               type="text"
-              name="pledgeName"
               placeholder="Tell your sponsors who are you"
               class="input input-bordered"
             />
@@ -123,7 +122,7 @@
             </label>
             <input
               type="text"
-              name="pledgeTitle"
+              name="pledgeName"
               placeholder="Title of the pledge"
               class="input input-bordered"
             />
