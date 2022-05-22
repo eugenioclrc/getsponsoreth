@@ -19,7 +19,7 @@ contract SponsoredPools is Ownable {
 
     function init(
         ILendingPool _lendingPool,
-        address _sponsorEth,
+        address payable _sponsorEth,
         address _beneficiary
     ) public {
         require(beneficiary == address(0), "already initialized");
@@ -64,4 +64,6 @@ contract SponsoredPools is Ownable {
         uint aBalance = IERC20(aToken).balanceOf(address(this));
         claimAmount = aBalance - total;
     }
+
+    receive() external payable {}
 }
