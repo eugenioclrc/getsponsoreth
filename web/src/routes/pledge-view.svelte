@@ -18,7 +18,13 @@ import { onConnect } from "$lib/web3";
 
   let sponsorId = 1;
 
-  let buttonFundLoading = false
+  let buttonFundLoading = false;
+
+  let here = '';
+  let pledge = {
+    owner: { id: null },
+    backers: []
+  }
 
   async function stake() {
     const tx = await $contracts.GetSponsorETH.fund(
@@ -87,19 +93,6 @@ import { onConnect } from "$lib/web3";
     type: "ETH",
   };
 
-  function clickDoShit() {
-    const formData = new FormData();
-
-    // JavaScript file-like object...
-    var content = '<a id="a"><b id="b">hey!</b></a>'; // the body of the new file...
-    var blob = new Blob([content], { type: "text/xml" });
-
-    formData.append("file", blob);
-
-    var request = new XMLHttpRequest();
-    request.open("POST", "https://demo.storj-ipfs.com/api/v0/add");
-    request.send(formData);
-  }
 
   const backgroundImages = [
     "joshua-earle-Hn8N4I4eHA0-unsplash.jpg",
@@ -114,8 +107,16 @@ import { onConnect } from "$lib/web3";
   onMount(async () => {
     randomIndex = Math.floor(Math.random() * backgroundImages.length);
 
-    const pledge = await fetchData(1);
-    console.log(pledge)
+    let params = new URLSearchParams(document.location.search);
+    sponsorId = parseInt(params.get("id"), 10); // is the number 18
+
+    const {data} = await fetchData(sponsorId);
+    if(!data.pledge) {
+      document.location = '/';
+    }
+    here = encodeURIComponent(document.location.href);
+    console.log(data)
+    pledge = data.pledge;
   });
 
   $: backgroundImage = backgroundImages[randomIndex];
@@ -299,7 +300,8 @@ background-size: cover;
                   <div class="form-control w-1/2 mt-6">
                     <button on:click={fund} class="btn btn-primary" class:loading={buttonFundLoading}>Sponsoreth!</button>
                   </div>
-                  <a href="https://staging-global.transak.com/?apiKey=2efd471e-9da3-4fea-ad1f-568ae439a11d">Send fiat</a>
+
+                  <a class="btn btn-primary" href="https://staging-global.transak.com/?apiKey=2efd471e-9da3-4fea-ad1f-568ae439a11d&redirectURL={here}&cryptoCurrencyList=ETH,DAI,USDC,MATIC&defaultCryptoCurrency=USDC&walletAddress={pledge.owner.id}&disableWalletAddressForm=true">Send fiat</a>
                 {/if}
               </div>
             </div>
@@ -317,37 +319,40 @@ background-size: cover;
           >
             <h2 class="p-8 pt-6 pb-6 Messages_Title">Messages</h2>
           </div>
-          <!-- Start of component -->
-          <!-- card that contains lorem ipsum -->
-          <div
-            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
-          >
-            <!-- avatar -->
-            <div class="avatar p-8">
-              <div class="w-24 mask mask-circle">
-                <img src="https://api.lorem.space/image/face?hash=53273" />
-              </div>
-            </div>
 
-            <!-- message -->
-            <div class="message pt-8 pb-8 pr-8">
-              <div class="message-content">
-                <div class="message-header">
-                  <h1 class="text-2xl font-bold pb-2">{data.name}</h1>
-                  <h2 class="text-sm font-bold pb-4">
-                    {data.title} is a donation of {data.amount}
-                    {data.type}
-                  </h2>
-                </div>
-                <div class="message-body">
-                  <p>
-                    {data.description}
-                  </p>
+          {#each pledge.backers as backer}
+            
+            <!-- Start of component -->
+            <!-- card that contains lorem ipsum -->
+            <div
+              class="mt-1 card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
+            >
+              <!-- avatar -->
+              <div class="avatar p-8">
+                <div class="w-24 mask mask-circle">
+                  <img src="https://api.lorem.space/image/face?hash=53273" />
                 </div>
               </div>
-            </div>
-          </div>
 
+              <!-- message -->
+              <div class="message pt-8 pb-8 pr-8">
+                <div class="message-content">
+                  <div class="message-header">
+                    <h1 class="text-2xl font-bold pb-2">{data.name}</h1>
+                    <h2 class="text-sm font-bold pb-4">
+                      {data.title} is a donation of {data.amount}
+                      {data.type}
+                    </h2>
+                  </div>
+                  <div class="message-body">
+                    <p>
+                      {data.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {/each}
           <!-- End of component -->
         </div>
       </div>
