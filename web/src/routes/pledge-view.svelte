@@ -319,7 +319,7 @@ background-size: cover;
               <div class="message pt-8 pb-8 pr-8">
                 <div class="message-content">
                   <div class="message-header">
-                    <h1 class="text-2xl font-bold pb-2">{data.name}</h1>
+                    <h1 class="text-2xl font-bold pb-2">&nbsp;</h1>
                     <h2 class="text-sm font-bold pb-4">
                       Donation of {ethers.utils.formatEther(backer.amount)}
                       MATIC
