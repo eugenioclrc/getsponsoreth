@@ -18,6 +18,8 @@ import { onConnect } from "$lib/web3";
 
   let sponsorId = 1;
 
+  let buttonFundLoading = false
+
   async function stake() {
     const tx = await $contracts.GetSponsorETH.fund(
         sponsorId,
@@ -31,16 +33,20 @@ import { onConnect } from "$lib/web3";
   }
 
   async function fund() {
-    const tx = await $contracts.GetSponsorETH.fund(
-        sponsorId,
-        '0x0000000000000000000000000000000000000000',
-        false, // bool isStaking,
-        0,
-        username,
-        message,
-        { value: ethers.utils.parseEther(String(amount))}
-    );
-    await tx.wait();
+    buttonFundLoading = true;
+    try {
+      const tx = await $contracts.GetSponsorETH.fund(
+          sponsorId,
+          '0x0000000000000000000000000000000000000000',
+          false, // bool isStaking,
+          0,
+          username,
+          message,
+          { value: ethers.utils.parseEther(String(amount))}
+      );
+      await tx.wait();
+    } catch (err) {}
+    buttonFundLoading = false
   }
   
   function fetchData(_pledgeId) {
@@ -281,7 +287,7 @@ background-size: cover;
                     >
                   </div>
                   <div class="form-control w-1/2 mt-6">
-                    <button on:click={fund} class="btn btn-primary">Sponsoreth!</button>
+                    <button on:click={fund} class="btn btn-primary" class:loading={buttonFundLoading}>Sponsoreth!</button>
                   </div>
                 {/if}
               </div>
