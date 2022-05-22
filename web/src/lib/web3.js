@@ -37,6 +37,13 @@ export async function init() {
         infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
       }
     },
+    // coinbasewallet: {
+    //   package: CoinbaseWalletSDK,
+    //   options: {
+    //     appName: "get_sponsor.eth",
+    //     infuraId: "8043bb2cf99347b1bfadfb233c5325c0"
+    //   },
+    // },
   };
   
   web3Modal = new window.Web3Modal.default({
