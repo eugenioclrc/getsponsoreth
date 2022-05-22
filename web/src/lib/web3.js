@@ -53,7 +53,7 @@ export async function init() {
 }
 
 export function loadContracts() {
-  defaultEvmStores.attachContract('GetSponsorETH', '0xAbbF26e5A2956d32114BF697cb6617530b90e9c7', JSON.stringify(abi));
+  defaultEvmStores.attachContract('GetSponsorETH', '0x0dD9b74B4ea13D28E22B4bEc5F1fe1e155bE8725', JSON.stringify(abi));
 }
 
 
