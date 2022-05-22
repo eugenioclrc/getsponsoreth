@@ -23,9 +23,9 @@ getSponsor.eth : a Web3 based sponsorship platform:
 - Users connect their wallets access the platform
 - Create causes for which they need funding
 - Sponsors browse causes and choose a payment method
--- Direct crypto transfer (ETH, MATIC, USDC, DAI…)
--- Staking rewards transfer
--- Fiat-to-crypto bridge
+⋅⋅* Direct crypto transfer (ETH, MATIC, USDC, DAI…)
+⋅⋅* Staking rewards transfer
+⋅⋅* Fiat-to-crypto bridge
 
 
 Within this repository you will find used technologies:
