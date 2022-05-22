@@ -62,7 +62,7 @@
         0, // uint timeToExpiry,
         data.pledgeName, // string calldata pledge,
         true, // bool isPerpetual,
-        ["content", content.Hash, "pledge", data.pledgeName]
+        ["content", content.Hash, "pledge", data.pledgeName, "author", data.pledgeAuthor]
         // string[] calldata configs
       );
     } catch (err) {
@@ -109,6 +109,7 @@
               <span class="label-text">Name</span>
             </label>
             <input
+              name="pledgeAuthor"
               type="text"
               name="pledgeName"
               placeholder="Tell your sponsors who are you"

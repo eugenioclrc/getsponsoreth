@@ -70,32 +70,35 @@
           </div>
         </div>
         <div
-          class="mt-4 flex flex-1 justify-center space-x-2 sm:justify-start lg:mt-6 lg:justify-start"
+          class="starting-buttons mt-4 flex flex-1 pt-6 justify-center space-x-2 sm:justify-start lg:mt-6 lg:justify-start"
         >
           {#if !$connected}
             <button
               on:click={onConnect}
-              class="btn btn-ghost btn-active lg:btn-lg normal-case"
+              class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
             >
               Connect
             </button>
-          <a href="#how" class="btn lg:btn-lg normal-case">How does it work?</a>
-
+            <!-- <a href="#how" class="btn lg:btn-lg normal-case">How does it work?</a> -->
           {:else}
             <a
               href="/create-sponsor"
-              class="btn btn-ghost btn-active lg:btn-lg normal-case"
+              class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
             >
               Create pledge
             </a>
-            <a href="/your-pledges" class="btn lg:btn-lg normal-case">My pledges</a>
+            <a
+              href="/your-pledges"
+              class="btn button-first-section lg:btn-lg normal-case"
+              >My pledges</a
+            >
           {/if}
           <a
-              href="/browse-causes"
-              class="btn btn-ghost btn-active lg:btn-lg normal-case"
-            >
-              Pledge List
-            </a>
+            href="/browse-causes"
+            class="btn btn-tertiary button-first-section btn-active lg:btn-lg normal-case"
+          >
+            Pledge List
+          </a>
         </div>
       </div>
     </div>
@@ -126,13 +129,16 @@
         <h3 class="mb-5 text-3xl font-bold">
           As simple as a regular transaction
         </h3>
-        <p class="mx-auto mb-5 w-full max-w-lg">
+        <p class="mx-auto  mb-5 w-full max-w-lg" style="font-size: 20px">
           getsponsor.eth aims to help devs and content creators to gather enough
           funds to make their projects blossom
         </p>
 
         <p />
-        <div class="mt-10 mb-20 flex flex-col lg:flex-row">
+        <div
+          class="mt-10 mb-20 flex flex-col lg:flex-row"
+          style="font-size: 20px"
+        >
           <div class="flex w-full flex-col text-left">
             <div class=" mx-auto w-full max-w-xs flex-grow sm:max-w-md">
               Users can both <b>create a cause</b> or <b>browse causes</b>
@@ -224,7 +230,9 @@
           <br />
           <a
             class="btn btn-primary rounded-full w-full md:w-1/2 "
-            href="/browse-causes">Browse causes!</a
+            href="/browse-causes"
+          >
+            Browse causes!</a
           >
         </div>
       </div>
@@ -330,13 +338,21 @@
     border-radius: 8px;
   }
 
-  .floating-button-wallet {
-  }
+  /* .floating-button-container:after {
+    content: "x";
+    font-size: 8px;
+    position: relative;
+    width: 0;
+    height: 0;
+    top: -22px;
+    right: -4px;
+  } */
 
   .btn-what-is-a-cause {
     padding: 1rem 4.2rem;
     font-size: 16px;
     border-radius: 35px;
+    white-space: nowrap;
     /* min-height: 4rem; */
   }
 
@@ -373,6 +389,41 @@
     margin-top: -2rem;
   }
 
+  .starting-buttons {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .starting-buttons > * {
+    margin: 0;
+  }
+
+  .button-charming {
+    height: 3rem;
+    border-radius: 8px;
+    padding: 0 2rem;
+    background: linear-gradient(-45deg, #9925ea, #338aff, #9925ea);
+    background-size: 400%;
+    background-position: 90% 0;
+    color: #fff;
+    transition: background 0.8s;
+    border: none;
+  }
+
+  .button-charming:hover {
+    background-position: 185% 50%;
+  }
+
+  .button-first-section {
+    min-width: 250px;
+    transition: 0.5s ease;
+  }
+
+  .button-first-section:hover {
+    /*  */
+    filter: brightness(0.8);
+  }
+
   @media (max-width: 768px) {
     .max-w-md {
       max-width: 100%;
@@ -401,6 +452,13 @@
   }
 
   @media (max-width: 576px) {
+    .steps-vertical .step {
+      gap: 0;
+    }
+    .button-first-section {
+      min-width: 180px;
+    }
+
     button,
     a {
       min-width: auto;
@@ -427,6 +485,10 @@
     .stroke-current > path {
       min-width: 24px;
       min-height: 24px;
+    }
+
+    .button-first-section {
+      min-width: 40%;
     }
   }
 </style>

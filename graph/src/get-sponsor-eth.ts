@@ -16,6 +16,7 @@ export function handleNewSponsor(event: NewSponsor): void {
 
   if (!entity) {
     entity = new Pledge(event.params.idx.toString())
+    entity.backCount = new BigInt(0);
 
     entity.reason = event.params.pledge;
 
@@ -88,13 +89,19 @@ export function handleConfig(event: Config) : void {
       entity.pledge = event.params.value;
     } else if (event.params.valName == 'content') {
       entity.content = event.params.value;
+    } else if (event.params.valName == 'author') {
+      entity.author = event.params.value;
     }
+    entity.save()
   }
 }
 
 export function handleFund(event: Fund): void {
-  // let pledge = Pledge.load(event.params.idx.toString());
-  // if(pledge) {
+  let pledge = Pledge.load(event.params.idx.toString());
+  if(pledge) {
+    pledge.backCount += BigInt.fromString("1");
+    pledge.save();
+  }
     let entity = new Backer(event.transaction.hash.toHexString());
     entity.backCause = event.params.idx.toString(); //pledge;
     entity.backer = event.params.author;

@@ -1,13 +1,9 @@
 <script>
   import { onMount } from "svelte";
-  import { initClient, operationStore, query } from '@urql/svelte';
+  import { initClient, operationStore, query } from "@urql/svelte";
 
-  var data = {
-    title: "Pledge reason",
-    description: "Svelte demo app",
-    user_image: "https://avatars0.githubusercontent.com/u/1234?s=460&v=4",
-    name: "John Doe",
-  };
+  //user_image: "https://avatars0.githubusercontent.com/u/1234?s=460&v=4",
+  //name: "John Doe",
 
   var pledge = {
     title: "Pledge reason",
@@ -31,26 +27,30 @@
 
   let randomIndex = 0;
 
-  let pledges =[];
+  let pledges = [];
 
   const client = initClient({
-      url: 'https://api.thegraph.com/subgraphs/name/eugenioclrc/getsponsoreth',
-    });
+    url: "https://api.thegraph.com/subgraphs/name/eugenioclrc/getsponsoreth",
+  });
 
   onMount(async () => {
     randomIndex = Math.floor(Math.random() * backgroundImages.length);
-  
 
-    const {data } = await client
-        .query(`query {     
+    const { data } = await client
+      .query(
+        `query {     
           pledges(first: 10) {
             id
+            backCount
+            author
             pledge
             reason
           }
-        }`)
-        .toPromise();
+        }`
+      )
+      .toPromise();
     pledges = data.pledges;
+    console.log({ pledges });
   });
 
   $: backgroundImage = backgroundImages[randomIndex];
@@ -101,7 +101,7 @@ background-size: cover;
               type="text"
               name="pledgeName"
               placeholder="Search for pledges"
-              class="input input-bordered w-100"
+              class="input input-bordered w-100 w-full"
             />
           </div>
 
@@ -121,75 +121,76 @@ background-size: cover;
             </div>
           {/if}
           <!-- Start of component -->
-          
-          <!-- card that contains lorem ipsum -->
-          <div
-            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex sm:flex-row items-center "
-          >
-            <!-- avatar -->
-            <div class="avatar p-4 md:p-8">
-              <div class="w-24 mask mask-circle">
-                <img src="https://api.lorem.space/image/face?hash=53273" />
+          {#each pledges as p}
+            <!-- card that contains lorem ipsum -->
+            <div
+              class="card flex-shrink-0 mb-4 w-full pledge-card shadow-2xl bg-base-100 flex md:flex-row items-center "
+            >
+              <!-- avatar -->
+              <div class="avatar p-4 md:p-8">
+                <div class="w-24 mask mask-circle">
+                  <img src="https://api.lorem.space/image/face?hash=53273" />
+                </div>
               </div>
-            </div>
 
-            <!-- message -->
-            <div class="message md:pt-8 md:pb-8 md:pr-8">
-              <div class="message-content flex flex-row ">
-                <div class="message-header">
-                  <h1 class="text-2xl font-bold pb-2">{data.name}</h1>
-                  <h2 class="text-sm font-bold pb-4">
-                    {data.title}
-                  </h2>
-                  <div class="pledge-content-details">
-                    {data.description}
+              <!-- message -->
+              <div class="message md:pt-8 md:pb-8 md:pr-8">
+                <div class="message-content flex flex-row ">
+                  <div class="message-header">
+                    <h1 class="text-2xl font-bold pb-2">{p.reason}</h1>
+                    <h2 class="text-sm font-bold pb-4">
+                      {p.backCount} backers
+                    </h2>
+                    <!-- <div class="pledge-content-details">
+                      {data.description}
+                    </div> -->
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="mt-4 md:mt-0 md:ml-auto md:pr-8 buttons mb-6 md:mb-0">
-              <!-- button claim -->
-              <!-- <button class="btn button-charming ">Go details</button> -->
-              <a
-                class="btn btn-reverse btn-custom-arrow btn-charming"
-                href="/pledge-view"
-              >
-                <span
-                  >Go details<svg
-                    version="1.1"
-                    id="Layer_1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    x="0px"
-                    y="0px"
-                    viewBox="0 0 36.1 25.8"
-                    enable-background="new 0 0 36.1 25.8"
-                    xml:space="preserve"
-                    ><g
-                      ><line
-                        fill="none"
-                        stroke="#FFFFFF"
-                        stroke-width="3"
-                        stroke-miterlimit="10"
-                        x1="0"
-                        y1="12.9"
-                        x2="34"
-                        y2="12.9"
-                      /><polyline
-                        fill="none"
-                        stroke="#FFFFFF"
-                        stroke-width="3"
-                        stroke-miterlimit="10"
-                        points="22.2,1.1 34,12.9 22.2,24.7   "
-                      /></g
-                    ></svg
-                  ></span
+              <div class="mt-4 md:mt-0 md:ml-auto md:pr-8 buttons mb-6 md:mb-0">
+                <!-- button claim -->
+                <!-- <button class="btn button-charming ">Go details</button> -->
+                <a
+                  class="btn btn-reverse btn-custom-arrow btn-charming"
+                  href="/pledge-view?id={p.id}"
                 >
-              </a>
+                  <span
+                    >Go details<svg
+                      version="1.1"
+                      id="Layer_1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      x="0px"
+                      y="0px"
+                      viewBox="0 0 36.1 25.8"
+                      enable-background="new 0 0 36.1 25.8"
+                      xml:space="preserve"
+                      ><g
+                        ><line
+                          fill="none"
+                          stroke="#FFFFFF"
+                          stroke-width="3"
+                          stroke-miterlimit="10"
+                          x1="0"
+                          y1="12.9"
+                          x2="34"
+                          y2="12.9"
+                        /><polyline
+                          fill="none"
+                          stroke="#FFFFFF"
+                          stroke-width="3"
+                          stroke-miterlimit="10"
+                          points="22.2,1.1 34,12.9 22.2,24.7   "
+                        /></g
+                      ></svg
+                    ></span
+                  >
+                </a>
+              </div>
             </div>
-          </div>
 
-          <!-- End of component -->
+            <!-- End of component -->
+          {/each}
         </div>
       </div>
     </div>

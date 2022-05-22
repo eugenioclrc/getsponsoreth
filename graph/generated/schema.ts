@@ -42,6 +42,23 @@ export class Pledge extends Entity {
     this.set("id", Value.fromString(value));
   }
 
+  get author(): string | null {
+    let value = this.get("author");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set author(value: string | null) {
+    if (!value) {
+      this.unset("author");
+    } else {
+      this.set("author", Value.fromString(<string>value));
+    }
+  }
+
   get reason(): string {
     let value = this.get("reason");
     return value!.toString();
@@ -101,6 +118,15 @@ export class Pledge extends Entity {
 
   set backers(value: Array<string>) {
     this.set("backers", Value.fromStringArray(value));
+  }
+
+  get backCount(): BigInt {
+    let value = this.get("backCount");
+    return value!.toBigInt();
+  }
+
+  set backCount(value: BigInt) {
+    this.set("backCount", Value.fromBigInt(value));
   }
 }
 
@@ -178,21 +204,13 @@ export class Backer extends Entity {
     this.set("backCause", Value.fromString(value));
   }
 
-  get amount(): BigInt | null {
+  get amount(): BigInt {
     let value = this.get("amount");
-    if (!value || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
+    return value!.toBigInt();
   }
 
-  set amount(value: BigInt | null) {
-    if (!value) {
-      this.unset("amount");
-    } else {
-      this.set("amount", Value.fromBigInt(<BigInt>value));
-    }
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
   }
 }
 
