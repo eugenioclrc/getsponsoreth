@@ -8,8 +8,7 @@
           Frequently Asked Question
         </h1>
         <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
-          The most common questions about how our business works and what can do
-          for you.
+          The most common questions about what we provide to you.
         </p>
       </div>
       <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
@@ -19,68 +18,56 @@
               How Long is this site live?
             </summary>
 
-            <span>
-              Laboris qui labore cillum culpa in sunt quis sint veniam. Dolore
-              ex aute deserunt esse ipsum elit aliqua. Aute quis minim velit
-              nostrud pariatur culpa magna in aute.
-            </span>
+            <span> It was created day 22 of may, 2020. </span>
           </details>
           <details class="mb-4">
             <summary class="font-semibold bg-gray-200 rounded-md py-2 px-4">
-              Can I install/upload anything I want on there?
+              What do we do
             </summary>
-
             <span>
-              Laboris qui labore cillum culpa in sunt quis sint veniam. Dolore
-              ex aute deserunt esse ipsum elit aliqua. Aute quis minim velit
-              nostrud pariatur culpa magna in aute.
+              We provide a platform that allows you to sponsor or be sponsored
+              by people.
             </span>
           </details>
           <details class="mb-4">
             <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
-              How can I migrate to another site?
+              Is this descentralized?
             </summary>
 
             <span>
-              Laboris qui labore cillum culpa in sunt quis sint veniam. Dolore
-              ex aute deserunt esse ipsum elit aliqua. Aute quis minim velit
-              nostrud pariatur culpa magna in aute.
+              Yes, it is descentralized and you can find us in several
+              blockchains.
             </span>
           </details>
         </div>
         <div class="w-full lg:w-1/2 px-4 py-2">
           <details class="mb-4">
             <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
-              Can I change the domain you give me?
+              Can I sponsor somebody with LUNA
             </summary>
 
             <span class="px-4 py-2">
-              Laboris qui labore cillum culpa in sunt quis sint veniam. Dolore
-              ex aute deserunt esse ipsum elit aliqua. Aute quis minim velit
-              nostrud pariatur culpa magna in aute.
+              Why? If you want to meme somebody there are other ways. Just click
+              the button and send your favourite token to the address of the
+              person you want to sponsor!
             </span>
           </details>
           <details class="mb-4">
             <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
-              How many sites I can create at once?
+              Is there any other way of sponsoring?
             </summary>
 
             <span class="px-4 py-2">
-              Laboris qui labore cillum culpa in sunt quis sint veniam. Dolore
-              ex aute deserunt esse ipsum elit aliqua. Aute quis minim velit
-              nostrud pariatur culpa magna in aute.
+              You can sponsor someone by staking a coin and giving them the
+              rewards of staking.
             </span>
           </details>
           <details class="mb-4">
             <summary class="font-semibold  bg-gray-200 rounded-md py-2 px-4">
-              How can I communicate with you?
+              Do the company gets any revenue?
             </summary>
 
-            <span class="px-4 py-2">
-              Laboris qui labore cillum culpa in sunt quis sint veniam. Dolore
-              ex aute deserunt esse ipsum elit aliqua. Aute quis minim velit
-              nostrud pariatur culpa magna in aute.
-            </span>
+            <span class="px-4 py-2"> No, provide a free service </span>
           </details>
         </div>
       </div>
