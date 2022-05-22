@@ -16,20 +16,9 @@ async function main() {
   const ERC20ABI = require("../abis/ERC20.json");
   const WETHABI = require("../abis/weth.json");
 
-  await hre.network.provider.request({
-    method: "hardhat_impersonateAccount",
-    params: ["0xca8fa8f0b631ecdb18cda619c4fc9d197c8affca"], // eth whale
-  });
-
   const [signer, sponsor] = await hre.ethers.getSigners();
-  // const sponsor = await hre.ethers.getSigner(
-  //   "0xca8fa8f0b631ecdb18cda619c4fc9d197c8affca"
-  // );
-
   const WETH = new hre.ethers.Contract(WETH_ADDRESS, WETHABI, provider);
   const aWETH = new hre.ethers.Contract(aWETH_ADDRESS, ERC20ABI, provider);
-  const signerBal = await provider.getBalance(signer.address);
-  console.log(signerBal);
 
   const timeToExpiry = 365 * 24 * 60 * 60;
   const pledge = "I will make an on-chain CTF";
@@ -46,25 +35,6 @@ async function main() {
     "yeah",
   ]);
   console.log("Sponsorship created");
-  const owner = await sponsoreth.ownerOf(1);
-  console.log("owner:", owner);
-  console.log(sponsoreth.address);
-
-  await WETH.connect(sponsor).approve(
-    sponsoreth.address,
-    ethers.utils.parseEther("1000000")
-  );
-  console.log("approved");
-  const signeETHBalBefore = await provider.getBalance(signer.address);
-  console.log(signeETHBalBefore);
-  await sponsoreth
-    .connect(sponsor)
-    .fund(1, ethers.constants.AddressZero, true, 200, "", "", {
-      value: ethers.utils.parseEther("10"),
-    });
-
-  const signeETHBalAfter = await provider.getBalance(signer.address);
-  console.log(signeETHBalAfter - signeETHBalBefore);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
