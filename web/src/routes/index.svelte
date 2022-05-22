@@ -395,6 +395,12 @@
 
   .button-first-section {
     min-width: 250px;
+    transition: 0.5s ease;
+  }
+
+  .button-first-section:hover {
+    /*  */
+    filter: brightness(0.8);
   }
 
   @media (max-width: 768px) {

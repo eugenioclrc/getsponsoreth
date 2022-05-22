@@ -1,40 +1,41 @@
 <script context="module">
   export const prerender = true;
 </script>
+
 <script>
   import { onMount } from "svelte";
-  import { ethers } from "ethers"; 
+  import { ethers } from "ethers";
   import { connected, contracts } from "svelte-ethers-store";
 
-  import { initClient, operationStore, query } from '@urql/svelte';
-import { onConnect } from "$lib/web3";
+  import { initClient, operationStore, query } from "@urql/svelte";
+  import { onConnect } from "$lib/web3";
   const client = initClient({
-    url: 'https://api.thegraph.com/subgraphs/name/eugenioclrc/getsponsoreth',
+    url: "https://api.thegraph.com/subgraphs/name/eugenioclrc/getsponsoreth",
   });
 
   let amount = 0;
-  let username = '';
-  let message = '';
+  let username = "";
+  let message = "";
 
   let sponsorId = 1;
 
   let buttonFundLoading = false;
 
-  let here = '';
+  let here = "";
   let pledge = {
     owner: { id: null },
-    backers: []
-  }
+    backers: [],
+  };
 
   async function stake() {
     const tx = await $contracts.GetSponsorETH.fund(
-        sponsorId,
-        '0x0000000000000000000000000000000000000000',
-        true, // bool isStaking,
-        0,
-        username,
-        message,
-        { value: ethers.utils.parseEther(String(amount))}
+      sponsorId,
+      "0x0000000000000000000000000000000000000000",
+      true, // bool isStaking,
+      0,
+      username,
+      message,
+      { value: ethers.utils.parseEther(String(amount)) }
     );
     await tx.wait();
   }
@@ -43,21 +44,21 @@ import { onConnect } from "$lib/web3";
     buttonFundLoading = true;
     try {
       const tx = await $contracts.GetSponsorETH.fund(
-          sponsorId,
-          '0x0000000000000000000000000000000000000000',
-          false, // bool isStaking,
-          0,
-          username,
-          message,
-          { value: ethers.utils.parseEther(String(amount))}
+        sponsorId,
+        "0x0000000000000000000000000000000000000000",
+        false, // bool isStaking,
+        0,
+        username,
+        message,
+        { value: ethers.utils.parseEther(String(amount)) }
       );
       await tx.wait();
     } catch (err) {}
-    buttonFundLoading = false
+    buttonFundLoading = false;
   }
-  
+
   function fetchData(_pledgeId) {
-      const GET_MYPROFILE = `
+    const GET_MYPROFILE = `
     query ($pledgeId: Int!) {
       pledge(id:$pledgeId) {
         id
@@ -76,14 +77,13 @@ import { onConnect } from "$lib/web3";
       
       }
     }`;
-      return client
-        .query(GET_MYPROFILE, {
-          pledgeId: _pledgeId
-        })
-        .toPromise();
+    return client
+      .query(GET_MYPROFILE, {
+        pledgeId: _pledgeId,
+      })
+      .toPromise();
   }
-  
-  
+
   var data = {
     title: "Pledge reason",
     description: "Description of the pledge",
@@ -92,7 +92,6 @@ import { onConnect } from "$lib/web3";
     amount: 3,
     type: "ETH",
   };
-
 
   const backgroundImages = [
     "joshua-earle-Hn8N4I4eHA0-unsplash.jpg",
@@ -110,12 +109,12 @@ import { onConnect } from "$lib/web3";
     let params = new URLSearchParams(document.location.search);
     sponsorId = parseInt(params.get("id"), 10); // is the number 18
 
-    const {data} = await fetchData(sponsorId);
-    if(!data.pledge) {
-      document.location = '/';
+    const { data } = await fetchData(sponsorId);
+    if (!data.pledge) {
+      document.location = "/";
     }
     here = encodeURIComponent(document.location.href);
-    console.log(data)
+    console.log(data);
     pledge = data.pledge;
   });
 
@@ -212,7 +211,7 @@ background-size: cover;
         <div class="flex flex-col lg:flex-row" />
         <div
           class="min-h-screen  flex justify-center content-column "
-          style="    max-height: 450px;"
+          style="    max-height: 455px;"
         >
           <!-- Start of component -->
           <!-- flex row -->
@@ -284,10 +283,10 @@ background-size: cover;
                   </p>
                 </label> -->
               </div>
-              <div class="flex gap-4">
+              <div class="flex gap-4 sponsor-buttons">
                 {#if !$connected}
-                <div class="form-control w-full m-6">
-                  <button on:click={onConnect} class="btn btn-secondary"
+                  <div class="form-control w-full m-6">
+                    <button on:click={onConnect} class="btn btn-secondary"
                       >Connect!</button
                     >
                   </div>
@@ -298,10 +297,19 @@ background-size: cover;
                     >
                   </div>
                   <div class="form-control w-1/2 mt-6">
-                    <button on:click={fund} class="btn btn-primary" class:loading={buttonFundLoading}>Sponsoreth!</button>
+                    <button
+                      on:click={fund}
+                      class="btn btn-primary"
+                      class:loading={buttonFundLoading}>Sponsoreth!</button
+                    >
                   </div>
 
-                  <a class="btn btn-primary" href="https://staging-global.transak.com/?apiKey=2efd471e-9da3-4fea-ad1f-568ae439a11d&redirectURL={here}&cryptoCurrencyList=ETH,DAI,USDC,MATIC&defaultCryptoCurrency=USDC&walletAddress={pledge.owner.id}&disableWalletAddressForm=true">Send fiat</a>
+                  <a
+                    class="NoCryptoLink"
+                    href="https://staging-global.transak.com/?apiKey=2efd471e-9da3-4fea-ad1f-568ae439a11d&redirectURL={here}&cryptoCurrencyList=ETH,DAI,USDC,MATIC&defaultCryptoCurrency=USDC&walletAddress={pledge
+                      .owner.id}&disableWalletAddressForm=true"
+                    >No crypto? Send fiat</a
+                  >
                 {/if}
               </div>
             </div>
@@ -321,11 +329,10 @@ background-size: cover;
           </div>
 
           {#each pledge.backers as backer}
-            
             <!-- Start of component -->
             <!-- card that contains lorem ipsum -->
             <div
-              class="mt-1 card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
+              class="mt-1 mb-4 card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
             >
               <!-- avatar -->
               <div class="avatar p-8">
@@ -409,6 +416,29 @@ background-size: cover;
 
   .logo-image:hover {
     transform: translateX(10px);
+  }
+
+  .sponsor-buttons {
+    column-count: 2;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .sponsor-buttons > .form-control {
+    flex: 1;
+  }
+
+  .NoCryptoLink {
+    /* color: #fff; */
+    text-decoration: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transform: 1s ease;
+  }
+
+  .NoCryptoLink:hover {
+    text-decoration: underline;
   }
 
   @media (max-width: 768px) {
