@@ -378,7 +378,7 @@ background-size: cover;
   }
 
   .payment-card {
-    max-height: 450px;
+    max-height: 465px;
   }
 
   .content-column {
