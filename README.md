@@ -54,5 +54,5 @@ Weolcome to getSponsoreth repository!
 [Celo Contract](https://alfajores-blockscout.celo-testnet.org/address/0xC9d405431baA5304F14EA4A721f2f625e19Bee79/transactions)
 
 ### Link Skynet FAQ page 
-[link](https://vg7av08comgek7drmdvnckfsrre9i3q4spm58sm8038ajn5kkp38gug.siasky.net/)
+[FAQ on Skynet](https://vg7av08comgek7drmdvnckfsrre9i3q4spm58sm8038ajn5kkp38gug.siasky.net/)
 
