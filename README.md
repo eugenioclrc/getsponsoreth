@@ -4,7 +4,7 @@
 
 Weolcome to getSponsoreth repository!
 
-Sponsorship platforms in Web2
+###### Sponsorship platforms in Web2
 - Centralized
 - KYC required
 - High fees
@@ -13,13 +13,13 @@ Sponsorship platforms in Web2
   - Payment Systems
   - Currencies
 
-getSponsoreth is:
+###### getSponsoreth is:
 - Decentralized
 - No KYC
 - Low fees
 - Universal
 
-getSponsor.eth : a Web3 based sponsorship platform:
+###### getSponsor.eth : a Web3 based sponsorship platform:
 - Users connect their wallets access the platform
 - Create causes for which they need funding
 - Sponsors browse causes and choose a payment method
@@ -28,7 +28,7 @@ getSponsor.eth : a Web3 based sponsorship platform:
   - Fiat-to-crypto bridge
 
 
-Within this repository you will find used technologies:
+###### Within this repository you will find used technologies as:
 - Figment.io for the RPC
 - Transak to enable FIAT-to-crypto buy option
 - STORJ IPFS to host the user’s pledge contents
