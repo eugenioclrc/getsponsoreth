@@ -135,7 +135,7 @@
               <a
                 class="btn-what-is-a-cause inline-block cursor-pointer rounded-md bg-indigo-600 px-4 py-3 text-center text-sm
                      font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-indigo-700"
-                href="#public">What is a cause?</a
+                href="#cause">What is a cause?</a
               >
             </div>
           </div>
@@ -149,12 +149,12 @@
     id="private"
   >
     <div class="hero-content mx-auto max-w-md text-center md:max-w-full">
-      <div>
-        <h2 class="mt-20 mb-2 text-4xl font-extrabold md:text-6xl">
+      <div id="cause">
+        <h2 class="mt-20 mb-12 text-4xl font-extrabold md:text-6xl">
           What is a cause?
         </h2>
-        <h3 class="mb-5 text-3xl font-bold">Lorem ipsum</h3>
-        <p class="mx-auto mb-5 w-full max-w-lg">
+        <!-- <h3 class="mb-5 text-3xl font-bold">Lorem ipsum</h3> -->
+        <p class="mx-auto mb-5 w-full regular-text lh-regular">
           A cause can be any project you can think off: an application, a trip
           to a Web3 developer event, a medical emergency, a present, etc...<br
           />
@@ -184,7 +184,7 @@
         <h3 class="mb-5 text-3xl font-bold">
           Looking for causes to sponsor? This is your place!
         </h3>
-        <p class="mx-auto mb-5 w-full max-w-lg">
+        <p class="mx-auto mb-5 w-full max-w-lg regular-text-smaller">
           Search causes by means of their title, keywords or public address.<br
           />
           Additionally filter causes by category, publication date, expiry date or
@@ -192,14 +192,17 @@
           the mistery button.
         </p>
 
-        <div class="my-20 flex flex-col custom-button-centered">
-          <a class="btn btn-primary rounded-full" href="/browse-causes"
-            >Browse causes!</a
+        <div
+          class="my-20 flex flex-col md:flex-row custom-button-centered space-between md:gap-4"
+        >
+          <button
+            class="btn  btn-tertiary btn-outline rounded-full w-full md:w-1/2"
+            href="#/mistery-causes">Mistery button</button
           >
           <br />
-          <a
-            class="btn  btn-tertiary btn-outline rounded-full"
-            href="#/mistery-causes">Mistery button</a
+          <button
+            class="btn btn-primary rounded-full w-full md:w-1/2 "
+            href="/browse-causes">Browse causes!</button
           >
         </div>
       </div>
@@ -313,5 +316,19 @@
     padding: 1.5rem 1.2rem;
     font-size: 16px;
     /* min-height: 4rem; */
+  }
+
+  .lh-regular {
+    line-height: 1.5;
+  }
+
+  .regular-text {
+    font-size: 22px;
+    max-width: 60%;
+  }
+
+  .regular-text-smaller {
+    font-size: 18px;
+    max-width: 60%;
   }
 </style>
