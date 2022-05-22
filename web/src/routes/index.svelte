@@ -100,6 +100,12 @@
             Pledge List
           </a>
         </div>
+        <img
+          class="ethereum-gif"
+          src="/ethereum-logo.gif"
+          alt="Ethereum logo"
+          width="250"
+        />
       </div>
     </div>
     <svg
@@ -422,6 +428,20 @@
   .button-first-section:hover {
     /*  */
     filter: brightness(0.8);
+  }
+
+  @media (min-width: 1468px) {
+    .ethereum-gif {
+      position: absolute;
+      right: 4rem;
+      top: 1.8rem;
+      height: 70p;
+      width: 180px;
+    }
+  }
+
+  .ethereum-gif {
+    display: none;
   }
 
   @media (max-width: 768px) {
