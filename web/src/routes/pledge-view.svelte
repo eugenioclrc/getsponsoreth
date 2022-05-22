@@ -1,8 +1,8 @@
 <script>
   import { onMount } from "svelte";
   var data = {
-    title: "Home",
-    description: "Svelte demo app",
+    title: "Pledge reason",
+    description: "Description of the pledge",
     user_image: "https://avatars0.githubusercontent.com/u/1234?s=460&v=4",
     name: "John Doe",
   };
