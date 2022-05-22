@@ -299,7 +299,7 @@ background-size: cover;
                   <div class="form-control w-1/2 mt-6">
                     <button on:click={fund} class="btn btn-primary" class:loading={buttonFundLoading}>Sponsoreth!</button>
                   </div>
-                  <a class="https://staging-global.transak.com/?apiKey=2efd471e-9da3-4fea-ad1f-568ae439a11d">Send fiat</a>
+                  <a href="https://staging-global.transak.com/?apiKey=2efd471e-9da3-4fea-ad1f-568ae439a11d">Send fiat</a>
                 {/if}
               </div>
             </div>
