@@ -34,6 +34,7 @@ Weolcome to getSponsoreth repository!
 - STORJ IPFS to host the user’s pledge contents
 - SKYNET to host the frontend assets
 - The Graph to store the users’ data
+- Coinbase Wallet
 
 ## Below are links to the deployed smart contracts
 
