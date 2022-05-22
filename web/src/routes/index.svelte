@@ -46,7 +46,9 @@
         <div
           class="flex w-full flex-col items-start space-y-10 lg:flex-row lg:space-x-4 lg:space-y-0"
         >
-          <div class="my-2 flex max-w-sm flex-col gap-2 text-left">
+          <div
+            class="my-2 flex max-w-sm flex-col gap-2 text-left padding-small-screen"
+          >
             <div class="flex gap-2">
               <SvgCheck />
               Easy to use and made for everyone
@@ -188,13 +190,13 @@
   >
     <div class="hero-content mx-auto max-w-md text-center md:max-w-full">
       <div>
-        <h2 class="mt-20 mb-2 text-4xl font-extrabold md:text-6xl">
+        <h2 class="mt-20 mb-8  text-4xl font-extrabold md:text-6xl">
           Browse causes
         </h2>
-        <h3 class="mb-5 text-3xl font-bold">
+        <h3 class="mb-5 text-3xl font-bold regular-text-title">
           Looking for causes to sponsor? This is your place!
         </h3>
-        <p class="mx-auto mb-5 w-full max-w-lg regular-text-smaller">
+        <p class="mx-auto mb-5 w-full max-w-l regular-text-smaller">
           Search causes by means of their title, keywords or public address.<br
           />
           Additionally filter causes by category, publication date, expiry date or
@@ -207,7 +209,7 @@
         >
           <a
             class="btn  btn-tertiary btn-outline rounded-full w-full md:w-1/2"
-            href="#/mistery-causes">Mistery button</a
+            href="/mistery-causes">Mistery button</a
           >
           <br />
           <a
@@ -322,8 +324,9 @@
   }
 
   .btn-what-is-a-cause {
-    padding: 1.5rem 4.2rem;
+    padding: 1rem 4.2rem;
     font-size: 16px;
+    border-radius: 12px;
     /* min-height: 4rem; */
   }
 
@@ -337,8 +340,18 @@
   }
 
   .regular-text-smaller {
-    font-size: 18px;
+    font-size: 20px;
     max-width: 60%;
+  }
+
+  .regular-text-title {
+    font-size: 28px;
+    max-width: 60%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+    margin-bottom: 2rem;
   }
 
   .logo-image {
@@ -348,5 +361,39 @@
     margin-right: auto;
     transition: ease 0.5s;
     margin-top: -2rem;
+  }
+
+  @media (max-width: 768px) {
+    .max-w-md {
+      max-width: 100%;
+    }
+
+    .custom-button-centered > button {
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .regular-text-smaller,
+    .regular-text-title,
+    .regular-text {
+      max-width: 90%;
+    }
+
+    .padding-small-screen {
+      padding: 1rem 0;
+    }
+
+    button,
+    a {
+      min-width: 200px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    button,
+    a {
+      min-width: auto;
+    }
   }
 </style>

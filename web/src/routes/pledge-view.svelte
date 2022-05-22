@@ -175,30 +175,40 @@ background-size: cover;
             class="card payment-card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
           >
             <div class="card-body flex flex-col">
-              <div class="avatar-group -space-x-6">
-                <div class="avatar">
-                  <div class="w-12">
-                    <img src="https://api.lorem.space/image/face?hash=53273" />
+              <div class="flex flex-row items-center">
+                <div class="avatar-group -space-x-6">
+                  <div class="avatar">
+                    <div class="w-12">
+                      <img
+                        src="https://api.lorem.space/image/face?hash=53273"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div class="avatar">
-                  <div class="w-12">
-                    <img src="https://api.lorem.space/image/face?hash=91831" />
+                  <div class="avatar">
+                    <div class="w-12">
+                      <img
+                        src="https://api.lorem.space/image/face?hash=91831"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div class="avatar">
-                  <div class="w-12">
-                    <img src="https://api.lorem.space/image/face?hash=27312" />
+                  <div class="avatar">
+                    <div class="w-12">
+                      <img
+                        src="https://api.lorem.space/image/face?hash=27312"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div class="avatar">
-                  <div class="w-12">
-                    <img src="https://api.lorem.space/image/face?hash=26448" />
+                  <div class="avatar">
+                    <div class="w-12">
+                      <img
+                        src="https://api.lorem.space/image/face?hash=26448"
+                      />
+                    </div>
                   </div>
+                  <!-- text align vertical middle with content See other messages -->
                 </div>
-                <!-- text align vertical middle with content See other messages -->
+                <div class="pl-2">sponsoreth this pledge!</div>
               </div>
-
               <!-- content of card -->
               <div class="form-control">
                 <label class="label">
@@ -257,7 +267,7 @@ background-size: cover;
             class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
           >
             <!-- avatar -->
-            <div class="avatar ml-auto mr-auto p-8">
+            <div class="avatar p-8">
               <div class="w-24 mask mask-circle">
                 <img src="https://api.lorem.space/image/face?hash=53273" />
               </div>

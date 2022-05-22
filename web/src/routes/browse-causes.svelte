@@ -7,6 +7,17 @@
     name: "John Doe",
   };
 
+  var pledge = {
+    title: "Pledge reason",
+    description: "Svelte demo app",
+    user_image: "https://avatars0.githubusercontent.com/u/1234?s=460&v=4",
+    name: "John Doe",
+    url: "/pledge-view",
+  };
+  // var pledges = [];
+
+  $: searched = false;
+
   function clickDoShit() {
     const formData = new FormData();
 
@@ -69,10 +80,41 @@ background-size: cover;
           <div
             class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center  mb-4 mt-4"
           >
-            <h2 class="p-8 pt-6 pb-6 Messages_Title">Explore pledges</h2>
+            <h2 class="p-8 pt-6 pb-6 Messages_Title">Search for pledges</h2>
+          </div>
+
+          <!-- searchbar -->
+          <div
+            class="mb-4 card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
+          >
+            <!-- <label class="label">
+                  <span class="label-text">Search</span>
+                </label> -->
+            <input
+              type="text"
+              name="pledgeName"
+              placeholder="Search for pledges"
+              class="input input-bordered w-100"
+            />
           </div>
           <!-- Start of component -->
           <!-- card that contains lorem ipsum -->
+          {#if $searched}
+            <div
+              class="card mb-4 flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
+            >
+              <div class="message pt-8 pb-8 pr-8 ">
+                <div class="message-content flex flex-row ">
+                  <div class="message-header">
+                    <h1 class="text-2xl font-bold pb-2 pl-8">
+                      No data founded
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {/if}
+          <!-- {#each $pledges as $pledge} -->
           <div
             class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
           >
@@ -87,12 +129,12 @@ background-size: cover;
             <div class="message pt-8 pb-8 pr-8">
               <div class="message-content flex flex-row ">
                 <div class="message-header">
-                  <h1 class="text-2xl font-bold pb-2">{data.name}</h1>
+                  <h1 class="text-2xl font-bold pb-2">{pledge.name}</h1>
                   <h2 class="text-sm font-bold pb-4">
-                    {data.title}
+                    {pledge.title}
                   </h2>
                   <div class="pledge-content-details">
-                    {data.description}
+                    {pledge.description}
                   </div>
                 </div>
               </div>
@@ -102,7 +144,7 @@ background-size: cover;
               <!-- <button class="btn button-charming ">Go details</button> -->
               <a
                 class="btn btn-reverse btn-custom-arrow btn-charming"
-                href="/pledge-view"
+                href={pledge.url}
               >
                 <span
                   >Go details<svg
@@ -138,6 +180,7 @@ background-size: cover;
               </a>
             </div>
           </div>
+          <!-- {/each} -->
 
           <!-- End of component -->
         </div>
