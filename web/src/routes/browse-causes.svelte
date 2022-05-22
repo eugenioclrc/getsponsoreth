@@ -101,7 +101,7 @@ background-size: cover;
               type="text"
               name="pledgeName"
               placeholder="Search for pledges"
-              class="input input-bordered w-100"
+              class="input input-bordered w-100 w-full"
             />
           </div>
 
@@ -124,7 +124,7 @@ background-size: cover;
           {#each pledges as p}
             <!-- card that contains lorem ipsum -->
             <div
-              class="card flex-shrink-0 mb-4 w-full pledge-card shadow-2xl bg-base-100 flex sm:flex-row items-center "
+              class="card flex-shrink-0 mb-4 w-full pledge-card shadow-2xl bg-base-100 flex md:flex-row items-center "
             >
               <!-- avatar -->
               <div class="avatar p-4 md:p-8">

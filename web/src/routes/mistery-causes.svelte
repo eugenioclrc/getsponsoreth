@@ -74,7 +74,7 @@ background-size: cover;
           <!-- Start of component -->
           <!-- card that contains lorem ipsum -->
           <div
-            class="card mb-4 flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex sm:flex-row items-center "
+            class="card mb-4 flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex md:flex-row items-center "
           >
             <!-- avatar -->
             <div class="avatar p-4 md:p-8">
