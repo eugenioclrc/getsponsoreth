@@ -195,14 +195,14 @@
         <div
           class="my-20 flex flex-col md:flex-row custom-button-centered space-between md:gap-4"
         >
-          <button
+          <a
             class="btn  btn-tertiary btn-outline rounded-full w-full md:w-1/2"
-            href="#/mistery-causes">Mistery button</button
+            href="#/mistery-causes">Mistery button</a
           >
           <br />
-          <button
+          <a
             class="btn btn-primary rounded-full w-full md:w-1/2 "
-            href="/browse-causes">Browse causes!</button
+            href="/browse-causes">Browse causes!</a
           >
         </div>
       </div>
