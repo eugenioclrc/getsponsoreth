@@ -328,13 +328,13 @@ background-size: cover;
                   <div class="message-header">
                     <h1 class="text-2xl font-bold pb-2">{data.name}</h1>
                     <h2 class="text-sm font-bold pb-4">
-                      {data.title} is a donation of {data.amount}
-                      {data.type}
+                      Donation of {ethers.utils.formatEther(backer.amount)}
+                      MATIC
                     </h2>
                   </div>
                   <div class="message-body">
                     <p>
-                      {data.description}
+                      {backer.message || 'Empty message'}
                     </p>
                   </div>
                 </div>

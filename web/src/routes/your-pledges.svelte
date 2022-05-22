@@ -1,5 +1,13 @@
 <script>
   import { onMount } from "svelte";
+
+  import { initClient, operationStore, query } from "@urql/svelte";
+import { signerAddress } from "svelte-ethers-store";
+
+  const client = initClient({
+    url: "https://api.thegraph.com/subgraphs/name/eugenioclrc/getsponsoreth",
+  });
+
   var data = {
     title: "Pledge reason",
     description: "Svelte demo app",
@@ -7,31 +15,34 @@
     name: "John Doe",
   };
 
-  function clickDoShit() {
-    const formData = new FormData();
-
-    // JavaScript file-like object...
-    var content = '<a id="a"><b id="b">hey!</b></a>'; // the body of the new file...
-    var blob = new Blob([content], { type: "text/xml" });
-
-    formData.append("file", blob);
-
-    var request = new XMLHttpRequest();
-    request.open("POST", "https://demo.storj-ipfs.com/api/v0/add");
-    request.send(formData);
-  }
-
   const backgroundImages = [
     "joshua-earle-Hn8N4I4eHA0-unsplash.jpg",
     "natalie-runnerstrom-SZlgOP7bSnI-unsplash.jpg",
     "oliver-spicer-NmPNw8w_a24-unsplash.jpg",
     "xan-griffin-eA2t5EvcxU4-unsplash.jpg",
   ];
+  let pledges = []
 
   //function for getting a random string of backgroundImages
 
   let randomIndex = 0;
-  onMount(() => {
+  onMount(async () => {
+    const GET_MYPROFILE = `
+    query ($id: String!) {
+      users( id: $id){
+        pledges {
+          id,backCount,pledge
+        }
+      }
+    }`;
+    const { data } = await client
+      .query(GET_MYPROFILE, {
+        id: $signerAddress,
+      })
+      .toPromise();
+
+      pledges = (data && data.users && data.users[0] && data.users[0].pledges) || [];
+
     randomIndex = Math.floor(Math.random() * backgroundImages.length);
   });
 
@@ -61,50 +72,56 @@ background-size: cover;
       class="flex flex-col xl:flex-row mt-4"
       style="column-count: 2; flex-wrap: wrap;"
     >
-      <div class="xl:w-2/3 mt-2">
-        <!-- title Message -->
+    <div class="xl:w-2/3 mt-2">
+      <!-- title Message -->
 
-        <div class="  flex flex-col ">
-          <!-- title -->
-          <div
-            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center  mb-4 mt-4"
-          >
-            <h2 class="p-8 pt-6 pb-6 Messages_Title">Your pledges</h2>
-          </div>
-          <!-- Start of component -->
-          <!-- card that contains lorem ipsum -->
-          <div
-            class="card flex-shrink-0 w-full content-card pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
-          >
-            <!-- avatar -->
-            <div class="avatar  p-8">
-              <div class="w-24 mask mask-circle">
-                <img src="https://api.lorem.space/image/face?hash=53273" />
-              </div>
+      <div class="  flex flex-col ">
+        <!-- title -->
+        <div
+          class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center  mb-4 mt-4"
+        >
+          <h2 class="p-8 pt-6 pb-6 Messages_Title">Your pledges</h2>
+        </div>
+        {#each pledges as p}
+    
+        <!-- Start of component -->
+        <!-- card that contains lorem ipsum -->
+        <div
+          class="card mb-1 flex-shrink-0 w-full content-card pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
+        >
+          <!-- avatar -->
+          <div class="avatar  p-8">
+            <div class="w-24 mask mask-circle">
+              <img src="https://api.lorem.space/image/face?hash=53273" />
             </div>
+          </div>
 
-            <!-- message -->
-            <div class="message pt-8 pb-8 pr-8">
-              <div class="message-content flex flex-row ">
+          <!-- message -->
+          <div class="message pt-8 pb-8 pr-8">
+            <div class="message-content flex flex-row ">
+              <a href="/pledge-view?id={p.id}">
                 <div class="message-header">
                   <h1 class="text-2xl font-bold pb-2">{data.name}</h1>
                   <h2 class="text-sm font-bold pb-4">
                     {data.title}
                   </h2>
                 </div>
-              </div>
-            </div>
-            <div class="ml-auto pr-8 buttons">
-              <!-- button claim -->
-              <button class="btn btn-primary btn-outline">Edit</button>
-
-              <button class="btn button-charming ">Claim</button>
+              </a>
             </div>
           </div>
+          <div class="ml-auto pr-8 buttons">
+            <!-- button claim -->
+            <button class="btn btn-primary btn-outline">Edit</button>
 
-          <!-- End of component -->
+            <button class="btn button-charming ">Claim</button>
+          </div>
         </div>
+
+        <!-- End of component -->
+        {/each}
       </div>
+    </div>
+      
     </div>
   </div>
 </div>
