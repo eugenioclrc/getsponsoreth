@@ -288,9 +288,5 @@ background-size: cover;
       display: flex;
       left: initial;
     }
-
-    .min-h-screen {
-      min-height: initial;
-    }
   }
 </style>

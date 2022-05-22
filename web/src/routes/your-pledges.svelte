@@ -58,10 +58,10 @@ background-size: cover;
     </div>
     <!-- centered image -->
     <div
-      class="flex flex-col lg:flex-row mt-4"
+      class="flex flex-col xl:flex-row mt-4"
       style="column-count: 2; flex-wrap: wrap;"
     >
-      <div class="lg:w-2/3 mt-2">
+      <div class="xl:w-2/3 mt-2">
         <!-- title Message -->
 
         <div class="  flex flex-col ">
@@ -74,7 +74,7 @@ background-size: cover;
           <!-- Start of component -->
           <!-- card that contains lorem ipsum -->
           <div
-            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
+            class="card flex-shrink-0 w-full content-card pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
           >
             <!-- avatar -->
             <div class="avatar  p-8">
@@ -202,9 +202,45 @@ background-size: cover;
       display: flex;
       left: initial;
     }
+    .message {
+      /* width: 100%; */
+      padding-left: 1rem;
+    }
 
-    .min-h-screen {
-      min-height: initial;
+    .content-card {
+      flex-wrap: wrap;
+    }
+    .buttons {
+      margin: 0;
+      padding: 2rem;
+      padding-top: 0;
+    }
+
+    .buttons > button {
+      width: 50%;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      gap: 1rem;
+    }
+
+    @media screen and (max-width: 600px) {
+      .buttons > button {
+        min-width: initial;
+      }
+
+      .message {
+        width: 100%;
+        padding-left: 2rem;
+      }
+
+      .content-card {
+        justify-content: center;
+      }
     }
   }
 </style>

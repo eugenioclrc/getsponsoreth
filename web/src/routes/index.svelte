@@ -130,7 +130,7 @@
             </div>
             <div class="mt-4 flex h-16 items-start justify-center">
               <a
-                class="inline-block cursor-pointer rounded-md bg-indigo-600 px-4 py-3 text-center text-sm
+                class="btn-what-is-a-cause inline-block cursor-pointer rounded-md bg-indigo-600 px-4 py-3 text-center text-sm
                      font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-indigo-700"
                 href="#public">What is a cause?</a
               >
@@ -303,5 +303,12 @@
   }
 
   .floating-button-wallet {
+  }
+
+  .btn-what-is-a-cause {
+    width: 200px;
+    padding: 1.5rem 1.2rem;
+    font-size: 16px;
+    /* min-height: 4rem; */
   }
 </style>
