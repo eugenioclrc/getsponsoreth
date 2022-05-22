@@ -37,13 +37,6 @@ export async function init() {
           rpc : {1: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2"},
       }
     },
-    coinbasewallet: {
-      package: window.CoinbaseWalletSDK,
-      options: {
-        appName: "get_sponsor.eth",
-        infuraId: "8043bb2cf99347b1bfadfb233c5325c0"
-      },
-    },
   };
   
   web3Modal = new window.Web3Modal.default({
