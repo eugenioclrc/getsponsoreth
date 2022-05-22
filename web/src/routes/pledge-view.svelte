@@ -311,7 +311,7 @@ background-size: cover;
               <!-- avatar -->
               <div class="avatar p-8">
                 <div class="w-24 mask mask-circle">
-                  <img src="https://api.lorem.space/image/face?hash=53273" />
+                  <img src="https://api.lorem.space/image/face?hash={backer.id}" />
                 </div>
               </div>
 
