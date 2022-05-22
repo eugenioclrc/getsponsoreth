@@ -2,7 +2,6 @@ import { ethers } from 'ethers';
 import { defaultEvmStores } from 'svelte-ethers-store';
 
 import abi from './abi/GetSponsorETH.json';
-import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
 
 // Web3modal instance
 let web3Modal
@@ -38,13 +37,13 @@ export async function init() {
         infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
       }
     },
-    coinbasewallet: {
-      package: CoinbaseWalletSDK,
-      options: {
-        appName: "get_sponsor.eth",
-        infuraId: "8043bb2cf99347b1bfadfb233c5325c0"
-      },
-    },
+    // coinbasewallet: {
+    //   package: CoinbaseWalletSDK,
+    //   options: {
+    //     appName: "get_sponsor.eth",
+    //     infuraId: "8043bb2cf99347b1bfadfb233c5325c0"
+    //   },
+    // },
   };
   
   web3Modal = new window.Web3Modal.default({
