@@ -97,9 +97,8 @@ background-size: cover;
               class="input input-bordered w-100"
             />
           </div>
-          <!-- Start of component -->
-          <!-- card that contains lorem ipsum -->
-          {#if $searched}
+
+          {#if searched}
             <div
               class="card mb-4 flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
             >
@@ -114,37 +113,38 @@ background-size: cover;
               </div>
             </div>
           {/if}
-          <!-- {#each $pledges as $pledge} -->
+          <!-- Start of component -->
+          <!-- card that contains lorem ipsum -->
           <div
-            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center "
+            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex sm:flex-row items-center "
           >
             <!-- avatar -->
-            <div class="avatar  p-8">
+            <div class="avatar p-4 md:p-8">
               <div class="w-24 mask mask-circle">
                 <img src="https://api.lorem.space/image/face?hash=53273" />
               </div>
             </div>
 
             <!-- message -->
-            <div class="message pt-8 pb-8 pr-8">
+            <div class="message md:pt-8 md:pb-8 md:pr-8">
               <div class="message-content flex flex-row ">
                 <div class="message-header">
-                  <h1 class="text-2xl font-bold pb-2">{pledge.name}</h1>
+                  <h1 class="text-2xl font-bold pb-2">{data.name}</h1>
                   <h2 class="text-sm font-bold pb-4">
-                    {pledge.title}
+                    {data.title}
                   </h2>
                   <div class="pledge-content-details">
-                    {pledge.description}
+                    {data.description}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="ml-auto pr-8 buttons">
+            <div class="mt-4 md:mt-0 md:ml-auto md:pr-8 buttons mb-6 md:mb-0">
               <!-- button claim -->
               <!-- <button class="btn button-charming ">Go details</button> -->
               <a
                 class="btn btn-reverse btn-custom-arrow btn-charming"
-                href={pledge.url}
+                href="/pledge-view"
               >
                 <span
                   >Go details<svg
@@ -180,7 +180,6 @@ background-size: cover;
               </a>
             </div>
           </div>
-          <!-- {/each} -->
 
           <!-- End of component -->
         </div>

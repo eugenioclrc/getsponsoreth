@@ -37,8 +37,10 @@
             >
           </div> -->
 
-          <div class="mb-2 text-5xl lg:text-7xl">get_sponsor.eth</div>
-          <div class="text-2xl lg:text-3xl pt-4">
+          <div class="mb-2 text-5xl lg:text-7xl title_sponsoreth">
+            get_sponsor.eth
+          </div>
+          <div class="text-2xl lg:text-3xl pt-4 subtitle_sponsoreth">
             Engage with the community to make your dreams come true!<br />
             <!-- somethnig more here??-->
           </div>
@@ -326,7 +328,7 @@
   .btn-what-is-a-cause {
     padding: 1rem 4.2rem;
     font-size: 16px;
-    border-radius: 12px;
+    border-radius: 35px;
     /* min-height: 4rem; */
   }
 
@@ -394,6 +396,29 @@
     button,
     a {
       min-width: auto;
+    }
+
+    .title_sponsoreth {
+      /* font-size: 2rem; */
+    }
+
+    .subtitle_sponsoreth {
+      /* font-size: 1.4rem; */
+    }
+  }
+
+  @media (max-width: 426px) {
+    .title_sponsoreth {
+      font-size: 2rem;
+    }
+
+    .subtitle_sponsoreth {
+      font-size: 1.4rem;
+    }
+
+    .stroke-current > path {
+      min-width: 24px;
+      min-height: 24px;
     }
   }
 </style>
