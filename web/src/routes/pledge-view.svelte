@@ -3,7 +3,7 @@
 </script>
 
 <script>
-    import SvelteMarkdown from 'svelte-markdown'
+  import SvelteMarkdown from "svelte-markdown";
 
   import { onMount } from "svelte";
   import { ethers } from "ethers";
@@ -119,9 +119,11 @@
     console.log(data);
     pledge = data.pledge;
     try {
-      const response = await fetch('https://demo.storj-ipfs.com/ipfs/'+pledge.content);
+      const response = await fetch(
+        "https://demo.storj-ipfs.com/ipfs/" + pledge.content
+      );
       pledge.markdown = await response.text();
-    } catch(err) {}
+    } catch (err) {}
   });
 
   $: backgroundImage = backgroundImages[randomIndex];
@@ -155,7 +157,7 @@ background-size: cover;
           <!-- Start of component -->
           <!-- card that contains lorem ipsum -->
           <div
-            class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 "
+            class="card flex-shrink-0 w-full pledge-content-card pledge-card shadow-2xl bg-base-100 "
           >
             <div
               class="flex flex-col lg:flex-col text-center justify-center avatar-container"
@@ -180,7 +182,6 @@ background-size: cover;
               {#if pledge && pledge.markdown}
                 <SvelteMarkdown source={pledge.markdown} />
               {/if}
-              
             </div>
           </div>
 
@@ -191,7 +192,7 @@ background-size: cover;
       <div class="lg:w-1/3">
         <div class="flex flex-col lg:flex-row" />
         <div
-          class="min-h-screen  flex justify-center content-column "
+          class="min-h-screeno  flex justify-center content-column "
           style="    max-height: 475px;"
         >
           <!-- Start of component -->
@@ -334,7 +335,7 @@ background-size: cover;
                   </div>
                   <div class="message-body">
                     <p>
-                      {backer.message || 'Empty message'}
+                      {backer.message || "Empty message"}
                     </p>
                   </div>
                 </div>
@@ -428,7 +429,17 @@ background-size: cover;
     }
   }
 
+  @media (min-width: 1001px) {
+    .pledge-content-card {
+      min-height: 465px;
+    }
+  }
+
   @media (max-width: 1000px) {
+    .NoCryptoLink {
+      display: block;
+      width: 100%;
+    }
     .card {
       margin-left: auto;
       margin-right: auto;
