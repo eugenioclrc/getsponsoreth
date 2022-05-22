@@ -105,7 +105,7 @@
     const {data} = await fetchData(sponsorId);
 
     pledge = data.pledge;
-    if (!pledge.author) {
+    if (!pledge.id) {
       document.location = "/";
     }
     here = encodeURIComponent(document.location.href);
