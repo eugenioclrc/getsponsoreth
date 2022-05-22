@@ -9,7 +9,7 @@
   import { initClient, operationStore, query } from '@urql/svelte';
 import { onConnect } from "$lib/web3";
   const client = initClient({
-    url: 'https://api.thegraph`.com/subgraphs/name/eugenioclrc/getsponsoreth',
+    url: 'https://api.thegraph.com/subgraphs/name/eugenioclrc/getsponsoreth',
   });
 
   let amount = 0;
@@ -25,9 +25,10 @@ import { onConnect } from "$lib/web3";
         sponsorId,
         '0x0000000000000000000000000000000000000000',
         true, // bool isStaking,
-        amount,
+        0,
         username,
-        message
+        message,
+        { value: ethers.utils.parseEther(String(amount))}
     );
     await tx.wait();
   }
@@ -52,7 +53,7 @@ import { onConnect } from "$lib/web3";
   function fetchData(_pledgeId) {
       const GET_MYPROFILE = `
     query ($pledgeId: Int!) {
-      pledge(id:$pledgeid) {
+      pledge(id:$pledgeId) {
         id
         reason
         pledge
@@ -61,11 +62,12 @@ import { onConnect } from "$lib/web3";
           id
         }
         backers {
-          backer
-          backCause {
-            id
-          }
+          message
+          id
+          amount
+         
         }
+      
       }
     }`;
       return client
@@ -75,12 +77,7 @@ import { onConnect } from "$lib/web3";
         .toPromise();
   }
   
-  onMount(async () => {
-    const pledge = await fetchData(1);
-    console.log(pledge)
-  })
-
-
+  
   var data = {
     title: "Pledge reason",
     description: "Description of the pledge",
@@ -114,8 +111,11 @@ import { onConnect } from "$lib/web3";
   //function for getting a random string of backgroundImages
 
   let randomIndex = 0;
-  onMount(() => {
+  onMount(async () => {
     randomIndex = Math.floor(Math.random() * backgroundImages.length);
+
+    const pledge = await fetchData(1);
+    console.log(pledge)
   });
 
   $: backgroundImage = backgroundImages[randomIndex];
@@ -299,6 +299,7 @@ background-size: cover;
                   <div class="form-control w-1/2 mt-6">
                     <button on:click={fund} class="btn btn-primary" class:loading={buttonFundLoading}>Sponsoreth!</button>
                   </div>
+                  <a href="https://staging-global.transak.com/?apiKey=2efd471e-9da3-4fea-ad1f-568ae439a11d">Send fiat</a>
                 {/if}
               </div>
             </div>

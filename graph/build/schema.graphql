@@ -10,7 +10,9 @@ type Pledge @entity {
 type Backer @entity {
   id: ID!
   backer: String,
+  message: String,
   backCause: Pledge!
+  amount: BigInt
 }
 
 type User @entity {

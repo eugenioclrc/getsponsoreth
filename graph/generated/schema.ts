@@ -152,6 +152,23 @@ export class Backer extends Entity {
     }
   }
 
+  get message(): string | null {
+    let value = this.get("message");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set message(value: string | null) {
+    if (!value) {
+      this.unset("message");
+    } else {
+      this.set("message", Value.fromString(<string>value));
+    }
+  }
+
   get backCause(): string {
     let value = this.get("backCause");
     return value!.toString();
@@ -159,6 +176,23 @@ export class Backer extends Entity {
 
   set backCause(value: string) {
     this.set("backCause", Value.fromString(value));
+  }
+
+  get amount(): BigInt | null {
+    let value = this.get("amount");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set amount(value: BigInt | null) {
+    if (!value) {
+      this.unset("amount");
+    } else {
+      this.set("amount", Value.fromBigInt(<BigInt>value));
+    }
   }
 }
 

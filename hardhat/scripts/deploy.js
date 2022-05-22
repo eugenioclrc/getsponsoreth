@@ -11,9 +11,7 @@ async function main() {
   const GetSponsorETH = await ethers.getContractFactory("GetSponsorETH");
   // 0x9198F13B08E299d85E096929fA9781A1E3d5d827 mumbai lending pool
   // source https://docs.aave.com/developers/v/2.0/deployed-contracts/matic-polygon-market
-  const getSponsorETH = await GetSponsorETH.deploy("0x9198F13B08E299d85E096929fA9781A1E3d5d827", "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2");
-  await getSponsorETH.deployed();
-
+  const getSponsorETH = await GetSponsorETH.deploy("0x9198F13B08E299d85E096929fA9781A1E3d5d827", "0x9c3c9283d3e44854697cd22d3faa240cfb032889", "0xF45444171435d0aCB08a8af493837eF18e86EE27");
   await getSponsorETH.deployed();
 
   console.log("Sponsoreth deployed to:", getSponsorETH.address);
