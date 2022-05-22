@@ -31,6 +31,11 @@ module.exports = {
       chainId: 80001,
       accounts: process.env.PRIVATEKEY ? [process.env.PRIVATEKEY] : undefined,
     },
+    rinkeby: {
+            url: `https://rinkeby.infura.io/v3/${WEB3_INFURA_PROJECT_ID}`,
+            accounts: [`0x${PRIVATE_KEY}`],
+        },
+        
   },
   solidity: {
     compilers: [

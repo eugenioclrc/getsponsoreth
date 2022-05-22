@@ -94,11 +94,19 @@
             >
           {/if}
           <a
+<<<<<<< HEAD
             href="/list"
             class="btn btn-tertiary button-first-section btn-active lg:btn-lg normal-case"
           >
             Pledge List
           </a>
+=======
+              href="/browse-causes"
+              class="btn btn-ghost btn-active lg:btn-lg normal-case"
+            >
+              Pledge List
+            </a>
+>>>>>>> 54da6da9c6c6bef6e19f680b8582b13f788c448c
         </div>
       </div>
     </div>

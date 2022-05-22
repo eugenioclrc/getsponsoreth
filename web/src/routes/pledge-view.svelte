@@ -211,7 +211,7 @@ background-size: cover;
         <div class="flex flex-col lg:flex-row" />
         <div
           class="min-h-screen  flex justify-center content-column "
-          style="    max-height: 455px;"
+          style="    max-height: 475px;"
         >
           <!-- Start of component -->
           <!-- flex row -->
