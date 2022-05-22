@@ -178,7 +178,7 @@ background-size: cover;
             </div>
             <div class="card-body flex flex-col p-10">
               {#if pledge && pledge.markdown}
-                <SvelteMarkdown source={pledge.markdown} isInline />
+                <SvelteMarkdown source={pledge.markdown} />
               {/if}
               
             </div>
