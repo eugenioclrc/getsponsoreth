@@ -129,13 +129,16 @@
         <h3 class="mb-5 text-3xl font-bold">
           As simple as a regular transaction
         </h3>
-        <p class="mx-auto mb-5 w-full max-w-lg">
+        <p class="mx-auto  mb-5 w-full max-w-lg" style="font-size: 20px">
           getsponsor.eth aims to help devs and content creators to gather enough
           funds to make their projects blossom
         </p>
 
         <p />
-        <div class="mt-10 mb-20 flex flex-col lg:flex-row">
+        <div
+          class="mt-10 mb-20 flex flex-col lg:flex-row"
+          style="font-size: 20px"
+        >
           <div class="flex w-full flex-col text-left">
             <div class=" mx-auto w-full max-w-xs flex-grow sm:max-w-md">
               Users can both <b>create a cause</b> or <b>browse causes</b>
@@ -227,7 +230,9 @@
           <br />
           <a
             class="btn btn-primary rounded-full w-full md:w-1/2 "
-            href="/browse-causes">Browse causes!</a
+            href="/browse-causes"
+          >
+            Browse causes!</a
           >
         </div>
       </div>
@@ -447,6 +452,9 @@
   }
 
   @media (max-width: 576px) {
+    .steps-vertical .step {
+      gap: 0;
+    }
     .button-first-section {
       min-width: 180px;
     }
