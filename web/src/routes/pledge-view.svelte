@@ -1,12 +1,50 @@
+<script context="module">
+  export const prerender = true;
+</script>
 <script>
   import { onMount } from "svelte";
-  import { initClient, operationStore, query } from "@urql/svelte";
+  import { ethers } from "ethers"; 
+  import { connected, contracts } from "svelte-ethers-store";
+
+  import { initClient, operationStore, query } from '@urql/svelte';
+import { onConnect } from "$lib/web3";
   const client = initClient({
-    url: "https://api.thegraph`.com/subgraphs/name/eugenioclrc/getsponsoreth",
+    url: 'https://api.thegraph`.com/subgraphs/name/eugenioclrc/getsponsoreth',
   });
 
-  function fetchData(pledgeId) {
-    const GET_MYPROFILE = `
+  let amount = 0;
+  let username = '';
+  let message = '';
+
+  let sponsorId = 1;
+
+  async function stake() {
+    const tx = await $contracts.GetSponsorETH.fund(
+        sponsorId,
+        '0x0000000000000000000000000000000000000000',
+        true, // bool isStaking,
+        amount,
+        username,
+        message
+    );
+    await tx.wait();
+  }
+
+  async function fund() {
+    const tx = await $contracts.GetSponsorETH.fund(
+        sponsorId,
+        '0x0000000000000000000000000000000000000000',
+        false, // bool isStaking,
+        0,
+        username,
+        message,
+        { value: ethers.utils.parseEther(String(amount))}
+    );
+    await tx.wait();
+  }
+  
+  function fetchData(_pledgeId) {
+      const GET_MYPROFILE = `
     query ($pledgeId: Int!) {
       pledge(id:$pledgeid) {
         id
@@ -24,17 +62,18 @@
         }
       }
     }`;
-    return client
-      .query(GET_MYPROFILE, {
-        pledgeId,
-      })
-      .toPromise();
+      return client
+        .query(GET_MYPROFILE, {
+          pledgeId: _pledgeId
+        })
+        .toPromise();
   }
-
+  
   onMount(async () => {
     const pledge = await fetchData(1);
-    console.log(pledge);
-  });
+    console.log(pledge)
+  })
+
 
   var data = {
     title: "Pledge reason",
@@ -205,6 +244,7 @@ background-size: cover;
                   <span class="label-text">Amount</span>
                 </label>
                 <input
+                  bind:value={amount}
                   type="number"
                   placeholder="How much do you wanna sponsor"
                   class="input input-bordered"
@@ -217,6 +257,7 @@ background-size: cover;
                   <span class="label-text">Message</span>
                 </label>
                 <textarea
+                  bind:value={message}
                   placeholder="Send a message"
                   class="h-24 pt-2 input input-bordered"
                 />
@@ -227,14 +268,22 @@ background-size: cover;
                 </label> -->
               </div>
               <div class="flex gap-4">
-                <div class="form-control w-1/2 mt-6">
-                  <button on:click={clickDoShit} class="btn btn-secondary"
-                    >Staketh!</button
-                  >
-                </div>
-                <div class="form-control w-1/2 mt-6">
-                  <button class="btn btn-primary">Sponsoreth!</button>
-                </div>
+                {#if !$connected}
+                <div class="form-control w-full m-6">
+                  <button on:click={onConnect} class="btn btn-secondary"
+                      >Connect!</button
+                    >
+                  </div>
+                {:else}
+                  <div class="form-control w-1/2 mt-6">
+                    <button on:click={stake} class="btn btn-secondary"
+                      >Staketh!</button
+                    >
+                  </div>
+                  <div class="form-control w-1/2 mt-6">
+                    <button on:click={fund} class="btn btn-primary">Sponsoreth!</button>
+                  </div>
+                {/if}
               </div>
             </div>
           </div>
@@ -244,7 +293,7 @@ background-size: cover;
       <div class="lg:w-2/3 mt-2">
         <!-- title Message -->
 
-        <div class="  flex flex-col ">
+        <div class="flex flex-col ">
           <!-- title -->
           <div
             class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex flex-row items-center  mb-4 mt-4"
