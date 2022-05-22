@@ -30,6 +30,7 @@ Weolcome to getSponsoreth repository!
 
 ##### Within this repository you will find used technologies as:
 - Figment.io for the RPC
+- PKT RPC for Gnosis
 - Transak to enable FIAT-to-crypto buy option
 - STORJ IPFS to host the user’s pledge contents
 - SKYNET to host the frontend assets
