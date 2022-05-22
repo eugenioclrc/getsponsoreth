@@ -2,14 +2,26 @@
   import { onMount } from "svelte";
   import { initClient, operationStore, query } from '@urql/svelte';
   const client = initClient({
-    url: 'https://api.thegraph.com/subgraphs/name/eugenioclrc/getsponsoreth',
+    url: 'https://api.thegraph`.com/subgraphs/name/eugenioclrc/getsponsoreth',
   });
 
   function fetchData(pledgeId) {
       const GET_MYPROFILE = `
     query ($pledgeId: Int!) {
-      pledge(id:$pledgeId) {
+      pledge(id:$pledgeid) {
         id
+        reason
+        pledge
+        content
+        owner {
+          id
+        }
+        backers {
+          backer
+          backCause {
+            id
+          }
+        }
       }
     }`;
       return client
@@ -20,7 +32,6 @@
   }
   
   onMount(async () => {
-    console.log(33)
     const pledge = await fetchData(1);
     console.log(pledge)
   })
