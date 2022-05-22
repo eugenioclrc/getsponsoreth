@@ -6,7 +6,7 @@
   import { connected, signerAddress } from "svelte-ethers-store";
 
   import SvgCheck from "$lib/svgCheck.svelte";
-  import { onConnect } from "$lib/web3";
+  import { onConnect, onDisconnect } from "$lib/web3";
 </script>
 
 <div class="">
@@ -18,12 +18,15 @@
     >
       <div class="lg:px-10 lg:pb-12">
         <h1 class="font-title mb-2 py-4 font-extrabold lg:py-10">
-          <div class="floating-button-container btn btn-tertiary ">
-            <!-- content -->
-            <button class="floating-button-wallet">
-              Connect to... <span class="floating-button-address" />
-            </button>
-          </div>
+          {#if $connected}
+            <div class="floating-button-container btn btn-tertiary ">
+              <!-- content -->
+              <button class="floating-button-wallet" on:click={onDisconnect}>
+                {$signerAddress.slice(0, 4)}...{$signerAddress.slice(-4)}
+                <span class="floating-button-address" />
+              </button>
+            </div>
+          {/if}
           <div class="mb-2 text-5xl lg:text-7xl">get_sponsor.eth</div>
           <div class="text-2xl lg:text-3xl">
             Engage with the community to make your dreams come true!<br />
