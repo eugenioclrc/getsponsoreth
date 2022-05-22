@@ -53,9 +53,12 @@ contract GetSponsorETH is Ownable, ERC1155 {
     );
     event Claimed(uint indexed sponsorshipId, address indexed token);
 
-    constructor(address _lendingPool, address _weth) ERC1155("SPONSORETH") {
+    constructor(address _lendingPool, address _weth, address _aweth) ERC1155("SPONSORETH") {
         lendingPool = ILendingPool(_lendingPool);
         weth = IWETH(_weth);
+        isAllowedToken[address(weth)] = true;
+        aTokens[_weth] = _aweth;
+        IERC20(_weth).approve(address(lendingPool), type(uint).max);
     }
 
     function createSponsor(

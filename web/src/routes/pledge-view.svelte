@@ -25,9 +25,10 @@ import { onConnect } from "$lib/web3";
         sponsorId,
         '0x0000000000000000000000000000000000000000',
         true, // bool isStaking,
-        amount,
+        0,
         username,
-        message
+        message,
+        { value: ethers.utils.parseEther(String(amount))}
     );
     await tx.wait();
   }
