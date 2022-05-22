@@ -333,8 +333,15 @@
     border-radius: 8px;
   }
 
-  .floating-button-wallet {
-  }
+  /* .floating-button-container:after {
+    content: "x";
+    font-size: 8px;
+    position: relative;
+    width: 0;
+    height: 0;
+    top: -22px;
+    right: -4px;
+  } */
 
   .btn-what-is-a-cause {
     padding: 1rem 4.2rem;

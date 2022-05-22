@@ -1,10 +1,9 @@
 <script>
   import { onMount } from "svelte";
-  import { initClient, operationStore, query } from '@urql/svelte';
+  import { initClient, operationStore, query } from "@urql/svelte";
 
-    //user_image: "https://avatars0.githubusercontent.com/u/1234?s=460&v=4",
-    //name: "John Doe",
-  
+  //user_image: "https://avatars0.githubusercontent.com/u/1234?s=460&v=4",
+  //name: "John Doe",
 
   var pledge = {
     title: "Pledge reason",
@@ -28,18 +27,18 @@
 
   let randomIndex = 0;
 
-  let pledges =[];
+  let pledges = [];
 
   const client = initClient({
-      url: 'https://api.thegraph.com/subgraphs/name/eugenioclrc/getsponsoreth',
-    });
+    url: "https://api.thegraph.com/subgraphs/name/eugenioclrc/getsponsoreth",
+  });
 
   onMount(async () => {
     randomIndex = Math.floor(Math.random() * backgroundImages.length);
-  
 
-    const {data } = await client
-        .query(`query {     
+    const { data } = await client
+      .query(
+        `query {     
           pledges(first: 10) {
             id
             backCount
@@ -47,10 +46,11 @@
             pledge
             reason
           }
-        }`)
-        .toPromise();
+        }`
+      )
+      .toPromise();
     pledges = data.pledges;
-    console.log({pledges})
+    console.log({ pledges });
   });
 
   $: backgroundImage = backgroundImages[randomIndex];
@@ -122,10 +122,9 @@ background-size: cover;
           {/if}
           <!-- Start of component -->
           {#each pledges as p}
-            
             <!-- card that contains lorem ipsum -->
             <div
-              class="card flex-shrink-0 w-full pledge-card shadow-2xl bg-base-100 flex sm:flex-row items-center "
+              class="card flex-shrink-0 mb-4 w-full pledge-card shadow-2xl bg-base-100 flex sm:flex-row items-center "
             >
               <!-- avatar -->
               <div class="avatar p-4 md:p-8">
