@@ -1,7 +1,6 @@
 <script context="module">
   export const prerender = true;
 </script>
-
 <script>
   import { connected, signerAddress } from "svelte-ethers-store";
 
@@ -196,7 +195,7 @@
           <br />
           <a
             class="btn  btn-tertiary btn-outline rounded-full"
-            href="/mistery-causes">Mistery button</a
+            href="#/mistery-causes">Mistery button</a
           >
         </div>
       </div>
