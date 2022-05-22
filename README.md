@@ -11,3 +11,5 @@
 [Mumbai Contract](https://mumbai.polygonscan.com/address/0x36DD9D9ecF2D8805FC5939188b26aC669202b2e1#code)
 
 
+## Sokol Gnosis Contract
+[Gnosis Contract](https://blockscout.com/poa/sokol/address/0xC9d405431baA5304F14EA4A721f2f625e19Bee79/transactions)
