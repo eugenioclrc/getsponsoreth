@@ -3,6 +3,8 @@
 </script>
 
 <script>
+    import SvelteMarkdown from 'svelte-markdown'
+
   import { onMount } from "svelte";
   import { ethers } from "ethers";
   import { connected, contracts } from "svelte-ethers-store";
@@ -116,6 +118,10 @@
     here = encodeURIComponent(document.location.href);
     console.log(data);
     pledge = data.pledge;
+    try {
+      const response = await fetch('https://demo.storj-ipfs.com/ipfs/'+pledge.content);
+      pledge.markdown = await response.text();
+    } catch(err) {}
   });
 
   $: backgroundImage = backgroundImages[randomIndex];
@@ -171,35 +177,10 @@ background-size: cover;
               </div>
             </div>
             <div class="card-body flex flex-col p-10">
-              Hallo, Servus, and welcome to this page! 👋 My name is Felicia
-              (Feli) and I'm a girl from Germany living in the US - in
-              Cincinnati, Ohio to be precise. I've decided to create this page
-              for people who would like to support my channel but are hesitant
-              about becoming a patron on Patreon. So if you want, you can buy me
-              a "coffee" on here - which in my case really means beer or Chai
-              Latte haha because I don't actually drink coffee. :) Thank you so
-              much! I appreciate each and every one who supports me and my
-              channel. In my videos, I talk about cultural differences between
-              America and Germany, things I like and dislike about living here,
-              and other experiences that I have made during my time in the
-              States. You can watch all of my videos on my YouTube channel,
-              follow me on Instagram (@felifromgermany) or Facebook for behind
-              the scenes content, or become a patron and join the Patreon family
-              and get even more insights and participate in a monthly Q&A
-              session with me! :) ABOUT ME I'm a real "Münchnerkindl" which
-              means that I was born and raised in Munich, Germany (Oktoberfest
-              city!) but have been living in Cincinnati off and on since 2016. I
-              first came to Cincinnati for an exchange semester during my
-              undergrad but I ended up coming back for an internship and then
-              for my master's that I got in German Studies at the University of
-              Cincinnati. I then was lucky enough to win the Green Card Lottery
-              and am now here as a Permanent Resident. WHY? I just really enjoy
-              the American culture and was happy to take advantage of the
-              opportunities that life brought me. I think the US is the right
-              place for me - at least for the phase of life that I'm in right
-              now but I see my family and friends in Germany on a regular basis
-              and talk to them several times a week. DANKESCHÖÖÖÖN (thank you so
-              so much!) for your support and greetings from Cincinnati, Felicia
+              {#if pledge && pledge.markdown}
+                <SvelteMarkdown source={pledge.markdown} />
+              {/if}
+              
             </div>
           </div>
 
