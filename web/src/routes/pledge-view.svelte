@@ -65,6 +65,7 @@
       pledge(id:$pledgeId) {
         id
         reason
+        author
         pledge
         content
         owner {
