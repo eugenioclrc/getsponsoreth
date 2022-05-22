@@ -70,32 +70,35 @@
           </div>
         </div>
         <div
-          class="mt-4 flex flex-1 justify-center space-x-2 sm:justify-start lg:mt-6 lg:justify-start"
+          class="mt-4 flex flex-1 pt-6 justify-center space-x-2 sm:justify-start lg:mt-6 lg:justify-start"
         >
           {#if !$connected}
             <button
               on:click={onConnect}
-              class="btn btn-ghost btn-active lg:btn-lg normal-case"
+              class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
             >
               Connect
             </button>
-          <a href="#how" class="btn lg:btn-lg normal-case">How does it work?</a>
-
+            <!-- <a href="#how" class="btn lg:btn-lg normal-case">How does it work?</a> -->
           {:else}
             <a
               href="/create-sponsor"
-              class="btn btn-ghost btn-active lg:btn-lg normal-case"
+              class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
             >
               Create pledge
             </a>
-            <a href="/your-pledges" class="btn lg:btn-lg normal-case">My pledges</a>
+            <a
+              href="/your-pledges"
+              class="btn button-first-section lg:btn-lg normal-case"
+              >My pledges</a
+            >
           {/if}
           <a
-              href="/list"
-              class="btn btn-ghost btn-active lg:btn-lg normal-case"
-            >
-              Pledge List
-            </a>
+            href="/list"
+            class="btn btn-tertiary button-first-section btn-active lg:btn-lg normal-case"
+          >
+            Pledge List
+          </a>
         </div>
       </div>
     </div>
@@ -337,6 +340,7 @@
     padding: 1rem 4.2rem;
     font-size: 16px;
     border-radius: 35px;
+    white-space: nowrap;
     /* min-height: 4rem; */
   }
 
@@ -373,6 +377,26 @@
     margin-top: -2rem;
   }
 
+  .button-charming {
+    height: 3rem;
+    border-radius: 8px;
+    padding: 0 2rem;
+    background: linear-gradient(-45deg, #9925ea, #338aff, #9925ea);
+    background-size: 400%;
+    background-position: 90% 0;
+    color: #fff;
+    transition: background 0.8s;
+    border: none;
+  }
+
+  .button-charming:hover {
+    background-position: 185% 50%;
+  }
+
+  .button-first-section {
+    min-width: 250px;
+  }
+
   @media (max-width: 768px) {
     .max-w-md {
       max-width: 100%;
@@ -401,6 +425,10 @@
   }
 
   @media (max-width: 576px) {
+    .button-first-section {
+      min-width: 180px;
+    }
+
     button,
     a {
       min-width: auto;
@@ -427,6 +455,10 @@
     .stroke-current > path {
       min-width: 24px;
       min-height: 24px;
+    }
+
+    .button-first-section {
+      min-width: 40%;
     }
   }
 </style>
