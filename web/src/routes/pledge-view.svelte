@@ -86,14 +86,6 @@
       .toPromise();
   }
 
-  var pledge author    title: "Pledge reason",
-    description: "Description of the pledge",
-    user_image: "https://avatars0.githubusercontent.com/u/1234?s=460&v=4",
-    name: "John Doe",
-    amount: 3,
-    type: "ETH",
-  };
-
   const backgroundImages = [
     "joshua-earle-Hn8N4I4eHA0-unsplash.jpg",
     "natalie-runnerstrom-SZlgOP7bSnI-unsplash.jpg",
