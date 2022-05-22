@@ -56,12 +56,12 @@
 
               <!-- content -->
               {#if $chainId==80001}
-                <button class="floating-button-wallet" on:click={changeNetwork}>
+                <button class="floating-button-wallet" on:click={onDisconnect}>
                   {$signerAddress.slice(0, 4)}...{$signerAddress.slice(-4)}
                   <span class="floating-button-address" />
                 </button>
               {:else}
-              <button class="floating-button-wallet" on:click={onDisconnect}>
+              <button class="floating-button-wallet" on:click={changeNetwork}>
                 WRONG NETWORK!
                 <span class="floating-button-address" />
               </button>
