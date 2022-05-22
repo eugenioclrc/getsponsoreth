@@ -91,7 +91,7 @@
             <a href="/your-pledges" class="btn lg:btn-lg normal-case">My pledges</a>
           {/if}
           <a
-              href="/list"
+              href="/browse-causes"
               class="btn btn-ghost btn-active lg:btn-lg normal-case"
             >
               Pledge List
