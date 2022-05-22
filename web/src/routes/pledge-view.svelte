@@ -86,8 +86,7 @@
       .toPromise();
   }
 
-  var data = {
-    title: "Pledge reason",
+  var pledge author    title: "Pledge reason",
     description: "Description of the pledge",
     user_image: "https://avatars0.githubusercontent.com/u/1234?s=460&v=4",
     name: "John Doe",
@@ -111,13 +110,12 @@
     let params = new URLSearchParams(document.location.search);
     sponsorId = parseInt(params.get("id"), 10); // is the number 18
 
-    const { data } = await fetchData(sponsorId);
-    if (!data.pledge) {
+    const { pledge authorawait fetchpledge(authorsorId);
+    if (!pledge.authorge) {
       document.location = "/";
     }
     here = encodeURIComponent(document.location.href);
-    console.log(data);
-    pledge = data.pledge;
+    console.log(pledge)author  pledge = pledge.authorge;
     try {
       const response = await fetch(
         "https://demo.storj-ipfs.com/ipfs/" + pledge.content
@@ -170,15 +168,15 @@ background-size: cover;
               </div>
               <!-- name -->
               <div class="name">
-                <h1 class="text-2xl font-bold">{data.name}</h1>
+                <h1 class="text-2xl font-bold">{pledge.author || '--'}</h1>
               </div>
               <div class="title">
                 <h2 class="text-2xl font-bold pt-4 Pledge_Title">
-                  {data.title}
+                  {pledge.reason || ''}
                 </h2>
               </div>
             </div>
-            <div class="card-body flex flex-col p-10">
+            <div class="card-body flex flex-col p-10 markdown">
               {#if pledge && pledge.markdown}
                 <SvelteMarkdown source={pledge.markdown} />
               {/if}

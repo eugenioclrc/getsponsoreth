@@ -12,7 +12,6 @@ let provider;
 
 
 
-
 /**
  * Setup the orchestra
  */
@@ -53,7 +52,7 @@ export async function init() {
 }
 
 export function loadContracts() {
-  defaultEvmStores.attachContract('GetSponsorETH', '0xa8747075a10A3512e1ED750E7A6f71c2e964f824', JSON.stringify(abi));
+  defaultEvmStores.attachContract('GetSponsorETH', '0xCEfa58184aa1C45Baa98B02687451B412F2Acaa6', JSON.stringify(abi));
 }
 
 

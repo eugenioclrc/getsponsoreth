@@ -6,3 +6,20 @@
 @tailwind components;
 
 @tailwind utilities;
+
+
+.markdown h1 {
+    @apply text-4xl;
+}
+.markdown h2 {
+    @apply text-2xl;
+}
+.markdown h3 {
+    @apply text-xl;
+}
+.markdown h4 {
+    @apply text-lg;
+}
+.markdown b {
+    @apply font-bold;
+}
