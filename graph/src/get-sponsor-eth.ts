@@ -92,6 +92,7 @@ export function handleConfig(event: Config) : void {
     } else if (event.params.valName == 'author') {
       entity.author = event.params.value;
     }
+    entity.save()
   }
 }
 
