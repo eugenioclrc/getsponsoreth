@@ -27,6 +27,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@coinbase/wallet-sdk": "^3.1.0",
     "daisyui": "^2.15.0",
     "dotenv": "^16.0.1",
     "ethers": "^5.6.6",
