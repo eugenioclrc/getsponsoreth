@@ -34,8 +34,15 @@ export async function init() {
       package: WalletConnectProvider,
       options: {
         // Mikko's test key - don't copy as your mileage may vary
-        rpc : {1: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2"},
+          rpc : {1: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2"},
       }
+    },
+    coinbasewallet: {
+      package: window.CoinbaseWalletSDK,
+      options: {
+        appName: "get_sponsor.eth",
+        infuraId: "8043bb2cf99347b1bfadfb233c5325c0"
+      },
     },
   };
   
@@ -82,14 +89,15 @@ export async function onDisconnect() {
 
   // TODO: Which providers have close method?
   if (provider.close) {
-    await web3Modal.clearCachedProvider();
     await provider.close();
 
     // If the cached provider is not cleared,
     // WalletConnect will default to the existing session
     // and does not allow to re-scan the QR code with a new wallet.
     // Depending on your use case you may want or want not his behavir.
-    provider = null;
   }
+  await web3Modal.clearCachedProvider();
   defaultEvmStores.disconnect();
+  provider = null;
+
 }

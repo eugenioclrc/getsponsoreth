@@ -1,8 +1,45 @@
 <script>
   import { onMount } from "svelte";
+  import { initClient, operationStore, query } from '@urql/svelte';
+  const client = initClient({
+    url: 'https://api.thegraph`.com/subgraphs/name/eugenioclrc/getsponsoreth',
+  });
+
+  function fetchData(pledgeId) {
+      const GET_MYPROFILE = `
+    query ($pledgeId: Int!) {
+      pledge(id:$pledgeid) {
+        id
+        reason
+        pledge
+        content
+        owner {
+          id
+        }
+        backers {
+          backer
+          backCause {
+            id
+          }
+        }
+      }
+    }`;
+      return client
+        .query(GET_MYPROFILE, {
+          pledgeId
+        })
+        .toPromise();
+  }
+  
+  onMount(async () => {
+    const pledge = await fetchData(1);
+    console.log(pledge)
+  })
+
+
   var data = {
-    title: "Home",
-    description: "Svelte demo app",
+    title: "Pledge reason",
+    description: "Description of the pledge",
     user_image: "https://avatars0.githubusercontent.com/u/1234?s=460&v=4",
     name: "John Doe",
   };
