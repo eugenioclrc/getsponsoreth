@@ -1,6 +1,6 @@
 # getSponsoreth
 
-![getSponsorethlogo](./img/getSponsor.PNG)
+![getSponsorethlogo](./img/zkMEV.png)
 
 Welcome to getSponsoreth repository! Go [GetSponsereth](https://getsponsoreth.vercel.app/) Now!
 
